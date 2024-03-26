@@ -1,9 +1,9 @@
 import {createBrowserRouter} from 'react-router-dom';
-import Home from '../pages/Home.jsx';
+import LoginPage from '../pages/LoginPage.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>,
+    element: <LoginPage/>,
   }]);
 export default router;
