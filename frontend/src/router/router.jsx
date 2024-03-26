@@ -1,16 +1,9 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import HomePage from './components/HomePage'; // Ajusta la ruta según sea necesario
+import {createBrowserRouter} from 'react-router-dom';
+import Home from '../pages/Home.jsx';
 
-function router() {
- return (
-    <Router>
-      <Switch>
-        <Route path="/" exact component={Home} />
-        {/* añadir otras rutas aquí */}
-      </Switch>
-    </Router>
- );
-}
-
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home/>,
+  }]);
 export default router;
