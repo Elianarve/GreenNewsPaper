@@ -8,7 +8,7 @@ const NewsModel = connection_db.define('News', {
         primaryKey: true,
     },
     title: {
-        type: DataTypes.STRING(250),
+        type: DataTypes.STRING,
         allowNull: false
     },
     date: {
@@ -19,11 +19,11 @@ const NewsModel = connection_db.define('News', {
         type: DataTypes.STRING,
     },
     author: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING,
         allowNull: false
     },
     image: {
-        type: DataTypes.STRING(250),
+        type: DataTypes.STRING,
         allowNull: false
     },
 },{
