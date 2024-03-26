@@ -1,14 +1,19 @@
 import connection_db from "./database/connection_db";
 import { PORT } from './config';
 import express from 'express';
+import NewsModel from "./models/newsModel";
 
 const app = express();
 
-// app.use(express.json());
+app.use(express.json());
 
 try {
     connection_db.authenticate();
     console.log('Connection has been established successfully.👏👏');
+
+    NewsModel.sync();
+    console.log('Model connected correctly 📋')
+
    } catch (error) {
     console.error('Unable to connect to the database:', error);
    }
