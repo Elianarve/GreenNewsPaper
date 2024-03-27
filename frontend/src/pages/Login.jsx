@@ -1,7 +1,8 @@
 // import {useLoaderData} from 'react-router-dom';
 import React from 'react';
 import LoginForm from '../components/LoginForm.jsx';
-const LoginPage = () => {
+
+const Login = () => {
   // const news = useLoaderData();
 
  return (
@@ -15,4 +16,4 @@ const LoginPage = () => {
   </>  
  );
 }
-export default LoginPage;
+export default Login;
