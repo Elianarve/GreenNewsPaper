@@ -5,8 +5,8 @@ import Login from '../pages/Login.jsx';
 import Home from '../pages/Home.jsx';
 import Create from '../pages/Create.jsx';
 import NewsDetails from '../pages/NewsDetails.jsx';
+import Register from '../pages/Register.jsx';
 import {getData} from '../services/newsServices.js';
-
 
 
 const router = createBrowserRouter([
@@ -34,6 +34,10 @@ const router = createBrowserRouter([
      {
         path: "/newsdetails/:id",
         element: <NewsDetails/>,
+     },
+     {
+        path:"/register",
+        element: <Register/>,
      },
    ],
  },
