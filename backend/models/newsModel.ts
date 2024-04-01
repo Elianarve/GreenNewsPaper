@@ -41,7 +41,7 @@ const NewsModel = connection_db.define('news',
   }
 );
 
-UserModel.hasMany(NewsModel, { foreignKey: 'userid' });
+UserModel.hasMany(NewsModel, { foreignKey: 'userId' });
 export default NewsModel;
 
 

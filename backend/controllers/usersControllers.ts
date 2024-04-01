@@ -1,75 +1,53 @@
+import UsersModel from '../models/usersModel';
 import { Request, Response } from 'express';
-import UserModel from '../models/usersModel';
 
-// Obtener todos los usuarios
-export const getAllUsers = async (req: Request, res: Response) => {
-  try {
-    const users = await UserModel.findAll();
-    res.json(users);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error al obtener los usuarios' });
-  }
-};
-
-// Obtener un usuario por su ID
-export const getUserById = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  try {
-    const user = await UserModel.findByPk(id);
-    if (!user) {
-      res.status(404).json({ message: 'Usuario no encontrado' });
-      return;
-    }
-    res.json(user);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error al obtener el usuario' });
-  }
-};
-
-// Crear un nuevo usuario
-export const createUser = async (req: Request, res: Response) => {
-  const { username, email, password } = req.body;
-  try {
-    const user = await UserModel.create({ username, email, password });
-    res.status(201).json(user);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error al crear el usuario' });
-  }
-};
-
-// Actualizar un usuario
-export const updateUser = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const { username, email, password } = req.body;
-  try {
-    const user = await UserModel.findByPk(id);
-    if (!user) {
-      res.status(404).json({ message: 'Usuario no encontrado' });
-      return;
-    }
-    await user.update({ username, email, password });
-    res.json(user);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error al actualizar el usuario' });
-  }
-};
-
-// Eliminar un usuario
-export const deleteUser = async (req: Request, res: Response) => {
-    const { id } = req.params;
+export const getUser = async(req: Request, res: Response) => {
     try {
-      const user = await UserModel.findByPk(id);
-      if (!user) {
-        return res.status(404).json({ message: 'Usuario no encontrado' });
-      }
-      await user.destroy();
-      res.json({ message: 'Usuario eliminado exitosamente' });
+        const news = await UsersModel.findAll();
+        res.status(200).json(news);
     } catch (error) {
-      console.error('Error al eliminar usuario:', error);
-      res.status(500).json({ message: 'Error al eliminar usuario' });
+        res.status(500).json({error: 'Internal Server Error'});
     }
-  };
+}
+
+export const deleteUser = async (req: Request, res: Response) => {
+    const userId = req.params.id;
+    try {
+            await UsersModel.destroy({ where: { id: userId }});
+        return res.status(201).send({ message: 'News deleted successfully' });
+
+    } catch (error) {
+        return res.status(500).send({ error: 'Internal Server Error' });
+    }
+};
+
+
+export const createdUser = async (req: Request, res: Response) => {
+    try {
+        const createdNewNews = await UsersModel.create(req.body)       
+        res.status(201).json(createdNewNews);
+    }catch(error){
+        return res.status(500).send({ error: 'Internal Server Error' });
+    }
+}
+
+export const updateUser = async (req: Request, res: Response) => {   
+    const userId = req.params.id;
+    try {
+        await UsersModel.update(req.body,{  where: {id: userId}});
+        res.status(200).json({message: ` News: ${userId}, Successfully updated`});
+    } catch(error) {
+        res.status(500).json({error: 'Internal Server Error'});
+    }   
+}
+
+
+export const getOneUser = async (req: Request, res: Response) =>{
+    const userId = req.params.id;
+    try {
+        const news = await UsersModel.findOne({ where: { id: userId}});
+        res.status(200).json(news);
+    } catch(error) {
+        res.status(500).json({error: 'Internal Server Error'});
+    }   
+}

@@ -1,85 +1,54 @@
-import { Request, Response } from 'express';
 import NewsModel from '../models/newsModel';
+import { Request, Response } from 'express';
 
-// Obtener todas las noticias
-export const getAllNews = async (req: Request, res: Response) => {
-  try {
-    const news = await NewsModel.findAll();
-    res.status(200).json(news);
-  } catch (error) {
-    res.status(500).json({ error: 'Error al obtener las noticias' });
-  }
-};
-
-// Obtener una noticia por su ID
-export const getNewsById = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  try {
-    const news = await NewsModel.findByPk(id);
-    if (!news) {
-      res.status(404).json({ message: 'Noticia no encontrada' });
-      return;
+export const getNews = async(req: Request, res: Response) => {
+    try {
+        const news = await NewsModel.findAll();
+        res.status(200).json(news);
+    } catch (error) {
+        res.status(500).json({error: 'Internal Server Error'});
     }
-    res.json(news);
-  } catch (error) {
-    res.status(500).json({ message: 'Error al obtener la noticia' });
-  }
-};
+}
 
-// Crear una nueva noticia
-export const createNews = async (req: Request, res: Response) => {
-  const { title, publishedAt, description, authorId, image } = req.body;
-  try {
-    const news = await NewsModel.create({
-      title,
-      publishedAt,
-      description,
-      authorId,
-      image
-    });
-    res.status(201).json(news);
-  } catch (error) {
-    res.status(500).json({ message: 'Error al crear la noticia' });
-  }
-};
-
-// Actualizar una noticia
-export const updateNews = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const { title, publishedAt, description, authorId, image } = req.body;
-  try {
-    const news = await NewsModel.findByPk(id);
-    if (!news) {
-      res.status(404).json({ message: 'Noticia no encontrada' });
-      return;
-    }
-    await news.update({
-      title,
-      publishedAt,
-      description,
-      authorId,
-      image
-    });
-    res.json(news);
-  } catch (error) {
-    res.status(500).json({ message: 'Error al actualizar la noticia' });
-  }
-};
-
-// Eliminar una noticia
 export const deleteNews = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  try {
-    const news = await NewsModel.findByPk(id);
-    if (!news) {
-      res.status(404).json({ message: 'Noticia no encontrada' });
-      return;
+    const newsId = req.params.id;
+    try {
+            await NewsModel.destroy({ where: { id: newsId }});
+        return res.status(201).send({ message: 'News deleted successfully' });
+
+    } catch (error) {
+        return res.status(500).send({ error: 'Internal Server Error' });
     }
-    await news.destroy();
-    res.json({ message: 'Noticia eliminada correctamente' });
-  } catch (error) {
-    res.status(500).json({ message: 'Error al eliminar la noticia' });
-  }
 };
 
+
+export const createdNews = async (req: Request, res: Response) => {
+    try {
+        const createdNewNews = await NewsModel.create(req.body)       
+        res.status(201).json(createdNewNews);
+    }catch(error){
+        return res.status(500).send({ error: 'Internal Server Error' });
+    }
+}
+
+export const updateNews = async (req: Request, res: Response) => {   
+    const newsId = req.params.id;
+    try {
+        await NewsModel.update(req.body,{  where: {id: newsId}});
+        res.status(200).json({message: ` News: ${newsId}, Successfully updated`});
+    } catch(error) {
+        res.status(500).json({error: 'Internal Server Error'});
+    }   
+}
+
+
+export const getOneNews = async (req: Request, res: Response) =>{
+    const newsId = req.params.id;
+    try {
+        const news = await NewsModel.findOne({ where: { id: newsId}});
+        res.status(200).json(news);
+    } catch(error) {
+        res.status(500).json({error: 'Internal Server Error'});
+    }   
+}
 

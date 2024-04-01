@@ -6,6 +6,7 @@ import NewsModel from "./models/newsModel";
 import UserModel from "./models/usersModel";
 import userRouter from './routes/userRouter';
 import newsRouter from './routes/newsRouter';
+import authRouter from './routes/authRouter';
 
 
 
@@ -15,6 +16,7 @@ app.use(express.json());
 // Configuración de las rutas
 app.use('/users', userRouter);
 app.use('/news', newsRouter);
+app.use('/auth', authRouter);
 
   try {
 
