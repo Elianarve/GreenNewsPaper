@@ -28,7 +28,17 @@ export const loginUser = async (req: Request, res: Response) => {
             return res.status(401).send( {error: "Contraseña incorrecta"});
         }
 
-        res.status(200).send({ message: "Inicio de sesión correcto"})
+        const token = jwt.sign({userId: user.id, email: user.email }, 'secreto', { expiresIn: '2h'});
+
+        res.status(200).send({
+            message: "Inicio de sesión correcto",
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email
+            },
+            tokenUser: token
+        });
     } catch(error) {
         return res.status(500).send({ error: "Internal Server Error"});
     }
