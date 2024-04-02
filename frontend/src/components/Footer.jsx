@@ -1,9 +1,14 @@
 import React from 'react'
 
-function Footer() {
+
+const Footer = () => {
   return (
-    <div>Footer</div>
-  )
+    <>
+    <div className="fixed bottom-0 w-full bg-gray-800 text-white text-center py-2">
+      <p className="whitespace-pre">@Copyright 2024 InnovaTech · Todos los derechos reservados</p>
+    </div>
+    </>
+  );
 }
 
 export default Footer
