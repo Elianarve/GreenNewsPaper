@@ -1,5 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import {getNews} from '../services/newsServices.js'
+import Card from '../components/Card.jsx';
+
 
 const Home = () => {
    const [news, setNews] = useState([]);
@@ -13,15 +15,12 @@ const Home = () => {
   },[]);
 
   return (
-    <div>
+   <div>
       <h1>Noticias en Home</h1>
       {news.map(newsItem => (
-        <div key={newsItem.id}>
-          <h2>{newsItem.title}</h2>
-          <p>{newsItem.content}</p>
-      </div>
-  ))}
-  </div>
+        <Card key={newsItem.id} news={newsItem}/>
+      ))}
+   </div>
  );
 };
 
