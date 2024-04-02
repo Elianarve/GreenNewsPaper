@@ -6,26 +6,29 @@ import Home from '../pages/Home.jsx';
 import Create from '../pages/Create.jsx';
 import NewsDetails from '../pages/NewsDetails.jsx';
 import Register from '../pages/Register.jsx';
-import {getData} from '../services/newsServices.js';
+import {getNews} from '../services/newsServices.js';
 
 
 const router = createBrowserRouter([
-  {
-    path: "/",
+   {
+      path: "/", 
+      element: <Landing/>,
+   },
+   {
+      path: "/login",
+      element: <Login/>,
+   },
+   {
+      path:"/register",
+      element: <Register/>,
+   },
+   {
     element: <LayoutPublic/>,
     children: [
-     {
-        path: "/", 
-        element: <Landing/>,
-     },
-     {
-        path: "/login",
-        element: <Login/>,
-     },
-     {
+      {
         path: "/home",
         element: <Home/>,
-        loader: getData
+        loader: getNews
      },
      {
         path:"/create",
@@ -34,10 +37,6 @@ const router = createBrowserRouter([
      {
         path: "/newsdetails/:id",
         element: <NewsDetails/>,
-     },
-     {
-        path:"/register",
-        element: <Register/>,
      },
    ],
  },
