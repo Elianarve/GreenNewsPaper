@@ -6,15 +6,11 @@ import Home from '../pages/Home.jsx';
 import Create from '../pages/Create.jsx';
 import NewsDetails from '../pages/NewsDetails.jsx';
 import Register from '../pages/Register.jsx';
-import {getData} from '../services/newsServices.js';
+
 
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <LayoutPublic/>,
-    children: [
-     {
+    {
         path: "/", 
         element: <Landing/>,
      },
@@ -23,9 +19,16 @@ const router = createBrowserRouter([
         element: <Login/>,
      },
      {
+        path:"/register",
+        element: <Register/>,
+     },
+  {
+    path: "/",
+    element: <LayoutPublic/>,
+    children: [
+     {
         path: "/home",
         element: <Home/>,
-        loader: getData
      },
      {
         path:"/create",
@@ -34,10 +37,6 @@ const router = createBrowserRouter([
      {
         path: "/newsdetails/:id",
         element: <NewsDetails/>,
-     },
-     {
-        path:"/register",
-        element: <Register/>,
      },
    ],
  },
