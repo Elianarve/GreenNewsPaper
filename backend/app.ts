@@ -4,15 +4,16 @@ import express from 'express';
 import NewsModel from "./models/newsModel";
 import newsRouter from './routes/newsRouter';
 import usersRouter from './routes/usersRouter';
+import authRouter from './routes/authRouter';
 import UsersModel from "./models/userModel";
 
 const app = express();
 
 app.use(express.json());
 
-app.use('/news', newsRouter)
+app.use('/news', newsRouter);
 app.use('/users', usersRouter);
-
+app.use('/auth', authRouter);
 
 try {
     connection_db.authenticate();

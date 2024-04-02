@@ -1,11 +1,11 @@
 import express from 'express';
 import { deleteNews, getNews, createdNews, updateNews, getOneNews } from '../controllers/newsController';
 import newsValidator from '../validators/newsValidator';
-
+import { verifyToken } from '../middleware/authMiddleware';
 
 const router = express.Router();
 
-router.get('/', getNews);
+router.get('/', verifyToken, getNews);
 
 router.delete('/:id', deleteNews);
 

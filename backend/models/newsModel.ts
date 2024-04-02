@@ -14,10 +14,11 @@ const NewsModel = connection_db.define('News', {
     },
     date: {
         type: DataTypes.DATEONLY,
-        allowNull: false
+        allowNull: false,
+        defaultValue: DataTypes.NOW 
     },
     description: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
     },
     author_id: {
         type: DataTypes.INTEGER,

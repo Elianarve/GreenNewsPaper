@@ -24,7 +24,7 @@ export const deleteUser = async (req: Request, res: Response) => {
 
 export const createdUser = async (req: Request, res: Response) => {
     try {
-        const createdNewNews = await UsersModel.create(req.body)       
+        const createdNewNews = await UsersModel.create(req.body);     
         res.status(201).json(createdNewNews);
     }catch(error){
         return res.status(500).send({ error: 'Internal Server Error' });
@@ -35,7 +35,7 @@ export const updateUser = async (req: Request, res: Response) => {
     const userId = req.params.id;
     try {
         await UsersModel.update(req.body,{  where: {id: userId}});
-        res.status(200).json({message: ` News: ${userId}, Successfully updated`});
+        res.status(200).json({message: ` User: ${userId}, Successfully updated`});
     } catch(error) {
         res.status(500).json({error: 'Internal Server Error'});
     }   
