@@ -2,7 +2,6 @@
 import { Request, Response } from 'express';
 import UsersModel from "../models/userModel";
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import { User } from '../interfaces/userInterface';
 import tokenSign from '../token/token';
 
