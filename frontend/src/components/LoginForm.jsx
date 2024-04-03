@@ -35,10 +35,10 @@ const LoginForm = () => {
  return (
     <>
       <form onSubmit={handleSubmit} className="px-8 pt-6 pb-8 mb-4">
-        <div className="mb-4">
+        <div className="">
           <label className="block text-white font-poppins mb-2 text-left" htmlFor="email">
             Email
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="font-poppins shadow appearance-none rounded-lg w-full bg-[#222222] py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="email" placeholder="hola.soy.bea@gmail.com"/>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="font-poppins shadow appearance-none rounded-lg w-full bg-[#222222] py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="email" placeholder="hola@gmail.com"/>
           </label>
         </div>
 

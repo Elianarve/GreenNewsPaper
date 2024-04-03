@@ -14,7 +14,7 @@ const Login = () => {
         <Link to='/'>
           <img className='ml-8 mt-3 absolute' src={arrow}></img>
         </Link>
-          <h1 className='font-poppins font-medium text-4xl text-white mb-20'>Iniciar sesión</h1>
+          <h1 className='font-poppins font-medium text-4xl text-white mb-20 ml-16 text-left'>Iniciar sesión</h1>
         <LoginForm />
       </div>  
     </div>
