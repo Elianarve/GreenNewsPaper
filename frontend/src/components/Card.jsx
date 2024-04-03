@@ -17,13 +17,17 @@ const Card = ({ news }) => {
       </div>
       <div className="relative">
         <img src={news.Image} alt={news.Title} className="w-full h-40 object-cover rounded-lg" />
-        <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center p-2 bg-white bg-opacity-50">
-          {/* Aquí puedes agregar más elementos si es necesario */}
+        <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center p-2">
         </div>
         <div className="flex justify-start items-center mt-2">
-        <button className="bg-gradient-to-r from-fuchsia-600 to-purple-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline mb-2">
+        <button className="bg-gradient-to-r from-fuchsia-600 to-purple-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline mb-1 mr-5">
           Blockchain
         </button>
+        <div className="flex justify-end items-right mt-2 space-x-1">
+        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">post</button>
+        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">delete</button>
+        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">save</button>
+        </div>
       </div>
       </div>
       <div className="mt-1 w-full">
