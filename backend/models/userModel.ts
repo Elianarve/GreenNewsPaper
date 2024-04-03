@@ -5,7 +5,7 @@ const UsersModel = connection_db.define('users', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true,
+        primaryKey: true
     },
     name: {
         type: DataTypes.STRING,
@@ -13,6 +13,7 @@ const UsersModel = connection_db.define('users', {
     },
     email: {
         type: DataTypes.STRING,
+        unique: true
     },
     password: {
         type: DataTypes.STRING,
