@@ -1,5 +1,6 @@
 import UsersModel from '../models/userModel';
 import { Request, Response } from 'express';
+import bcrypt from 'bcryptjs';
 
 export const getUser = async(req: Request, res: Response) => {
     try {
@@ -13,7 +14,7 @@ export const getUser = async(req: Request, res: Response) => {
 export const deleteUser = async (req: Request, res: Response) => {
     const userId = req.params.id;
     try {
-            await UsersModel.destroy({ where: { id: userId }});
+        await UsersModel.destroy({ where: { id: userId }});
         return res.status(201).send({ message: 'User deleted successfully' });
 
     } catch (error) {
@@ -24,8 +25,10 @@ export const deleteUser = async (req: Request, res: Response) => {
 
 export const createdUser = async (req: Request, res: Response) => {
     try {
-        const createdNewNews = await UsersModel.create(req.body)       
-        res.status(201).json(createdNewNews);
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        req.body.password = hashedPassword;
+        const createdNewUser = await UsersModel.create(req.body)       
+        res.status(201).json(createdNewUser);
     }catch(error){
         return res.status(500).send({ error: 'Internal Server Error' });
     }

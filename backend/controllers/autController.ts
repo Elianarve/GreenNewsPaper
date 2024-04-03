@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import UsersModel from "../models/userModel";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { User } from '../interfaces/userInterface';
 
 export const registerUser = async (req: Request, res: Response) => {
     try {
@@ -17,7 +18,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
 export const loginUser = async (req: Request, res: Response) => {
     try {
-        const user: any = await UsersModel.findOne({ where: {email: req.body.email } });
+        const user = await UsersModel.findOne({ where: {email: req.body.email } }) as User | null;
         if(!user) {
             return res.status(404).send({ error: "Usuario no encontrado"});
         }

@@ -11,9 +11,9 @@ router.get('/', authenticateToken, getNews);
 
 router.delete('/:id', deleteNews);
 
-router.post('/', newsValidator, handleValidationResults, createdNews);
+router.post('/', authenticateToken, newsValidator, handleValidationResults, createdNews);
 
-router.put('/:id', newsValidator, handleValidationResults, updateNews);
+router.put('/:id', authenticateToken, newsValidator, handleValidationResults, updateNews);
 
 router.get('/:id', getOneNews);
 
