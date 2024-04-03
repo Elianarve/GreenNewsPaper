@@ -1,5 +1,6 @@
 import NewsModel from '../models/newsModel';
 import { Request, Response } from 'express';
+import { AuthenticatedRequest } from '../interfaces/AuthenticatedRequestInterface';
 
 export const getNews = async(req: Request, res: Response) => {
     try {
@@ -24,9 +25,9 @@ export const deleteNews = async (req: Request, res: Response) => {
 
 export const createdNews = async (req: Request, res: Response) => {
     try {
-        const createdNewNews = await NewsModel.create(req.body)       
+        const createdNewNews = await NewsModel.create(req.body);       
         res.status(201).json(createdNewNews);
-    }catch(error){
+    } catch(error){
         return res.status(500).send({ error: 'Internal Server Error' });
     }
 }

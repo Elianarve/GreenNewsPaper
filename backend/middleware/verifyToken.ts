@@ -1,10 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 
-// interface AuthenticatedRequest extends Request {
-//     user?: any;
-// }
-
 export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
@@ -17,7 +13,6 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
         if(err) {
             return res.status(403).send({ error: 'Invalid Token.'})
         };
-    // req.user = decoded;
 
     next();
     })

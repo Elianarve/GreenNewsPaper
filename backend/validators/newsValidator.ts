@@ -1,6 +1,4 @@
 import { check } from "express-validator";
-import  validateResultNews  from '../helpers/validationHelper';
-import { Request, Response, NextFunction } from 'express';
 
 const newsValidator =[
     check('title')
