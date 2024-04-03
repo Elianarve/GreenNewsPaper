@@ -5,40 +5,39 @@ const Card = ({ news }) => {
  const navigate = useNavigate();
 
  const handleReadMore = () => {
-    navigate('newsdetails/:id');
+    navigate(`/newsdetails/${news.id}`);
  };
 
  return (
-    <article className="flex flex-col items-start justify-between">
-      
-      <div className="flex justify-between items-center mb-4">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    <article className="w-full bg-neutral-900 flex flex-col items-start justify-between p-4 rounded-lg relative">
+      <div className="flex items-center mb-2">
+        <div className="flex gap-2">
+          {/* Aquí puedes agregar más elementos si es necesario */}
+        </div>
+      </div>
+      <div className="relative">
+        <img src={news.Image} alt={news.Title} className="w-full h-40 object-cover rounded-lg" />
+        <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center p-2 bg-white bg-opacity-50">
+          {/* Aquí puedes agregar más elementos si es necesario */}
+        </div>
+        <div className="flex justify-start items-center mt-2">
+        <button className="bg-gradient-to-r from-fuchsia-600 to-purple-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline mb-2">
           Blockchain
         </button>
-        <div className="flex gap-2">
-         
-        </div>
       </div>
-      {/* Foto */}
-      <div className="relative">
-        <img src={news.Image} alt={news.Title} className="w-full h-64 object-cover rounded-lg" />
-        {/* Botones entre la foto y el texto */}
-        <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center p-4 bg-white bg-opacity-50">
-        
-        </div>
       </div>
-    
-      <div className="mt-4 w-full">
-        <p className="line-clamp-2 text-sm leading-6 text-gray-600">{news.Text}</p>
+      <div className="mt-1 w-full">
+        <p className="line-clamp-2 text-xs leading-4 text-white">{news.Text}</p>
       </div>
-     
       <div className="flex justify-between items-center mt-2">
-        <time dateTime={news.Date} className="text-gray-500">
+        <time dateTime={news.Date} className="text-white">
           {news.Date}
         </time>
-        <button onClick={handleReadMore} className="text-red-500 hover:text-red-700">
+      </div>
+      <div className="absolute bottom-0 right-0 mb-4 ml-4">
+        <button onClick={handleReadMore} className="text-pink-600 hover:text-purple-600">
           Leer más
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline-block ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inline-block ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
