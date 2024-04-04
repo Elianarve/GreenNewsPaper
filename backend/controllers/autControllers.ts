@@ -10,7 +10,7 @@ const generateToken = (userId: number) => {
 };
 
 
-// Controlador para registrar nuevos usuarios
+// Controlador para registrar nuevos usuarios // al crear el usuario genera un token / de la linea 13 a la linea 33
 export const register = async (req: Request, res: Response) => {
   try {
     // Hashear la contraseña antes de guardarla en la base de datos

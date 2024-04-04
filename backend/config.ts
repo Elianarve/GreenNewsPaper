@@ -5,3 +5,5 @@ export const DB_USER: string = process.env.DB_USER || '';
 export const DB_PASSWORD: string = process.env.DB_PASSWORD || '';
 export const PORT = process.env.PORT || 5000;
 
+export const JWT_SECRET = 'mi_clave_secreta_ultra_segura';
+
