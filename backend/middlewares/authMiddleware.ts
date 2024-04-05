@@ -1,30 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
-import { JWT_SECRET } from '../config';
+import { verifyToken } from '../utils/token';
 
-// Extender la interfaz Request para incluir la propiedad user
-declare global {
-  namespace Express {
-    interface Request {
-      user?: any; 
-    }
-  }
-}
-
-export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-  
-  if (!token) {
-    return res.status(401).json({ error: 'Token de autenticación no proporcionado' });
-  }
-
-  jwt.verify(token, JWT_SECRET, (err, user) => {
-    if (err) {
-      return res.status(403).json({ error: 'Token inválido' });
-    }
-    req.user = user;
+export const authToken = (req: Request, res: Response, next: NextFunction) =>{
+    try {
+        const authToken = req.headers.authorization?.split(' ')[1];
+        const dataToken: any = verifyToken(authToken);
+        const userId: number = dataToken.userId;
+        // console.log(dataToken)
+        // console.log(userId)
+        req.body.author_id = userId;
     next();
-  });
-};
-
+    } catch (error) {
+        return res.status(401).send({ error: 'invalid authentication' }); 
+    }
+}
