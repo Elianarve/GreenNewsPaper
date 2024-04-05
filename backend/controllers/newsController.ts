@@ -24,12 +24,13 @@ export const deleteNews = async (req: Request, res: Response) => {
 
 export const createdNews = async (req: Request, res: Response) => {
     try {
-        const createdNewNews = await NewsModel.create(req.body)       
+        const createdNewNews = await NewsModel.create(req.body);       
         res.status(201).json(createdNewNews);
     }catch(error){
         return res.status(500).send({ error: 'Internal Server Error' });
     }
 }
+
 
 export const updateNews = async (req: Request, res: Response) => {   
     const newsId = req.params.id;
@@ -51,4 +52,3 @@ export const getOneNews = async (req: Request, res: Response) =>{
         res.status(500).json({error: 'Internal Server Error'});
     }   
 }
-
