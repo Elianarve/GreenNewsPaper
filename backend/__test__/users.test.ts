@@ -23,12 +23,28 @@ describe('TESTING CRUD users', ()=> {
                 "email": "test@gmail.com",
                 "password": "Unacontraseña!1"
             })
-            console.log('HOLA MIERDA')
             expect(response.status).toBe(201)
             expect(typeof response).toBe('object')
         })
     })
     
+    describe('DELETE', () => {
+        let createdUser: any = {};
+        let response;
+
+        beforeEach(async() => {
+            createdUser = await UsersModel.create({
+                "name": "testing",
+                "email": "testing@gmail.com",
+                "password": "Unacontraseña!1"
+            });
+            response = await api.delete(`/users/${createdUser.id}`).send()
+        })
+
+        test('Delete response should show 201 status', () => {
+            expect(response.status).toBe(201)
+        })
+    })
     
     afterAll( async () => {
         server.close();
