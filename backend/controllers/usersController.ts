@@ -14,7 +14,7 @@ export const deleteUser = async (req: Request, res: Response) => {
     const userId = req.params.id;
     try {
             await UsersModel.destroy({ where: { id: userId }});
-        return res.status(201).send({ message: 'News deleted successfully' });
+        return res.status(201).send({ message: 'User deleted successfully' });
 
     } catch (error) {
         return res.status(500).send({ error: 'Internal Server Error' });

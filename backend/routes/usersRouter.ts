@@ -1,6 +1,8 @@
 import express from 'express';
 import { getUser, deleteUser, createdUser, updateUser, getOneUser } from '../controllers/usersController';
 import usersValidator from '../validators/usersValidator';
+// import { authToken } from '../middleware/authMiddleware';
+// import { authRol } from '../middleware/rolMiddleware';
 
 const router = express.Router();
 

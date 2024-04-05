@@ -1,9 +1,7 @@
-//register y login
+import { tokenSign } from '../utils/token';
 import { Request, Response } from 'express';
 import UsersModel from "../models/userModel";
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import { TK_SECRET } from '../config';
 
 
 export const register = async (req: Request, res: Response) => {
@@ -16,16 +14,6 @@ export const register = async (req: Request, res: Response) => {
         console.error(error);
         return res.status(500).send({ error: 'Internal Server Error' });
     }
-}
-
-
-const tokenSign = (user: any) => {
-    const data = {
-        userId: user.id,
-        email: user.email,
-    };
-    const token = jwt.sign(data, TK_SECRET, { expiresIn: '2h' });
-    return token;
 }
 
 

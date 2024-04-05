@@ -6,9 +6,18 @@ export interface User {
     rol?: string;
   }
 
-
- export interface sessionData {
+export interface sessionData {
   token: string,
   mensaje: string,
   data?: User
  }
+
+export interface IdUser {
+  id?: number;
+} 
+
+export interface RolUser {
+  rol?: string;
+}
+
+ export type newUser = Omit<User, 'id'>

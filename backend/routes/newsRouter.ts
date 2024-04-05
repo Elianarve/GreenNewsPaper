@@ -1,18 +1,20 @@
 import express from 'express';
 import { deleteNews, getNews, createdNews, updateNews, getOneNews } from '../controllers/newsController';
 import newsValidator from '../validators/newsValidator';
-import { verifyToken } from '../middleware/authMiddleware';
+import { authToken } from '../middleware/authMiddleware';
+import { authRol } from '../middleware/rolMiddleware';
+
 
 const router = express.Router();
 
-router.get('/', verifyToken, getNews);
+router.get('/', authToken, authRol(['user','admin']),  getNews); 
 
-router.delete('/:id', deleteNews);
+router.delete('/:id', authToken, authRol(['admin']), deleteNews);  
 
-router.post('/', newsValidator, createdNews);
+router.post('/', authToken, authRol(['user','admin']), createdNews);
 
-router.put('/:id', newsValidator, updateNews);
+router.put('/:id', authToken, authRol(['admin']), newsValidator, updateNews);
 
-router.get('/:id', getOneNews);
+router.get('/:id', authRol(['user','admin']), authToken, getOneNews);
 
 export default router;
