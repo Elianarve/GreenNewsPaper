@@ -5,17 +5,16 @@ import { authenticateToken } from '../middlewares/authMiddleware';
 
 const router = express.Router();
 
-router.use(authenticateToken);
+router.get('/',authenticateToken, getNews);
 
-router.get('/', getNews);
+router.delete('/:id',authenticateToken, deleteNews);
 
-router.delete('/:id', deleteNews);
+router.post('/',authenticateToken, newsValidator, createdNews);
 
-router.post('/', newsValidator, createdNews);
+router.put('/:id',authenticateToken, newsValidator, updateNews);
 
-router.put('/:id', newsValidator, updateNews);
-
-router.get('/:id', getOneNews);
+router.get('/:id',authenticateToken, getOneNews);
 
 export default router;
+
 
