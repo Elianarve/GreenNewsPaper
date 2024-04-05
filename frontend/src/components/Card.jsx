@@ -1,8 +1,10 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
+import Delete from './Delete'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Card = ({ news }) => {
- const navigate = useNavigate();
+const navigate = useNavigate();
 
  const handleReadMore = () => {
     navigate(`/newsdetails/${news.id}`);
@@ -12,7 +14,6 @@ const Card = ({ news }) => {
     <article className="w-full bg-neutral-900 flex flex-col items-start justify-between p-4 rounded-lg relative">
       <div className="flex items-center mb-2">
         <div className="flex gap-2">
-          {/* Aquí puedes agregar más elementos si es necesario */}
         </div>
       </div>
       <div className="relative">
@@ -25,7 +26,7 @@ const Card = ({ news }) => {
         </button>
         <div className="flex justify-end items-right mt-2 space-x-1">
         <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">post</button>
-        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">delete</button>
+        <Delete id={news.id}/><button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">delete</button>
         <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">save</button>
         </div>
       </div>
