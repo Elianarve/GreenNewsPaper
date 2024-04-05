@@ -7,7 +7,7 @@ import usersRouter from './routes/usersRouter';
 import UsersModel from "./models/userModel";
 import authRouter from "./routes/authRouter";
 
-const app = express();
+export const app = express();
 
 app.use(express.json());
 
@@ -30,6 +30,6 @@ try {
     console.error('Unable to connect to the database:', error);
    }
 
-   app.listen(PORT, () => {
+export const server = app.listen(PORT, () => {
     console.log(`La API se esta escuchando en el puerto http://localhost:${PORT}`);
 });
