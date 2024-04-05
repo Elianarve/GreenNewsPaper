@@ -34,8 +34,8 @@ describe('TESTING CRUD users', ()=> {
 
         beforeEach(async() => {
             createdUser = await UsersModel.create({
-                "name": "testing",
-                "email": "testing@gmail.com",
+                "name": "delete",
+                "email": "delete@gmail.com",
                 "password": "Unacontraseña!1"
             });
             response = await api.delete(`/users/${createdUser.id}`).send()
@@ -46,6 +46,32 @@ describe('TESTING CRUD users', ()=> {
         })
     })
     
+    describe('PUT', () => {
+        let createdUser: any = {};
+        beforeEach(async() => {
+            createdUser = await UsersModel.create({
+                "name": "put",
+                "email": "put@gmail.com",
+                "password": "unaContraseña!1"
+            });
+
+        });
+
+        afterAll(async() => {
+            await UsersModel.destroy({ where: {id: createdUser.id} })
+        })
+
+        test('Put response should be an object and return status 201', async() => {
+            const response = await api.put(`/users/${createdUser.id}`).send({
+                "name": "updatedname",
+                "email": "put@gmail.com",
+                "password": "unaContraseña!1"
+            });
+            expect(response.status).toBe(201)
+            expect(typeof response.body).toBe('object')
+        })
+    })
+
     afterAll( async () => {
         server.close();
         await connection_db.sync({force: true });
