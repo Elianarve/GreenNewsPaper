@@ -2,7 +2,7 @@
 import { Request, Response } from 'express';
 import UsersModel from "../models/userModel";
 import bcrypt from 'bcryptjs';
-import { User } from '../interfaces/userInterface';
+// import { User } from '../interfaces/userInterface';
 import tokenSign from '../token/token';
 
 export const registerUser = async (req: Request, res: Response) => {
@@ -24,7 +24,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
 export const loginUser = async (req: Request, res: Response) => {
     try {
-        const user = await UsersModel.findOne({ where: {email: req.body.email } }) as User | null;
+        const user: any = await UsersModel.findOne({ where: {email: req.body.email } });
         if(!user) {
             return res.status(404).send({ error: "USER_NOT_FOUND"});
         }

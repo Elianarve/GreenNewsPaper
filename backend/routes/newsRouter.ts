@@ -7,7 +7,7 @@ import { authenticateToken } from '../middleware/verifyToken';
 
 const router = express.Router();
 
-router.get('/', authenticateToken, getNews);
+router.get('/', getNews);
 
 router.delete('/:id', deleteNews);
 

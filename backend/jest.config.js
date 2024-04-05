@@ -4,5 +4,4 @@ module.exports = {
   testEnvironment: 'node',
   verbose: false,
   forceExit: true,
-
 };
