@@ -1,6 +1,5 @@
 import React from 'react'
 import Delete from './Delete'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Card = ({ news }) => {

@@ -22,7 +22,8 @@ export const getNews = async () => {
 export const deleteNews = async (id) => {
     if (confirm("¿Seguro que quieres borrar esta noticia?")) {
         try {
-            const response = await axiosInstance.delete(`/news${id}`);
+            const response = await axiosInstance.delete(`${apiBaseUrl}/${id}`);
+            console.log(response.data);
             return response.data;
         } catch (error) {
             console.error("Error al borrar la noticia:", error);

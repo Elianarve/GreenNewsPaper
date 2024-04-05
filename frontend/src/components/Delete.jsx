@@ -1,22 +1,24 @@
-import React from 'react'
-import { deleteNews } from '../services/newsServices.js'
-import { useNavigate } from 'react-router-dom'
+import React from 'react';
+import { deleteNews } from '../services/newsServices.js';
+import { useNavigate } from 'react-router-dom';
 
 
 const Delete = ({id}) => {
-    const navigate = useNavigate()
-    /* console.log(id) */
-    const deleteData = () => {
-      deleteNews(id)
-      navigate(0)  
-    }
+    const navigate = useNavigate();
+
+    const deleteData = async () => {
+      try {
+        await deleteNews(id);
+        navigate('/home');
+      } catch (error) {
+        console.error('Error al borrar', error);
+      }  
+    };
     return (
       <>
-      <div>
-          <button className='buttons-card-delete'  onClick={deleteData}>Borrar</button>
-      </div>
+      <button className='buttons-card-delete' onClick={deleteData}>Borrar</button>
       </>
-    )
-  }
+    );
+  };
   
-  export default Delete
+  export default Delete;
