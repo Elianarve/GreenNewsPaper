@@ -43,7 +43,6 @@ const handleDelete = async () => {
         Borrar
         </button>
         <Delete id={news.id}/>
-        
         <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">save</button>
         </div>
       </div>

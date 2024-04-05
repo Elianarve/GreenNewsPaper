@@ -1,14 +1,6 @@
 {
   "news": [
     {
-      "id": "2",
-      "Title": "Blockchain explicado con ejemplos",
-      "Date": "2023-04-02",
-      "Text": "Monedas hechas de aire. Aquí puedes incluir más detalles sobre la noticia.",
-      "Author": "Autor 2",
-      "Image": "https://pixabay.com/get/57e8d5474f50a814f1dc84609629307f133ad7e7524c704c7c2c7da94e7c7609_640.jpg"
-    },
-    {
       "id": "4",
       "Title": "IA generativa",
       "Date": "2023-04-03",
@@ -21,22 +13,6 @@
       "Title": "IA generativa",
       "Date": "2023-04-03",
       "Text": "Lunes en Amsterdam",
-      "Author": "Autor 3",
-      "Image": "https://pixabay.com/get/57e8d5474f50a814f1dc84609629307f133ad7e7524c704c7c2c7da94e7c7609_640.jpg"
-    },
-    {
-      "id": "6",
-      "Title": "IA generativa",
-      "Date": "2023-04-03",
-      "Text": "Amigos para siempre.",
-      "Author": "Autor 3",
-      "Image": "https://pixabay.com/get/57e8d5474f50a814f1dc84609629307f133ad7e7524c704c7c2c7da94e7c7609_640.jpg"
-    },
-    {
-      "id": "7",
-      "Title": "IA generativa",
-      "Date": "2023-04-03",
-      "Text": "Puedes incluir tu vida.",
       "Author": "Autor 3",
       "Image": "https://pixabay.com/get/57e8d5474f50a814f1dc84609629307f133ad7e7524c704c7c2c7da94e7c7609_640.jpg"
     }

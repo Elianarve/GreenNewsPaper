@@ -16,7 +16,7 @@ const Delete = ({id}) => {
     };
     return (
       <>
-      <button className='buttons-card-delete' onClick={deleteData}>Borrar</button>
+      
       </>
     );
   };
