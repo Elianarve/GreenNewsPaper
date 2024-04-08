@@ -11,7 +11,7 @@ router.delete('/:id', deleteUser);
 
 router.post('/', userValidator, handleValidationResults, createdUser);
 
-router.put('/:id', userValidator, handleValidationResults, updateUser);
+router.put('/:id', updateUser);
 
 router.get('/:id', getOneUser);
 

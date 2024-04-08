@@ -1,6 +1,8 @@
 import request from 'supertest';
 import { app, server } from '../app';
 import connection_db from '../database/connection_db';
+import UsersModel from '../models/userModel';
+import moment from 'moment';
 
 const api = request(app);
 
@@ -14,21 +16,42 @@ describe('TESTING CRUD news', () => {
         })    
     });
 
-    // describe('POST', () => {
-    //     test('POST response should be an object and then show 201 status', async() => {
-    //         const actualDate = new Date();
-    //         const response = await api.post('/news').send({
-    //             "title": "testTitle",
-    //             "date": "2020-01-01",
-    //             "description": "descripcionTest",
-    //             "author_id": 1,
-    //             "image": "http://www.imagen.com"
-    //         });
-    //         expect(response.status).toBe(201);
+    describe('POST', () => {
+        let newUser: any = {}
+        let authorId;
+        let token;
 
-    // })
+        beforeEach(async() => {
+            newUser = await api.post('/auth').send({
+                "name": "newUser",
+                "email": "newuser@gmail.com",
+                "password": "Unacontraseña!1"
+            });
 
-    // })
+            console.log('TUS MUERTOS PISAOS')
+            authorId = newUser.body.registerNewUser.id;
+            token = newUser.body.userToken;
+            console.log(token)
+        });
+
+    test('POST response should be an object and then show 201 status', async() => {
+            const actualDate = moment().format('YYYY-MM-DD');
+            const response = await api.post('/news').set('Authorization', `Bearer ${token}`).send({
+                "title": "testTitle",
+                "date": actualDate,
+                "description": "descripcionTest",
+                "author_id": authorId,
+                "image": "http://www.imagen.com"
+            });
+            expect(response.status).toBe(201);
+            expect(typeof response.body).toBe('object')
+    })
+
+    afterAll(async() => {
+        await UsersModel.destroy({ where: {id: newUser.body.registerNewUser.id} })
+    })
+
+    })
     
     afterAll( async () => {
         server.close();

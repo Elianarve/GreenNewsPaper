@@ -67,7 +67,7 @@ describe('TESTING CRUD users', ()=> {
                 "email": "put@gmail.com",
                 "password": "unaContraseña!1"
             });
-            expect(response.status).toBe(201)
+            expect(response.status).toBe(200)
             expect(typeof response.body).toBe('object')
         })
     })

@@ -11,7 +11,7 @@ router.get('/', getNews);
 
 router.delete('/:id', deleteNews);
 
-router.post('/', newsValidator, handleValidationResults, createdNews);
+router.post('/',authenticateToken, newsValidator, handleValidationResults, createdNews);
 
 router.put('/:id', newsValidator, handleValidationResults, updateNews);
 
