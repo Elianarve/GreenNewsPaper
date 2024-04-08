@@ -1,13 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
 const Add = () => {
  const navigate = useNavigate();
-
  const onClick = () => {
     navigate('/create');
  };
-
  return (
     <button
       onClick={onClick}
@@ -21,5 +18,4 @@ const Add = () => {
     </button>
  );
 };
-
 export default Add;

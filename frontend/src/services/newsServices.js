@@ -29,7 +29,12 @@ export const deleteNews = async (id) => {
             throw error;
         }
 };
-
+//CREATE
+export const postData = async (data) =>{
+    const news = await axios.post(`${url}`,data)
+    alert("Noticia creada exitosamente")
+    return news
+  }
 //GET ONE BY ID
 export const getOneNewsById = async (id) => {
     try {
