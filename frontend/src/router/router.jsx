@@ -6,32 +6,32 @@ import Home from '../pages/Home.jsx';
 import Create from '../pages/Create.jsx';
 import NewsDetails from '../pages/NewsDetails.jsx';
 import Register from '../pages/Register.jsx';
-import { Update } from '../pages/update.jsx';
-import { getNews } from '../services/newsServices.js';
+
+
 
 const router = createBrowserRouter([
+    {
+        path: "/", 
+        element: <Landing/>,
+     },
+     {
+        path: "/login",
+        element: <Login/>,
+     },
+     {
+        path:"/register",
+        element: <Register/>,
+     },
   {
-    path: "/", 
-    element: <Landing/>,
-  },
-  {
-    path: "/login",
-    element: <Login/>,
-  },
-  {
-    path: "/register",
-    element: <Register/>,
-  },
-  {
+    path: "/",
     element: <LayoutPublic/>,
     children: [
-      {
+     {
         path: "/home",
         element: <Home/>,
-        loader: getNews
-      },
-      {
-        path: "/create",
+     },
+     {
+        path:"/create",
         element: <Create/>,
       },
       {
@@ -45,5 +45,3 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
-export default router;
