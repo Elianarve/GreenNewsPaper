@@ -1,4 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react'
+
+const Home = () => {
+  return (
+    <div>Home</div>
+  )
+}
+export default Homeimport React, { useState, useEffect } from 'react';
 import { getNews } from '../services/newsServices.js';
 import Card from '../components/Card.jsx';
 
