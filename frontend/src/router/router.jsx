@@ -7,6 +7,7 @@ import Create from '../pages/Create.jsx';
 import NewsDetails from '../pages/NewsDetails.jsx';
 import Register from '../pages/Register.jsx';
 import {getNews} from '../services/newsServices.js';
+import { update } from '../pages/update.jsx';
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         path:"/create",
         element: <Create/>,
       },
+      {
+         path:"/update",
+         element: <update/>,
+       },
      {
         path: "/newsdetails/:id",
         element: <NewsDetails/>,
