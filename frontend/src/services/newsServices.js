@@ -40,4 +40,18 @@ export const getOneNewsById = async (id) => {
         throw error;
     }
 };
+
+// UPDATE
+export const updateNews = async (id, updatedNewsData) => {
+    try {
+        const response = await axiosInstance.put(`/news/${id}`, updatedNewsData);
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.error("Error al actualizar la noticia:", error);
+        throw error;
+    }
+};
+
+
 export default axiosInstance;
