@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const registerUser = async (userData) => {
     try {
-        const response = await fetch('https://innovaech-news.com/api/register',{
+        const response = await fetch('http://localhost:5000/auth/register',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
