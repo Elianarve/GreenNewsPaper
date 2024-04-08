@@ -2,7 +2,9 @@ import request from 'supertest';
 import { app, server } from '../app';
 import connection_db from '../database/connection_db';
 import UsersModel from '../models/userModel';
+import NewsModel from '../models/newsModel';
 import moment from 'moment';
+import { after } from 'node:test';
 
 const api = request(app);
 
@@ -46,7 +48,7 @@ describe('TESTING CRUD news', () => {
     })
 
     afterAll(async() => {
-        await UsersModel.destroy({ where: {id: newUser.body.registerNewUser.id} })
+        await UsersModel.destroy({ where: {id: newUser.body.registerNewUser.id} });
     })
 
     });
@@ -77,8 +79,57 @@ describe('TESTING CRUD news', () => {
             response = await api.delete(`/news/${newNew.body.id}`).send()
 
         });
+
+        afterAll(async() => {
+            await UsersModel.destroy({ where: {id: newUser.body.registerNewUser.id}})
+        })
+
         test('Delete method should be 201 status', () => {
             expect(response.status).toBe(201)
+        })
+    })
+
+    describe('PUT', () => {
+        let newUser: any = {};
+        let authorId;
+        let token;
+        let newNew;
+
+        beforeEach(async() => {
+            newUser = await api.post('/auth').send({
+                "name": "newUser",
+                "email": "newuser@gmail.com",
+                "password": "Unacontraseña!1"
+            });
+            authorId = newUser.body.registerNewUser.id;
+            token = newUser.body.userToken;
+
+            newNew = await api.post('/news').set('Authorization', `Bearer ${token}`).send({
+                "title": "testTitle",
+                "date": '2000-01-01',
+                "description": "descripcionTest",
+                "author_id": authorId,
+                "image": "http://www.imagen.com"
+            });
+
+        });
+
+        test('Put response should be an object and return status 200', async() => {
+            const response = await api.put(`/news/${newNew.body.id}`).send({
+                "title": "updated testTitle",
+                "date": '2000-01-01',
+                "description": "updated descripcionTest",
+                "author_id": authorId,
+                "image": "http://www.imagen.com"
+            });
+
+            expect(response.status).toBe(200);
+            expect(typeof response.body).toBe('object')
+        });
+
+        afterAll(async() => {
+            await UsersModel.destroy({where: {id: newUser.body.registerNewUser.id}});
+            await NewsModel.destroy({where: {id: newNew.body.id}})
         })
     })
     
