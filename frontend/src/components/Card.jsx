@@ -1,15 +1,7 @@
-<<<<<<< HEAD
 import React from 'react'
 import Delete from './Delete'
 import {deleteNews} from '../services/newsServices.js'
 import { useNavigate } from 'react-router-dom'
-=======
-import React from 'react';
-// import Delete from './Delete';
-import { useNavigate } from 'react-router-dom';
-import { deleteNews } from '../services/newsServices';
-
->>>>>>> develop
 
 const Card =({ news, onDelete }) => {
 const navigate = useNavigate();
@@ -45,17 +37,12 @@ const handleDelete = async () => {
         </button>
         <div className="flex justify-end items-right mt-2 space-x-1">
         <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">post</button>
-<<<<<<< HEAD
         
         <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7" 
         onClick={handleDelete}>
         Borrar
         </button>
         <Delete id={news.id}/>
-=======
-        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7" onClick={() => {deleteNews(`${news.id}`); navigate(0)}}>Delete</button>
-        {/* <Delete id={news.id}/><button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">Delete</button> */}
->>>>>>> develop
         <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">save</button>
         </div>
       </div>
