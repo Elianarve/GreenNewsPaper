@@ -14,12 +14,16 @@ const Home = () => {
     fetchData();
  }, []);
 
+ const handleDelete = (id) => {
+  setNews(news.filter(item => item.id !== id));
+};
+
  return (
     <div className="container mx-auto px-4">
       <h1 className="text-2xl font-bold mb-4">Home con noticias</h1>
       <div className="grid grid-cols-3 gap-4 grid-rows-2">
-        {news.map((newsItem, index) => (
-          <Card key={newsItem.id} news={newsItem} />
+        {news.map((newsItem) => (
+          <Card key={newsItem.id} news={newsItem} onDelete={handleDelete} />
         ))}
       </div>
     </div>
