@@ -49,6 +49,37 @@ describe('TESTING CRUD news', () => {
         await UsersModel.destroy({ where: {id: newUser.body.registerNewUser.id} })
     })
 
+    });
+
+    describe('DELETE', () => {
+        let newUser: any = {};
+        let authorId;
+        let token;
+        let newNew;
+        let response;
+
+        beforeEach(async() => {
+            newUser = await api.post('/auth').send({
+                "name": "newUser",
+                "email": "newuser@gmail.com",
+                "password": "Unacontraseña!1"
+            });
+            authorId = newUser.body.registerNewUser.id;
+            token = newUser.body.userToken;
+
+            newNew = await api.post('/news').set('Authorization', `Bearer ${token}`).send({
+                "title": "testTitle",
+                "date": '2000-01-01',
+                "description": "descripcionTest",
+                "author_id": authorId,
+                "image": "http://www.imagen.com"
+            })
+            response = await api.delete(`/news/${newNew.body.id}`).send()
+
+        });
+        test('Delete method should be 201 status', () => {
+            expect(response.status).toBe(201)
+        })
     })
     
     afterAll( async () => {
