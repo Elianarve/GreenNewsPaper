@@ -28,10 +28,8 @@ describe('TESTING CRUD news', () => {
                 "password": "Unacontraseña!1"
             });
 
-            console.log('TUS MUERTOS PISAOS')
             authorId = newUser.body.registerNewUser.id;
             token = newUser.body.userToken;
-            console.log(token)
         });
 
     test('POST response should be an object and then show 201 status', async() => {
