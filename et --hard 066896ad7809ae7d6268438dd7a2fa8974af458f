@@ -1,0 +1,263 @@
+[33mcommit e62a182c003612fee7e2ba0d26cd05e38f0c664c[m[33m ([m[1;36mHEAD -> [m[1;32mfeature-frontend[m[33m, [m[1;31morigin/feature-frontend[m[33m)[m
+Author: jessica noguera <jnoguera.fact@gmail.com>
+Date:   Mon Apr 8 11:32:03 2024 +0200
+
+    mergeo
+
+[33mcommit d82907758354a2b0a29b3baa4f64ed3500c73cc5[m
+Merge: 124efae 3ab1e4e
+Author: jessica noguera <jnoguera.fact@gmail.com>
+Date:   Mon Apr 8 11:31:28 2024 +0200
+
+    Merge branch 'feature-frontend' of https://github.com/Elianarve/GreenNewsPaper into feature-frontend
+
+[33mcommit 124efae4bac966b8564f56d819e5347dabca5954[m
+Author: jessica noguera <jnoguera.fact@gmail.com>
+Date:   Mon Apr 8 11:27:05 2024 +0200
+
+    mergefrontend
+
+[33mcommit 066896ad7809ae7d6268438dd7a2fa8974af458f[m
+Merge: 7c90d90 1042151
+Author: jessica noguera <jnoguera.fact@gmail.com>
+Date:   Mon Apr 8 11:26:30 2024 +0200
+
+    Merge remote-tracking branch 'origin/frontend-crud' into feature-frontend
+
+[33mcommit 3ab1e4ea35ee8f72e8c2be36d699c89feaea4ac1[m
+Merge: 7c90d90 ffb5056
+Author: jessica noguera <jnoguera.fact@gmail.com>
+Date:   Mon Apr 8 10:35:28 2024 +0200
+
+    Merge remote-tracking branch 'origin/feature-frontend-get' into feature-frontend
+
+[33mcommit 1042151a49e141159785d73e3c2c7af8f73f171e[m[33m ([m[1;31morigin/frontend-crud[m[33m)[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Fri Apr 5 15:33:04 2024 +0200
+
+    add-footer
+
+[33mcommit 20e3142e2decff55ccab62c01992e67e8777083e[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Fri Apr 5 15:14:12 2024 +0200
+
+    delete-method-in-card
+
+[33mcommit 7c90d90da7b99b90bad159ae377535a44b77d7fc[m
+Merge: 95a0d23 9dc4f8e
+Author: jessica noguera <jnoguera.fact@gmail.com>
+Date:   Fri Apr 5 12:13:54 2024 +0200
+
+    Merge remote-tracking branch 'origin/frontend-crud' into feature-frontend
+
+[33mcommit 95a0d23a1f28de14a183ab68c00d986dc31fb013[m
+Author: jessica noguera <jnoguera.fact@gmail.com>
+Date:   Fri Apr 5 12:11:24 2024 +0200
+
+    cambios
+
+[33mcommit 4d984fa862f37874861f6016788088df93f2288d[m
+Merge: 34ab9b3 d1faa2d
+Author: jessica noguera <jnoguera.fact@gmail.com>
+Date:   Fri Apr 5 11:57:55 2024 +0200
+
+    Merge branch 'feature-back' into feature-frontend
+
+[33mcommit 34ab9b3d4dbf962f57332d22d3fe9f01b5176225[m
+Author: jessica noguera <jnoguera.fact@gmail.com>
+Date:   Fri Apr 5 11:18:14 2024 +0200
+
+    createusers
+
+[33mcommit 9dc4f8eacab984bd4b68f3b6c4ea22764e8b7321[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Fri Apr 5 11:18:10 2024 +0200
+
+    deleted-folder
+
+[33mcommit a418c412bcfe3305d081930b91ec92a43894053f[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Fri Apr 5 11:13:47 2024 +0200
+
+    delete-crud-method
+
+[33mcommit 6e584eea7c95ffecf64f08312b5e67ca2719771b[m
+Author: jessica noguera <jnoguera.fact@gmail.com>
+Date:   Fri Apr 5 09:57:49 2024 +0200
+
+    createnotice
+
+[33mcommit 4f93ef7f203f1374fb84b134c4a1ca8dfbab1445[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Fri Apr 5 09:35:43 2024 +0200
+
+    install-spline-delete-method-underconstruction
+
+[33mcommit ffb5056a5863f4f3829dfc68c30b1b4101686794[m[33m ([m[1;31morigin/feature-frontend-get[m[33m)[m
+Author: BeatrizMercado <bea.mercado.lop@gmail.com>
+Date:   Thu Apr 4 14:59:20 2024 +0200
+
+    add-footer
+
+[33mcommit 36e6657d6ce78dcebee01b0032bf8b5546d33c20[m
+Author: jessica noguera <jnoguera.fact@gmail.com>
+Date:   Thu Apr 4 12:03:59 2024 +0200
+
+    middlewares
+
+[33mcommit 110608913f677381aed05e557432691a5f40f492[m[33m ([m[1;31morigin/feature-frontend-update[m[33m)[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Wed Apr 3 20:14:04 2024 +0200
+
+    add-card-buttons
+
+[33mcommit 3912a0802fa3c06f1f17d6fed5d7330fd5befc0e[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Wed Apr 3 15:12:09 2024 +0200
+
+    make-grid-home-page
+
+[33mcommit a4dbab36678d8b1603b47440e981681ac48ed43c[m
+Author: BeatrizMercado <bea.mercado.lop@gmail.com>
+Date:   Wed Apr 3 14:36:08 2024 +0200
+
+    give-style-to-register-form-page
+
+[33mcommit 9c7b79eed3d069492534a499c82d65a3ba328a6a[m
+Author: BeatrizMercado <bea.mercado.lop@gmail.com>
+Date:   Wed Apr 3 12:46:04 2024 +0200
+
+    give-style-to-login-page
+
+[33mcommit 8cf967e5ca6d97279a48a981bfd391f7da41334d[m
+Author: BeatrizMercado <bea.mercado.lop@gmail.com>
+Date:   Wed Apr 3 09:47:49 2024 +0200
+
+    change-colours
+
+[33mcommit d08fc2d4eeb0c4a9c1ee915d9740c71ed8507b18[m
+Author: Raquel Lores <128092239+RaquelLores@users.noreply.github.com>
+Date:   Tue Apr 2 16:28:02 2024 +0200
+
+    Update Card.jsx
+
+[33mcommit 69bcebbaebf3703304c93d2a70a66e78cc10812b[m[33m ([m[1;31morigin/develop[m[33m)[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Tue Apr 2 16:23:44 2024 +0200
+
+    card
+
+[33mcommit 99d125d46bcd3080ce4d91c497c9a8abae4e8eac[m
+Author: BeatrizMercado <bea.mercado.lop@gmail.com>
+Date:   Tue Apr 2 15:22:31 2024 +0200
+
+    give-style-to-landing-page
+
+[33mcommit f78fb68e6d0821a19dc224d31b72b12ccc86c34d[m
+Author: BeatrizMercado <bea.mercado.lop@gmail.com>
+Date:   Tue Apr 2 14:19:22 2024 +0200
+
+    add-poppins-typography-to-tailwind
+
+[33mcommit 57e317390aebe0630b538813ee332ed1e897aba3[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Tue Apr 2 13:45:43 2024 +0200
+
+    install-axios-install-prop-types
+
+[33mcommit 4d56768d2d32c2f0bac50df3a18f4ba570bb9b78[m
+Author: BeatrizMercado <bea.mercado.lop@gmail.com>
+Date:   Tue Apr 2 12:15:12 2024 +0200
+
+    tailwind error fixed
+
+[33mcommit bf1cdba2e318b38b3a894b0ea76666bd6036a76e[m
+Author: BeatrizMercado <bea.mercado.lop@gmail.com>
+Date:   Tue Apr 2 11:17:04 2024 +0200
+
+    implement-page-routing-with-react-router
+
+[33mcommit 758a5e42489015cfe4ef174b4b2fd55f680ac1d6[m
+Author: jessica noguera <jnoguera.fact@gmail.com>
+Date:   Mon Apr 1 15:44:54 2024 +0200
+
+    aut
+
+[33mcommit f30b55af84affcf0484a4e23481849244fe28f96[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Mon Apr 1 11:56:11 2024 +0200
+
+    link-pages-user-flow
+
+[33mcommit 52fbab4573068986fff7da821bd1ef027750c766[m
+Author: jessica noguera <jnoguera.fact@gmail.com>
+Date:   Mon Apr 1 09:00:22 2024 +0200
+
+    models
+
+[33mcommit 08108029c4f1e6acdd62656e427c81d299314b6c[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Wed Mar 27 15:36:44 2024 +0100
+
+    create-layout-public-nav-footer
+
+[33mcommit f0d24a2471051d7a859a33e6adbfcd8637cc273f[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Wed Mar 27 13:04:32 2024 +0100
+
+    router-configuration
+
+[33mcommit 2ed220a5b1564b3f209965a33f8c56c00103a98e[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Tue Mar 26 21:17:22 2024 +0100
+
+    feature-loginForm
+
+[33mcommit ee7054dc39ff14a837bdf9d81fc42faa404b9ff3[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Tue Mar 26 15:33:00 2024 +0100
+
+    install react-router-dom
+
+[33mcommit d0f9ee9ce239996c0747dc992af8ae0b42685383[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Tue Mar 26 14:04:06 2024 +0100
+
+    component-login
+
+[33mcommit 80213f514763f315f6ef50e9a3017bd38e167b4e[m
+Merge: 559efe1 91d7f60
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Tue Mar 26 10:54:12 2024 +0100
+
+    Merge branch 'develop' of https://github.com/Elianarve/GreenNewsPaper into develop
+
+[33mcommit 559efe19dec22bd8491d382a42156bb92e2cb06e[m
+Author: RaquelLores <rlorescasalinas@gmail.com>
+Date:   Tue Mar 26 10:53:17 2024 +0100
+
+    app-tailwind- front end
+
+[33mcommit 91d7f6086dbc09afe26c03ed750ddf61599fb2d0[m[33m ([m[1;32mdevelop[m[33m)[m
+Author: Elianarve <elirve2@outlook.es>
+Date:   Tue Mar 26 10:36:37 2024 +0100
+
+    add-folders
+
+[33mcommit d1faa2d381a5b6c23c97355ed331d7d6a26719aa[m[33m ([m[1;32mfeature-back[m[33m)[m
+Author: Elianarve <elirve2@outlook.es>
+Date:   Tue Mar 26 10:32:20 2024 +0100
+
+    add-folders
+
+[33mcommit 0adc93ab067a8a001505ac3bf2f9194c9981e5da[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Elianarve <elirve2@outlook.es>
+Date:   Tue Mar 26 09:51:38 2024 +0100
+
+    rename-folders
+
+[33mcommit 7904935500a2a4b2e6fab2d137d66af2622ebe15[m
+Author: Elianarve <elirve2@outlook.es>
+Date:   Tue Mar 26 09:23:41 2024 +0100
+
+    changes-ts
