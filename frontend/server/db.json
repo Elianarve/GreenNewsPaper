@@ -1,0 +1,20 @@
+{
+  "news": [
+    {
+      "id": "1",
+      "title": "Bitcoins en máquinas de centros comerciales",
+      "date": "2023-04-01",
+      "text": "Vaya, vaya lo que está pasando. Aquí puedes incluir más detalles sobre la noticia.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "author": "Autor 1",
+      "image": "https://trello.com/1/cards/65c36b7c34c3cc7abc72be2c/attachments/65c37db27398c12225616c63/previews/65c37db27398c12225616c84/download/Aguila.jpg"
+    },
+    {
+      "id": "2",
+      "title": "Bitcoins en máquinas de centros comerciales",
+      "date": "2023-04-01",
+      "text": "Vaya, vaya lo que está pasando. Aquí puedes incluir más detalles sobre la noticia.",
+      "author": "Autor 1",
+      "image": "https://trello.com/1/cards/65c36b7c34c3cc7abc72be2c/attachments/65c3801491fc89df02b3b2df/previews/65c3801591fc89df02b3b321/download/Buho.jpg"
+    }
+  ]
+}
