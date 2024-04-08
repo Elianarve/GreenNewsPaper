@@ -1,48 +1,47 @@
-import { DataTypes } from 'sequelize';
-import connection_db from '../database/connection_db';
-import UserModel from './usersModel';
+import { DataTypes } from "sequelize";
+import connection_db from "../database/connection_db";
+import UsersModel from "./userModel";
 
-
-const NewsModel = connection_db.define('news', 
-  {
+const NewsModel = connection_db.define('News', {
     id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
     },
     title: {
-      type: DataTypes.STRING(255),
-      allowNull: false
+        type: DataTypes.STRING,
+        allowNull: false
     },
-    publishedAt: {
-      type: DataTypes.DATE,
-      allowNull: false
+    date: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+        defaultValue: DataTypes.NOW 
     },
     description: {
-      type: DataTypes.TEXT,
-      allowNull: false
+        type: DataTypes.TEXT,
     },
-    image: {
-      type: DataTypes.STRING(255),
-      allowNull: false
-    },
-    userId: { // Añade esta columna para la clave foránea
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    author_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
             model: 'users',
             key: 'id' 
         }
-    }
-  },
-  {
-    tableName: 'newsnotice', // Nombre de la tabla en la base de datos
-    timestamps: false // Deshabilitar los campos createdAt y updatedAt
-  }
-);
+    },
+    author: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    image: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+},{
+    tableName: 'news',
+    timestamps: false
+})
 
-UserModel.hasMany(NewsModel, { foreignKey: 'userId' });
+UsersModel.hasMany(NewsModel, { foreignKey: 'author_id' });
+
+
 export default NewsModel;
-
-
-

@@ -1,5 +1,5 @@
 import { check } from "express-validator";
-import  validateResultNews  from '../helpers/validateResult';
+import  validateResultNews  from '../helpers/validateResultNews';
 import { Request, Response, NextFunction } from 'express';
 
 const newsValidator =[

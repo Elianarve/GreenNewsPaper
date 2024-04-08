@@ -1,5 +1,5 @@
 import { check } from "express-validator";
-import  validateResultUsers  from '../helpers/validateResult';
+import  validateResultUsers  from '../helpers/validateResultUsers';
 import { Request, Response, NextFunction } from 'express';
 
 const usersValidator =[

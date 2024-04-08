@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 import React from 'react'
 import Delete from './Delete'
 import {deleteNews} from '../services/newsServices.js'
 import { useNavigate } from 'react-router-dom'
+=======
+import React from 'react';
+// import Delete from './Delete';
+import { useNavigate } from 'react-router-dom';
+import { deleteNews } from '../services/newsServices';
+
+>>>>>>> develop
 
 const Card =({ news, onDelete }) => {
 const navigate = useNavigate();
@@ -28,7 +36,7 @@ const handleDelete = async () => {
         </div>
       </div>
       <div className="relative">
-        <img src={news.Image} alt={news.Title} className="w-full h-40 object-cover rounded-lg" />
+        <img src={news.image} alt={news.title} className="w-full h-40 object-cover rounded-lg" />
         <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center p-2">
         </div>
         <div className="flex justify-start items-center mt-2">
@@ -37,21 +45,26 @@ const handleDelete = async () => {
         </button>
         <div className="flex justify-end items-right mt-2 space-x-1">
         <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">post</button>
+<<<<<<< HEAD
         
         <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7" 
         onClick={handleDelete}>
         Borrar
         </button>
         <Delete id={news.id}/>
+=======
+        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7" onClick={() => {deleteNews(`${news.id}`); navigate(0)}}>Delete</button>
+        {/* <Delete id={news.id}/><button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">Delete</button> */}
+>>>>>>> develop
         <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">save</button>
         </div>
       </div>
       </div>
       <div className="mt-1 w-full">
-        <p className="line-clamp-2 text-xs leading-4 text-white">{news.Text}</p>
+        <p className="line-clamp-2 text-xs leading-4 text-white">{news.title}</p>
       </div>
       <div className="flex justify-between items-center mt-2">
-        <time dateTime={news.Date} className="text-white">
+        <time dateTime={news.date} className="text-white">
           {news.Date}
         </time>
       </div>

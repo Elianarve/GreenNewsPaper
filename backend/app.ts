@@ -1,41 +1,39 @@
-// Importa los módulos necesarios
 import connection_db from "./database/connection_db";
-import express from "express";
-import { PORT } from "./config";
+import { PORT } from './config';
+import express from 'express';
 import NewsModel from "./models/newsModel";
-import UserModel from "./models/usersModel";
-import userRouter from './routes/userRouter';
 import newsRouter from './routes/newsRouter';
+import usersRouter from './routes/usersRouter';
 import authRouter from './routes/authRouter';
+import UsersModel from "./models/userModel";
+import cors from 'cors';
 
+const app = express();
 
+app.use(cors());
 
-const app=express()
 app.use(express.json());
 
-// Configuración de las rutas
-app.use('/users', userRouter);
 app.use('/news', newsRouter);
+app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 
-  try {
-
+try {
     connection_db.authenticate();
+    console.log('Connection has been established successfully.👏👏');
 
-   console.log('Connection has been established successfully.');
-   NewsModel.sync();
-   UserModel.sync();
+    NewsModel.sync();
+    console.log('Model News connected correctly 📋');
 
-   console.log("modelo conectado correctamente");
+    UsersModel.sync();
+    console.log('Model Users connected correctly 👤👤');
 
-} catch (error) {
- 
+   } catch (error) {
     console.error('Unable to connect to the database:', error);
-  }
+   }
 
-  // Middleware para permitir el análisis de cuerpos JSON
-
-
-  app.listen(PORT, () => {
+   app.listen(PORT, () => {
     console.log(`La API se esta escuchando en el puerto http://localhost:${PORT}`);
 });
+
+export default app;
