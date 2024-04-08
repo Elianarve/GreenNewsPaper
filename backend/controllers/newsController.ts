@@ -32,6 +32,7 @@ export const createdNews = async (req: Request, res: Response) => {
     }
 }
 
+
 export const updateNews = async (req: Request, res: Response) => {   
     const newsId = req.params.id;
     try {

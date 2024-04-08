@@ -11,10 +11,9 @@ export const app = express();
 
 app.use(express.json());
 
-app.use('/news', newsRouter)
+app.use('/news', newsRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
-
 
 try {
     connection_db.authenticate();

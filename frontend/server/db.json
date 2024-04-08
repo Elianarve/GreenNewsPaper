@@ -1,0 +1,25 @@
+{
+  "news": [
+     {
+       "Title": "Bitcoins en máquinas de centros comerciales",
+       "Date": "2023-04-01",
+       "Text": "Vaya, vaya lo que está pasando. Aquí puedes incluir más detalles sobre la noticia.",
+       "Author": "Autor 1",
+       "Image": "https://pixabay.com/get/57e8d5474f50a814f1dc84609629307f133ad7e7524c704c7c2c7da94e7c7609_640.jpg"
+     },
+     {
+       "Title": "Blockchain explicado con ejemplos",
+       "Date": "2023-04-02",
+       "Text": "Monedas hechas de aire. Aquí puedes incluir más detalles sobre la noticia.",
+       "Author": "Autor 2",
+       "Image": "https://pixabay.com/get/57e8d5474f50a814f1dc84609629307f133ad7e7524c704c7c2c7da94e7c7609_640.jpg"
+     },
+     {
+       "Title": "IA generativa",
+       "Date": "2023-04-03",
+       "Text": "Necesito un bot para la casa. Aquí puedes incluir más detalles sobre la noticia.",
+       "Author": "Autor 3",
+       "Image": "https://pixabay.com/get/57e8d5474f50a814f1dc84609629307f133ad7e7524c704c7c2c7da94e7c7609_640.jpg"
+     }
+  ]
+ }

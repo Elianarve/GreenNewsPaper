@@ -1,11 +1,14 @@
 import express from 'express';
-import { registerUser, loginUser } from '../controllers/autController';
+import { register, login } from '../controllers/authController';
 import { userValidator } from '../validators/usersValidator';
 import handleValidationResults from '../helpers/validationHelper';
+// import { authToken } from '../middleware/authMiddleware';
 
 const router = express.Router();
 
-router.post('/', userValidator, handleValidationResults, registerUser);
-router.post('/login', loginUser)
+router.post('/register', userValidator, handleValidationResults, register);
+
+router.post('/login', login);
+
 
 export default router;
