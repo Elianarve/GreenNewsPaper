@@ -9,7 +9,8 @@ export const register = async (req: Request, res: Response) => {
         const passwordHash = await bcrypt.hash(req.body.password, 10);
         req.body.password = passwordHash;
         const newUser = await UsersModel.create(req.body);
-        res.status(201).json(newUser);
+        const token = tokenSign(newUser);
+        res.status(201).json({ message: 'Usuario registrado correctamente', data: newUser, token });
     } catch (error) {
         console.error(error);
         return res.status(500).send({ error: 'Internal Server Error' });

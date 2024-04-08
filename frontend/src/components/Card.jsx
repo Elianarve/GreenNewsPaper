@@ -1,47 +1,50 @@
 import React from 'react';
+// import Delete from './Delete';
 import { useNavigate } from 'react-router-dom';
+import { deleteNews } from '../services/newsServices';
+
 
 const Card = ({ news }) => {
- const navigate = useNavigate();
+const navigate = useNavigate();
 
  const handleReadMore = () => {
-    // manejar la lógica para navegar a la página de detalles de la noticia
-    // Por ejemplo, si tienes una ruta específica para cada noticia, puedes usar navigate('/ruta-a-detalles', { state: { news } })
-    // Para este ejemplo, simplemente redirigiré al usuario a una página de ejemplo
-    navigate('newsdetails/:id');
+    navigate(`/newsdetails/${news.id}`);
  };
 
  return (
-    <article className="flex flex-col items-start justify-between">
-      {/* Botones encima de la foto */}
-      <div className="flex justify-between items-center mb-4">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    <article className="w-full bg-neutral-900 flex flex-col items-start justify-between p-4 rounded-lg relative">
+      <div className="flex items-center mb-2">
+        <div className="flex gap-2">
+        </div>
+      </div>
+      <div className="relative">
+        <img src={news.image} alt={news.title} className="w-full h-40 object-cover rounded-lg" />
+        <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center p-2">
+        </div>
+        <div className="flex justify-start items-center mt-2">
+        <button className="bg-gradient-to-r from-fuchsia-600 to-purple-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline mb-1 mr-5">
           Blockchain
         </button>
-        <div className="flex gap-2">
-          {/* Aquí puedes agregar más botones según sea necesario */}
+        <div className="flex justify-end items-right mt-2 space-x-1">
+        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">post</button>
+        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7" onClick={() => {deleteNews(`${news.id}`); navigate(0)}}>Delete</button>
+        {/* <Delete id={news.id}/><button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">Delete</button> */}
+        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">save</button>
         </div>
       </div>
-      {/* Foto */}
-      <div className="relative">
-        <img src={news.Image} alt={news.Title} className="w-full h-64 object-cover rounded-lg" />
-        {/* Botones entre la foto y el texto */}
-        <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center p-4 bg-white bg-opacity-50">
-          {/* Aquí puedes agregar más botones según sea necesario */}
-        </div>
       </div>
-      {/* Texto */}
-      <div className="mt-4 w-full">
-        <p className="line-clamp-2 text-sm leading-6 text-gray-600">{news.Text}</p>
+      <div className="mt-1 w-full">
+        <p className="line-clamp-2 text-xs leading-4 text-white">{news.title}</p>
       </div>
-      {/* Fecha y enlace "Leer más" */}
       <div className="flex justify-between items-center mt-2">
-        <time dateTime={news.Date} className="text-gray-500">
+        <time dateTime={news.date} className="text-white">
           {news.Date}
         </time>
-        <button onClick={handleReadMore} className="text-red-500 hover:text-red-700">
+      </div>
+      <div className="absolute bottom-0 right-0 mb-4 ml-4">
+        <button onClick={handleReadMore} className="text-pink-600 hover:text-purple-600">
           Leer más
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline-block ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inline-block ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
