@@ -13,10 +13,7 @@ const UsersModel = connection_db.define('users', {
     },
     email: {
         type: DataTypes.STRING,
-<<<<<<< HEAD
-=======
         allowNull: false,
->>>>>>> develop
         unique: true
     },
     password: {

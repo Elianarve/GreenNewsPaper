@@ -4,7 +4,6 @@ import connection_db from '../database/connection_db';
 import UsersModel from '../models/userModel';
 import NewsModel from '../models/newsModel';
 import moment from 'moment';
-import { after } from 'node:test';
 
 const api = request(app);
 
