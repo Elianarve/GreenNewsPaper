@@ -22,26 +22,14 @@ export const getNews = async () => {
 
 // DELETE
 export const deleteNews = async (id) => {
-<<<<<<< HEAD
             try {
             const response = await axiosInstance.delete(`/news/${id}`);
             console.log(response.data);
             return response.data;
-=======
-        try {
-            const response = await axios.delete(`http://localhost:3000/news/${id}`);
-            if (response.status === 200) {
-                const confirmDelete = window.confirm("¿Estás seguro que deseas borrar la Noticia?"); 
-                if (confirmDelete){
-                   alert('Eliminada correctamente');
-                }
-              }
->>>>>>> develop
         } catch (error) {
             console.error("Error al borrar la noticia:", error);
             throw error;
         }
-<<<<<<< HEAD
 };
 
 //GET ONE BY ID
@@ -63,23 +51,9 @@ export const updateNews = async (id, updatedNewsData) => {
         return response.data;
     } catch (error) {
         console.error("Error al actualizar la noticia:", error);
-=======
-};
-
-// GET ONE BY ID
-export const getOneNewsById = async (id) => {
-    try {
-        const response = await axios.get(`http://localhost:3000/news/${id}`);
-        return response;
-    } catch (error) {
-        console.error("Error al obtener la noticia por ID", error);
->>>>>>> develop
         throw error;
     }
 };
 
 
-<<<<<<< HEAD
 export default axiosInstance;
-=======
->>>>>>> develop

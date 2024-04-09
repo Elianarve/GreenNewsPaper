@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         element: <Create/>,
       },
       {
-        path: "/update", // Ruta para el componente Update
+        path: "/update", 
         element: <Update/>,
       },
       {
