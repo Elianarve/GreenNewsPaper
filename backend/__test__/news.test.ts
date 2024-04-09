@@ -23,13 +23,13 @@ describe('TESTING CRUD news', () => {
         let token;
 
         beforeEach(async() => {
-            newUser = await api.post('/auth').send({
+            newUser = await api.post('/auth/register').send({
                 "name": "newUser",
                 "email": "newuser@gmail.com",
                 "password": "Unacontraseña!1"
             });
 
-            authorId = newUser.body.registerNewUser.id;
+            authorId = newUser.body.newUser.id;
             token = newUser.body.userToken;
         });
 
@@ -47,7 +47,7 @@ describe('TESTING CRUD news', () => {
     })
 
     afterAll(async() => {
-        await UsersModel.destroy({ where: {id: newUser.body.registerNewUser.id} });
+        await UsersModel.destroy({ where: {id: newUser.body.newUser.id} });
     })
 
     });
@@ -60,12 +60,14 @@ describe('TESTING CRUD news', () => {
         let response;
 
         beforeEach(async() => {
-            newUser = await api.post('/auth').send({
+            newUser = await api.post('/auth/register').send({
                 "name": "newUser",
                 "email": "newuser@gmail.com",
                 "password": "Unacontraseña!1"
             });
-            authorId = newUser.body.registerNewUser.id;
+            console.log('HOLAHOLAHOLA');
+            console.log(newUser.body)
+            authorId = newUser.body.newUser.id;
             token = newUser.body.userToken;
 
             newNew = await api.post('/news').set('Authorization', `Bearer ${token}`).send({
@@ -75,12 +77,12 @@ describe('TESTING CRUD news', () => {
                 "author_id": authorId,
                 "image": "http://www.imagen.com"
             })
-            response = await api.delete(`/news/${newNew.body.id}`).send()
+            response = await api.delete(`/news/${newNew.body.id}`).set('Authorization', `Bearer ${token}`).send()
 
         });
 
         afterAll(async() => {
-            await UsersModel.destroy({ where: {id: newUser.body.registerNewUser.id}})
+            await UsersModel.destroy({ where: {id: newUser.body.newUser.id}})
         })
 
         test('Delete method should be 201 status', () => {
@@ -95,12 +97,12 @@ describe('TESTING CRUD news', () => {
         let newNew;
 
         beforeEach(async() => {
-            newUser = await api.post('/auth').send({
+            newUser = await api.post('/auth/register').send({
                 "name": "newUser",
                 "email": "newuser@gmail.com",
                 "password": "Unacontraseña!1"
             });
-            authorId = newUser.body.registerNewUser.id;
+            authorId = newUser.body.newUser.id;
             token = newUser.body.userToken;
 
             newNew = await api.post('/news').set('Authorization', `Bearer ${token}`).send({
@@ -114,7 +116,7 @@ describe('TESTING CRUD news', () => {
         });
 
         test('Put response should be an object and return status 200', async() => {
-            const response = await api.put(`/news/${newNew.body.id}`).send({
+            const response = await api.put(`/news/${newNew.body.id}`).set('Authorization', `Bearer ${token}`).send({
                 "title": "updated testTitle",
                 "date": '2000-01-01',
                 "description": "updated descripcionTest",
@@ -127,7 +129,7 @@ describe('TESTING CRUD news', () => {
         });
 
         afterAll(async() => {
-            await UsersModel.destroy({where: {id: newUser.body.registerNewUser.id}});
+            await UsersModel.destroy({where: {id: newUser.body.newUser.id}});
             await NewsModel.destroy({where: {id: newNew.body.id}})
         })
     })
