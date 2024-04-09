@@ -12,7 +12,7 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); //lógica para enviar credenciales al back-end
     try {
-      const response = await fetch('http://localhost:5000/auth/register', {
+      const response = await fetch('http://localhost:8000/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
