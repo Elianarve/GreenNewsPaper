@@ -4,6 +4,7 @@ import Landing from '../pages/Landing.jsx';
 import Login from '../pages/Login.jsx';
 import Home from '../pages/Home.jsx';
 import Create from '../pages/Create.jsx';
+import create from '../pages/update.jsx';
 import NewsDetails from '../pages/NewsDetails.jsx';
 import Register from '../pages/Register.jsx';
 import {getNews} from '../services/newsServices.js';
