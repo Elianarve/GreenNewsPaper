@@ -9,8 +9,11 @@ export const register = async (req: Request, res: Response) => {
         const passwordHash = await bcrypt.hash(req.body.password, 10);
         req.body.password = passwordHash;
         const newUser = await UsersModel.create(req.body);
-        const token = tokenSign(newUser);
-        res.status(201).json({ message: 'Usuario registrado correctamente', data: newUser, token });
+        const tokenSession = tokenSign(newUser);
+        res.status(201).json({
+            newUser,
+            userToken: tokenSession
+        });
     } catch (error) {
         console.error(error);
         return res.status(500).send({ error: 'Internal Server Error' });
@@ -35,7 +38,7 @@ export const login = async (req: Request, res: Response) => {
             return res.send({
                 message: `Usuario correcto, bienvenid@ ${userName}`,
                 data: user,
-                token: tokenSession
+                userToken: tokenSession
             });
         } else {
             return res.status(401).send({ error: 'Contraseña incorrecta' });

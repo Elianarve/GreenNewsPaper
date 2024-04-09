@@ -29,7 +29,7 @@ export const createdNews = async (req: Request, res: Response) => {
         const user: any = await UsersModel.findByPk(userId);
         const createdNewNews = await NewsModel.create({...req.body, author: user.name});       
         res.status(201).json(createdNewNews);
-    }catch(error){
+    } catch(error){
         return res.status(500).send({ error: 'Internal Server Error' });
     }
 }
