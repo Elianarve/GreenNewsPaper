@@ -1,12 +1,7 @@
-import React from 'react'
-
-function NewsDetails() {
-  return (
-    <div>NewsDetails</div>
-  )
-}
-
-export default NewsDetailimport React from 'react'
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from "react-router";
+import { getOneNewsById } from '../services/newsServices';
 
 const NewsDetails = () => {
   const { id } = useParams();
@@ -44,4 +39,4 @@ const NewsDetails = () => {
 };
 
 
-export default NewsDetail
+export default NewsDetails;

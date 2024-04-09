@@ -1,24 +1,14 @@
-import React from 'react'
-import Delete from './Delete'
-import {deleteNews} from '../services/newsServices.js'
-import { useNavigate } from 'react-router-dom'
+import React from 'react';
+// import Delete from './Delete';
+import { useNavigate } from 'react-router-dom';
+import { deleteNews } from '../services/newsServices';
 
-const Card =({ news, onDelete }) => {
+
+const Card = ({ news }) => {
 const navigate = useNavigate();
 
-const handleReadMore = () => {
+ const handleReadMore = () => {
     navigate(`/newsdetails/${news.id}`);
- };
-
-const handleDelete = async () => {
-  if (window.confirm("¿seguro que quieres borrar esa noticia?")){
-    try {
-      await deleteNews(news.id);
-      onDelete(news.id);
-    } catch (error) {
-      console.error("Error al borrar la noticia", error);
-    }
-  }  
  };
 
  return (
@@ -37,12 +27,8 @@ const handleDelete = async () => {
         </button>
         <div className="flex justify-end items-right mt-2 space-x-1">
         <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">post</button>
-        
-        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7" 
-        onClick={handleDelete}>
-        Borrar
-        </button>
-        <Delete id={news.id}/>
+        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7" onClick={() => {deleteNews(`${news.id}`); navigate(0)}}>Delete</button>
+        {/* <Delete id={news.id}/><button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">Delete</button> */}
         <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">save</button>
         </div>
       </div>
