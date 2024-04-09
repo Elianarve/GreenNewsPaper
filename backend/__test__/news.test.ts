@@ -7,32 +7,34 @@ import moment from 'moment';
 
 const api = request(app);
 
-describe('TESTING CRUD news', () => {
+describe('TESTING CRUD news',() => {
+    let newUser: any = {};
+    let authorId;
+    let token;
+
+    beforeEach(async() => {
+        newUser = await api.post('/auth/register').send({
+        "name": "newUser",
+        "email": "newuser@gmail.com",
+        "password": "Unacontraseña!1",
+        "rol": "admin"
+    });
+    authorId = newUser.body.newUser.id;
+    token = newUser.body.userToken;
+    })
+    afterEach(async() => {
+        await UsersModel.destroy({ where: {id: newUser.body.newUser.id}})
+    })
 
     describe('GET', () => {
         test('GET Response body must be an array and then show 200 status', async() => {
-            const response = await api.get('/news')
+            const response = await api.get('/news').set('Authorization', `Bearer ${token}`)
             expect(response.status).toBe(200)
             expect(Array.isArray(response.body)).toBe(true)
         })    
     });
 
     describe('POST', () => {
-        let newUser: any = {}
-        let authorId;
-        let token;
-
-        beforeEach(async() => {
-            newUser = await api.post('/auth/register').send({
-                "name": "newUser",
-                "email": "newuser@gmail.com",
-                "password": "Unacontraseña!1"
-            });
-
-            authorId = newUser.body.newUser.id;
-            token = newUser.body.userToken;
-        });
-
     test('POST response should be an object and then show 201 status', async() => {
             const actualDate = moment().format('YYYY-MM-DD');
             const response = await api.post('/news').set('Authorization', `Bearer ${token}`).send({
@@ -45,31 +47,13 @@ describe('TESTING CRUD news', () => {
             expect(response.status).toBe(201);
             expect(typeof response.body).toBe('object')
     })
-
-    afterAll(async() => {
-        await UsersModel.destroy({ where: {id: newUser.body.newUser.id} });
-    })
-
     });
 
     describe('DELETE', () => {
-        let newUser: any = {};
-        let authorId;
-        let token;
         let newNew;
         let response;
 
         beforeEach(async() => {
-            newUser = await api.post('/auth/register').send({
-                "name": "newUser",
-                "email": "newuser@gmail.com",
-                "password": "Unacontraseña!1"
-            });
-            console.log('HOLAHOLAHOLA');
-            console.log(newUser.body)
-            authorId = newUser.body.newUser.id;
-            token = newUser.body.userToken;
-
             newNew = await api.post('/news').set('Authorization', `Bearer ${token}`).send({
                 "title": "testTitle",
                 "date": '2000-01-01',
@@ -81,30 +65,15 @@ describe('TESTING CRUD news', () => {
 
         });
 
-        afterAll(async() => {
-            await UsersModel.destroy({ where: {id: newUser.body.newUser.id}})
-        })
-
         test('Delete method should be 201 status', () => {
             expect(response.status).toBe(201)
         })
     })
 
     describe('PUT', () => {
-        let newUser: any = {};
-        let authorId;
-        let token;
         let newNew;
 
         beforeEach(async() => {
-            newUser = await api.post('/auth/register').send({
-                "name": "newUser",
-                "email": "newuser@gmail.com",
-                "password": "Unacontraseña!1"
-            });
-            authorId = newUser.body.newUser.id;
-            token = newUser.body.userToken;
-
             newNew = await api.post('/news').set('Authorization', `Bearer ${token}`).send({
                 "title": "testTitle",
                 "date": '2000-01-01',
@@ -129,7 +98,6 @@ describe('TESTING CRUD news', () => {
         });
 
         afterAll(async() => {
-            await UsersModel.destroy({where: {id: newUser.body.newUser.id}});
             await NewsModel.destroy({where: {id: newNew.body.id}})
         })
     })
