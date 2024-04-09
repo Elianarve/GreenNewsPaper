@@ -11,7 +11,7 @@ export const getNews = async () => {
             'Authorization': `Bearer ${token}`
         };
         
-        const response = await axios.get('http://localhost:5000/news', { headers });
+        const response = await axios.get('http://localhost:3000/news', { headers });
         const data = await response.data
         return data;
     } catch (error) {
