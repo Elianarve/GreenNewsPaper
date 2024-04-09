@@ -4,6 +4,7 @@ import Landing from '../pages/Landing.jsx';
 import Login from '../pages/Login.jsx';
 import Home from '../pages/Home.jsx';
 import Create from '../pages/Create.jsx';
+import Update from '..//pages/Update.jsx';
 import NewsDetails from '../pages/NewsDetails.jsx';
 import Register from '../pages/Register.jsx';
 import {getNews} from '../services/newsServices.js';
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         path:"/create",
         element: <Create/>,
       },
+      {
+         path:"/update",
+         element: <Update/>,
+       },
      {
         path: "/newsdetails/:id",
         element: <NewsDetails/>,
