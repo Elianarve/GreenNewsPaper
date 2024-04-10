@@ -23,7 +23,7 @@ try {
     connection_db.authenticate();
     console.log('Connection has been established successfully.👏👏');
 
-    NewsModel.sync();
+    NewsModel.sync({force: true});
     console.log('Model News connected correctly 📋');
 
     UsersModel.sync();

@@ -7,7 +7,7 @@ export const getNews = async(req: Request, res: Response) => {
         const news = await NewsModel.findAll();
         res.status(200).json(news);
     } catch (error) {
-        res.status(500).json({error: 'Internal Server Error'});
+        res.status(500).json({error: error + 'Internal Server Error'});
     }
 }
 

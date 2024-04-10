@@ -10,7 +10,7 @@ const api = request(app);
 describe('TESTING CRUD news',() => {
     let newUser: any = {};
     let authorId;
-    let token;
+    let userToken;
 
     beforeEach(async() => {
         newUser = await api.post('/auth/register').send({
@@ -19,16 +19,18 @@ describe('TESTING CRUD news',() => {
         "password": "Unacontraseña!1",
         "rol": "admin"
     });
-    authorId = newUser.body.newUser.id;
-    token = newUser.body.userToken;
+    console.log('HOLAHOLAHOLA')
+    console.log(newUser.body)
+    authorId = newUser.body.data.id;
+    userToken = newUser.body.token;
     })
     afterEach(async() => {
-        await UsersModel.destroy({ where: {id: newUser.body.newUser.id}})
+        await UsersModel.destroy({ where: {id: newUser.body.data.id}})
     })
 
     describe('GET', () => {
         test('GET Response body must be an array and then show 200 status', async() => {
-            const response = await api.get('/news').set('Authorization', `Bearer ${token}`)
+            const response = await api.get('/news').set('Authorization', `Bearer ${userToken}`)
             expect(response.status).toBe(200)
             expect(Array.isArray(response.body)).toBe(true)
         })    
@@ -37,7 +39,7 @@ describe('TESTING CRUD news',() => {
     describe('POST', () => {
     test('POST response should be an object and then show 201 status', async() => {
             const actualDate = moment().format('YYYY-MM-DD');
-            const response = await api.post('/news').set('Authorization', `Bearer ${token}`).send({
+            const response = await api.post('/news').set('Authorization', `Bearer ${userToken}`).send({
                 "title": "testTitle",
                 "date": actualDate,
                 "description": "descripcionTest",
@@ -54,14 +56,14 @@ describe('TESTING CRUD news',() => {
         let response;
 
         beforeEach(async() => {
-            newNew = await api.post('/news').set('Authorization', `Bearer ${token}`).send({
+            newNew = await api.post('/news').set('Authorization', `Bearer ${userToken}`).send({
                 "title": "testTitle",
                 "date": '2000-01-01',
                 "description": "descripcionTest",
                 "author_id": authorId,
                 "image": "http://www.imagen.com"
             })
-            response = await api.delete(`/news/${newNew.body.id}`).set('Authorization', `Bearer ${token}`).send()
+            response = await api.delete(`/news/${newNew.body.id}`).set('Authorization', `Bearer ${userToken}`).send()
 
         });
 
@@ -74,7 +76,7 @@ describe('TESTING CRUD news',() => {
         let newNew;
 
         beforeEach(async() => {
-            newNew = await api.post('/news').set('Authorization', `Bearer ${token}`).send({
+            newNew = await api.post('/news').set('Authorization', `Bearer ${userToken}`).send({
                 "title": "testTitle",
                 "date": '2000-01-01',
                 "description": "descripcionTest",
@@ -85,7 +87,7 @@ describe('TESTING CRUD news',() => {
         });
 
         test('Put response should be an object and return status 200', async() => {
-            const response = await api.put(`/news/${newNew.body.id}`).set('Authorization', `Bearer ${token}`).send({
+            const response = await api.put(`/news/${newNew.body.id}`).set('Authorization', `Bearer ${userToken}`).send({
                 "title": "updated testTitle",
                 "date": '2000-01-01',
                 "description": "updated descripcionTest",
