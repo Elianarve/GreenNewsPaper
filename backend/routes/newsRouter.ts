@@ -1,8 +1,8 @@
 import express from 'express';
 import { deleteNews, getNews, createdNews, updateNews, getOneNews } from '../controllers/newsController';
 import newsValidator from '../validators/newsValidator';
-import { authToken } from '../middleware/authMiddleware';
-import { authRol } from '../middleware/rolMiddleware';
+import { authToken } from '../middlewares/authMiddleware';
+import { authRol } from '../middlewares/rolMiddleware';
 
 
 const router = express.Router();

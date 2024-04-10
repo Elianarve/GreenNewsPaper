@@ -31,8 +31,5 @@ const UsersModel = connection_db.define('users', {
 })
 
 export default UsersModel;
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 547f681ce1e290283e8f89afd3c3e0142a8585ec
