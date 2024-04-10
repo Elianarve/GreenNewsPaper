@@ -22,7 +22,7 @@ const LoginForm = () => {
     e.preventDefault(); //lógica para enviar credenciales al back-end
     try {
       await validationSchema.validate({email, password}, {abortEarly: false});
-      const response = await fetch('introducir la URL del BackEnd/login', {
+      const response = await fetch('http://localhost:8000/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -35,12 +35,18 @@ const LoginForm = () => {
       }
 
       const data = await response.json();
+      alert(`Bienvenid@ ${data.data.name}`)
       // Aquí manejamos la respuesta exitosa del backend, recibimos token en el almacenamiento local del navegador para que el usuario esté autenticado mientras navega
-      localStorage.setItem('authToken',data.token);
+      localStorage.setItem('authToken', data.token);
       //Ahora redirigimos al usuario a la Home, después de un login exitoso
-      navigate('/home');
+      navigate('/home', {
+        state: {
+          name: data.data.name
+        }
+      });
     } catch (error){
       console.error('Error:', error);
+
       error.inner.forEach((err) => {
         if (err.path === 'email') {
           setEmailError(err.message);
