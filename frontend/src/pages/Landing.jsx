@@ -13,7 +13,7 @@ const Landing = () => {
           <h1 className="font-poppins font-semibold text-6xl mb-4 text-white">¡Explora el <br/>mañana <br/><span className="text-[#FB005A]">hoy mismo!</span></h1>
           <p className='font-poppins mb-5 text-lg text-white'>Alimenta tu curiosidad diaria: <br/>tecnología, IA, blockchain y más.</p>
           <Link to="/register">
-            <button className="font-poppins bg-gradient-to-r rounded-lg from-[#B800B0] to-[#FB005A] hover:from- [#FB005A] hover:to-[#B800B0] text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5 w-11/12 h-12">
+            <button className="font-poppins bg-gradient-to-r rounded-lg from-[#B800B0] to-[#FB005A] hover:from- [#FB005A] hover:to-[#B800B0] text-white py-2 px-4 focus:outline-none focus:shadow-outline mb-5 w-11/12 h-12">
               Regístrate
             </button>
           </Link>

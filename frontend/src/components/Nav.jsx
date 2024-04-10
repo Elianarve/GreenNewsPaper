@@ -13,8 +13,10 @@ const Nav = () => {
          <div className="w-10 h-10 ml-20 bg-gradient-to-r from-[#FB005A] to-purple-500 hover:from-[#B800B0] hover:to-pink-600 py-2 px-4 focus:outline-none focus:shadow-outline mb-5 rounded"></div>
          </Link>
          <ul className="font-poppins flex space-x-4 mr-20">
+          <Link to="/home">
            <li className="text-white bg-[#222222] px-4 py-2 rounded-lg hover:bg-[#FB005A] active:bg-[#B800B0] focus:outline-none focus:ring focus:ring-violet-300">Home</li>
-           <Link to="/create" replace className="text-white"> 
+          </Link>
+          <Link to="/create" replace className="text-white"> 
               <img src={write} className='absolute mt-2.5 ml-4'></img>
              <li className="text-white bg-[#222222] pl-10 px-4 py-2 rounded-lg hover:bg-[#FB005A] active:bg-[#B800B0] focus:outline-none focus:ring focus:ring-violet-300">Escribe</li>
            </Link>
