@@ -1,11 +1,30 @@
 import moment from 'moment';
 
-export const testUser = {
+export const testUserAdmin = {
     "name": "newUser",
     "email": "newuser@gmail.com",
     "password": "Unacontraseña!1",
     "rol": "admin"
 }
+
+export const testUser = {
+    "name": "test",
+    "email": "test@gmail.com",
+    "password": "Unacontraseña!1"
+}
+
+export const deleteUser = {
+    "name": "test",
+    "email": "deletetest@gmail.com",
+    "password": "Unacontraseña!1"
+}
+
+export const updatedTestUser = {
+    "name": "updated Test",
+    "email": "updatedtest@gmail.com",
+    "password": "Unacontraseña!1"
+}
+
 const actualDate = moment().format('YYYY-MM-DD');
 export const testNew = {
     "title": "testTitle",

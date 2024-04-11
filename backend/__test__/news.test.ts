@@ -4,7 +4,7 @@ import connection_db from '../database/connection_db';
 import UsersModel from '../models/userModel';
 import NewsModel from '../models/newsModel';
 import moment from 'moment';
-import { testUser, testNew, updatedTestNew } from './helpers/testHelpers';
+import { testUserAdmin, testNew, updatedTestNew } from './helpers/testHelpers';
 import { tokenSign } from '../utils/token';
 
 const api = request(app);
@@ -15,7 +15,7 @@ describe('TESTING CRUD news',() => {
 
     beforeEach(async() => {
         newUser = await UsersModel.create(
-        testUser
+        testUserAdmin
     );
     userToken = tokenSign(newUser);
     })
