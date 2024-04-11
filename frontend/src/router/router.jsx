@@ -6,6 +6,7 @@ import Home from '../pages/Home.jsx';
 import Create from '../pages/Create.jsx';
 import NewsDetails from '../pages/NewsDetails.jsx';
 import Register from '../pages/Register.jsx';
+import { getNews} from '../services/newsServices.js'
 
 
 
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
      {
         path: "/home",
         element: <Home/>,
+        loader: getNews
      },
      {
         path:"/create",

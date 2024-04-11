@@ -1,15 +1,26 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { postData } from '../services/newsServices.js'
+import { postNews } from '../services/newsServices.js'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 // import TipTap from "../components/TipTap.jsx"
-// import draft from "../assets/draft-icon.svg"
+import draft from "../assets/draft-icon.svg"
 
 function Create() {
   const [Url_Image, setUrl_Image ] = useState("");
   const navigate = useNavigate()
   const { handleSubmit, register, formState: { errors }} = useForm()
+
+  const onSubmit = (data) => {
+    data.image = Url_Image
+    postNews(data)
+    .then(() => {
+      navigate('/home'); 
+    })
+    .catch((error) => {
+      console.error("Error al publicar:", error);
+    });
+  };
 
 
   const changeUploadImage = async (e) => {
@@ -30,18 +41,35 @@ const FunctionDeleteImage = () => {
 
   return (
     <>
-    <form>
     <div>
-        <input type="file" accept="image/*" onChange={changeUploadImage}/> 
-
-        {Url_Image && (
+        <form onSubmit={handleSubmit(onSubmit)} >
           <div>
-              <img src={Url_Image} className="w-[250px]" />
-              <button onClick={FunctionDeleteImage}>Eliminar imagen</button>
+            <img src={draft}/>
+            <p>Borrador</p>
           </div>
-        )}   
+          <div>
+              <label>Imagen de portada</label>
+              <input type="file" accept="image/*" onChange={changeUploadImage}/> 
+
+              {Url_Image && (
+                <div>
+                    <img src={Url_Image} className="w-[250px]" />
+                    <button onClick={FunctionDeleteImage}>Eliminar imagen</button>
+                </div>
+              )}   
+          </div>
+          <div>
+            <label htmlFor='title'>Título</label>
+            <input type='text' {...register("title", { required: true })} />
+          </div>
+          <div>
+            <label htmlFor='text'>Texto</label>
+            <input type='text' {...register("text", { required: true })} />
+          </div>
+          <button type='submit'>Publicar</button>
+        </form>
     </div>
-    </form>
+    {/* <TipTap/> */}
     </>
   )
 }
