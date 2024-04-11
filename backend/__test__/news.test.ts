@@ -19,8 +19,6 @@ describe('TESTING CRUD news',() => {
         "password": "Unacontraseña!1",
         "rol": "admin"
     });
-    console.log('HOLAHOLAHOLA')
-    console.log(newUser.body)
     authorId = newUser.body.data.id;
     userToken = newUser.body.token;
     })
