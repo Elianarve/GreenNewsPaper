@@ -9,7 +9,8 @@ export const register = async (req: Request, res: Response) => {
         const passwordHash = await bcrypt.hash(req.body.password, 10);
         req.body.password = passwordHash;
         const newUser = await UsersModel.create(req.body);
-        res.status(201).json(newUser);
+        const token = tokenSign(newUser);
+        res.status(201).json({ message: 'Usuario registrado correctamente', data: newUser, token });
     } catch (error) {
         console.error(error);
         return res.status(500).send({ error: 'Internal Server Error' });
@@ -31,9 +32,11 @@ export const login = async (req: Request, res: Response) => {
         const tokenSession = tokenSign(user);
         const userName = user?.get('name') as string;
         if (checkPassword) {
+            const noPassword = { ...user.toJSON(), password: undefined }; //para esconder la contraseña en el navegador
             return res.send({
                 message: `Usuario correcto, bienvenid@ ${userName}`,
-                data: user,
+                // data: user,
+                data: noPassword,
                 token: tokenSession
             });
         } else {

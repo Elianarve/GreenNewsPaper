@@ -1,48 +1,64 @@
 import axios from "axios";
 
-const apiBaseUrl = 'http://localhost:3000';
-const axiosInstance = axios.create({
-    baseURL: apiBaseUrl,
-});
-
-
 // GET
 export const getNews = async () => {
     try {
-        const response = await axiosInstance.get('/news');
-        console.log(response.data);
-        return response.data;
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+            throw new Error('Token no encontrado en el almacenamiento local');
+        }
+        const headers = {
+            'Authorization': `Bearer ${token}`
+        };
+        
+        const response = await axios.get('http://localhost:5000/news', { headers });
+        const data = await response.data
+        return data;
     } catch (error) {
         console.error("Error al obtener las noticias:", error);
         throw error;
     }
 };
 
-// DELETE
-export const deleteNews = async (id) => {
-            try {
-            const response = await axiosInstance.delete(`/news/${id}`);
-            console.log(response.data);
-            return response.data;
-        } catch (error) {
-            console.error("Error al borrar la noticia:", error);
-            throw error;
-        }
-};
-//CREATE
-export const postData = async (data) =>{
-    const news = await axios.post(`${url}`,data)
-    alert("Noticia creada exitosamente")
-    return news
-  }
-//GET ONE BY ID
+// GET ONE BY ID
 export const getOneNewsById = async (id) => {
     try {
-        const response = await axios.get(`http://localhost:3000/news/${id}`);
-        return response.news;
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+            throw new Error('Token no encontrado en el almacenamiento local');
+        }
+        const headers = {
+            'Authorization': `Bearer ${token}`
+        };
+        const response = await axios.get(`http://localhost:5000/news/${id}`, { headers });
+        return response;
     } catch (error) {
         console.error("Error al obtener la noticia por ID", error);
         throw error;
     }
 };
-export default axiosInstance;
+
+// DELETE
+export const deleteNews = async (id) => {
+    const confirmDelete = window.confirm("¿Estás seguro que deseas eliminar la Noticia?");
+    if (confirmDelete) {
+        try {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                throw new Error('Token no encontrado en el almacenamiento local');
+            }
+            const headers = {
+                'Authorization': `Bearer ${token}`
+            };
+            const response = await axios.delete(`http://localhost:5000/news/${id}`, { headers });
+            if (response.status === 200) {    
+                alert('Eliminada correctamente');
+            } 
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                alert('No estás autorizado para realizar esta acción. Por favor, inicia sesión nuevamente.');
+                window.location.href = '/login'; 
+            } 
+    }
+}
+};

@@ -1,31 +1,30 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useId } from 'react';
-import { registerUser } from '../services/authService.js';
+import { useUserContext } from '../context/UserContext';
+import { registerUser } from '../services/logReg';
 
 const RegisterForm = () => {
-  const [userName, setUserName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const termsId = useId();
+  const { userAuth, setUserAuth } = useUserContext();
+  const { user, setUser  } = useUserContext();
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); //lógica para enviar credenciales al back-end
+    e.preventDefault(); 
     try {
-      const response = await registerUser({ userName, email, password });
-
-    if(!response.ok) {
-      throw new Error('Error al registrarse');
-      };
-      const data = await response.json(); //Convertimos la respuesta al formato JSON
-      // Aquí manejamos la respuesta exitosa del backend, recibimos token en el almacenamiento local del navegador para que el usuario esté autenticado mientras navega
+      const data = await registerUser(name, email, password)
+      alert(`Usuario registrado correctamente, bienvenid@ ${data.data.name}`);
       localStorage.setItem('authToken',data.token);
-      //Ahora redirigimos al usuario a la Home, después de un login exitoso
-      navigate('/home');
+      console.log(localStorage.getItem('authToken'));
+      setUser(data.data);
+      setUserAuth(true);
+      navigate('/home')
     } catch (error){
       console.error('Error:', error);
-      // Aquí podemos manejar errores, ejem. mostrar un mensaje al usuario
      }
   };
 
@@ -35,7 +34,7 @@ const RegisterForm = () => {
       <div className="">
           <label className="block text-white font-poppins mb-2 text-left" htmlFor="name">
             Nombre
-            <input type="userName" value={userName} onChange={(e) => setUserName(e.target.value)} required className="font-poppins shadow appearance-none rounded-lg w-full bg-[#222222] py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="userName" placeholder="Escribe tu nombre completo"/>
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} required className="font-poppins shadow appearance-none rounded-lg w-full bg-[#222222] py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="name" placeholder="Escribe tu nombre completo"/>
           </label>
         </div>
         <div className="mb-4">
@@ -72,6 +71,6 @@ const RegisterForm = () => {
       </form>
     </>
  );
-};
+}
 
 export default RegisterForm;

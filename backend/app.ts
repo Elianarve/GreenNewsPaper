@@ -6,8 +6,11 @@ import newsRouter from './routes/newsRouter';
 import usersRouter from './routes/usersRouter';
 import authRouter from './routes/authRouter';
 import UsersModel from "./models/userModel";
+import cors from 'cors';
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
@@ -32,3 +35,5 @@ try {
    app.listen(PORT, () => {
     console.log(`La API se esta escuchando en el puerto http://localhost:${PORT}`);
 });
+
+export default app;

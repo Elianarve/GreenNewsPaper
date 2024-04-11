@@ -28,6 +28,10 @@ const NewsModel = connection_db.define('News', {
             key: 'id' 
         }
     },
+    author: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     image: {
         type: DataTypes.STRING,
         allowNull: false
