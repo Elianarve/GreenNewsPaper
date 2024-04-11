@@ -1,11 +1,10 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
-import { useParams } from "react-router";
+import { useParams, useNavigate } from 'react-router-dom';
 import { getOneNewsById, deleteNews } from '../services/newsServices';
 import update from '../assets/update-icon.svg';
 import dlete from '../assets/delete-icon.svg';
 import save from '../assets/save-icon.svg';
-import { useNavigate } from "react-router-dom";
+
 
 const NewsDetails = () => {
   const { id } = useParams();

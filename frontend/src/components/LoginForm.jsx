@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useUserContext } from '../context/UserContext';
+import { loginUser } from '../services/logReg';
+
 import * as Yup from 'yup';
 
 const LoginForm = () => {
@@ -8,6 +11,8 @@ const LoginForm = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate(); 
+  const { userAuth, setUserAuth  } = useUserContext();
+  const { user, setUser  } = useUserContext();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('El email debe ser válido.').required('El email es requerido.'),
@@ -19,31 +24,16 @@ const LoginForm = () => {
 });
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); //lógica para enviar credenciales al back-end
+    e.preventDefault();
     try {
       await validationSchema.validate({email, password}, {abortEarly: false});
-      const response = await fetch('http://localhost:8000/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if(!response.ok) {
-        throw new Error('Error en el inicio de sesión');
-      }
-
-      const data = await response.json();
+      const data = await loginUser(email, password);
       alert(`Bienvenid@ ${data.data.name}`)
-      // Aquí manejamos la respuesta exitosa del backend, recibimos token en el almacenamiento local del navegador para que el usuario esté autenticado mientras navega
       localStorage.setItem('authToken', data.token);
-      //Ahora redirigimos al usuario a la Home, después de un login exitoso
-      navigate('/home', {
-        state: {
-          name: data.data.name
-        }
-      });
+      console.log(data);
+      setUser(data.data);
+      setUserAuth(true);
+      navigate('/home');
     } catch (error){
       console.error('Error:', error);
 
@@ -56,7 +46,10 @@ const LoginForm = () => {
       });
       // Aquí podemos manejar errores, ejem. mostrar un mensaje al usuario
      }
+
+     //onResetForm();
   };
+
 
  return (
     <>

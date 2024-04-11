@@ -20,6 +20,24 @@ export const getNews = async () => {
     }
 };
 
+// GET ONE BY ID
+export const getOneNewsById = async (id) => {
+    try {
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+            throw new Error('Token no encontrado en el almacenamiento local');
+        }
+        const headers = {
+            'Authorization': `Bearer ${token}`
+        };
+        const response = await axios.get(`http://localhost:5000/news/${id}`, { headers });
+        return response;
+    } catch (error) {
+        console.error("Error al obtener la noticia por ID", error);
+        throw error;
+    }
+};
+
 // DELETE
 export const deleteNews = async (id) => {
     const confirmDelete = window.confirm("¿Estás seguro que deseas eliminar la Noticia?");
@@ -44,23 +62,3 @@ export const deleteNews = async (id) => {
     }
 }
 };
-
-// GET ONE BY ID
-export const getOneNewsById = async (id) => {
-    try {
-        const token = localStorage.getItem('authToken');
-        if (!token) {
-            throw new Error('Token no encontrado en el almacenamiento local');
-        }
-        const headers = {
-            'Authorization': `Bearer ${token}`
-        };
-        const response = await axios.get(`http://localhost:5000/news/${id}`, { headers });
-        return response;
-    } catch (error) {
-        console.error("Error al obtener la noticia por ID", error);
-        throw error;
-    }
-};
-
-

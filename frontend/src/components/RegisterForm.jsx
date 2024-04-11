@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useId } from 'react';
+import { useUserContext } from '../context/UserContext';
+import { registerUser } from '../services/logReg';
 import * as Yup from 'yup';
 
 const RegisterForm = () => {
@@ -12,6 +14,8 @@ const RegisterForm = () => {
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
   const termsId = useId();
+  const { userAuth, setUserAuth } = useUserContext();
+  const { user, setUser  } = useUserContext();
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required('El nombre es requerido.').min(2, 'El nombre debe tener al menos dos caracteres.'),
@@ -24,32 +28,16 @@ const RegisterForm = () => {
 });
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); //lógica para enviar credenciales al back-end
+    e.preventDefault(); 
     try {
       await validationSchema.validate({name, email, password}, {abortEarly: false});
-
-      const response = await fetch('http://localhost:8000/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
-      console.log(response)
-
-      if(!response.ok) {
-        throw new Error('Error en el inicio de sesión');
-      }
-
-      const data = await response.json();
-      console.log(data)
-      alert(`Usuario registrado correctamente, bienvenida ${data.data.name}`)
-      localStorage.setItem('authToken', data.token);
-      navigate('/home', {
-        state: {
-          name: data.data.name
-        }
-      });
+      const data = await registerUser(name, email, password)
+      alert(`Usuario registrado correctamente, bienvenid@ ${data.data.name}`);
+      localStorage.setItem('authToken',data.token);
+      console.log(localStorage.getItem('authToken'));
+      setUser(data.data);
+      setUserAuth(true);
+      navigate('/home')
     } catch (error){
       console.error('Error:', error);
       
