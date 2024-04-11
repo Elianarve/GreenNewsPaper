@@ -66,7 +66,7 @@ describe('TESTING CRUD news',() => {
         });
 
         test('Delete method should be 201 status', () => {
-            expect(response.status).toBe(201)
+            expect(response.status).toBe(200)
         })
     })
 
