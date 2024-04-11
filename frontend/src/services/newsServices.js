@@ -30,7 +30,7 @@ export const getOneNewsById = async (id) => {
         const headers = {
             'Authorization': `Bearer ${token}`
         };
-        const response = await axios.get(`http://localhost:5000/news/${id}`, { headers });
+        const response = await axios.get(`http://localhost:8000/news/${id}`, { headers });
         return response;
     } catch (error) {
         console.error("Error al obtener la noticia por ID", error);
@@ -50,7 +50,7 @@ export const deleteNews = async (id) => {
             const headers = {
                 'Authorization': `Bearer ${token}`
             };
-            const response = await axios.delete(`http://localhost:5000/news/${id}`, { headers });
+            const response = await axios.delete(`http://localhost:8000/news/${id}`, { headers });
             if (response.status === 200) {    
                 alert('Eliminada correctamente');
             } 
