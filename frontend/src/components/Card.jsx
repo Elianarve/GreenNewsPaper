@@ -8,7 +8,7 @@ const Card = ({ news }) => {
 const navigate = useNavigate();
 
  const handleReadMore = () => {
-    navigate(`/newsdetails/${news.id}`);
+    navigate(`newsdetails/${news.id}`);
  };
 
  return (

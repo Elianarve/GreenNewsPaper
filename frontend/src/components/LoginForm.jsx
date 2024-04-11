@@ -1,35 +1,26 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useUserContext } from '../context/UserContext';
+import { loginUser } from '../services/logReg';
+
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); 
-
+  const { userAuth, setUserAuth  } = useUserContext();
+  const { user, setUser  } = useUserContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if(!response.ok) {
-        throw new Error('Error en el inicio de sesión');
-      }
-
-      const data = await response.json();
+      const data = await loginUser(email, password);
       alert(`Bienvenid@ ${data.data.name}`)
       localStorage.setItem('authToken', data.token);
-      navigate('/home', {
-        state: {
-          name: data.data.name
-        }
-      })
+      console.log(data);
+      setUser(data.data);
+      setUserAuth(true);
+      navigate('/home');
     } catch (error){
       console.error('Error:', error);
      }
