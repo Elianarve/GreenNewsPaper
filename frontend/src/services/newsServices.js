@@ -50,7 +50,7 @@ export const getOneNewsById = async (id) => {
 // UPDATE
 export const updateNews = async (id, updatedNewsData) => {
     try {
-        const response = await axios.put(`http://localhost:3000/news/${id}`, updatedNewsData);
+        const response = await axios.put(`http://localhost:5000/news/${id}`, updatedNewsData);
         console.log(response.data);
         return response.data;
     } catch (error) {
