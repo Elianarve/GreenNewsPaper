@@ -10,7 +10,7 @@ const RegisterForm = () => {
   const termsId = useId();
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); //lógica para enviar credenciales al back-end
+    e.preventDefault(); 
     try {
       const response = await fetch('http://localhost:5000/auth/register', {
         method: 'POST',
@@ -27,11 +27,17 @@ const RegisterForm = () => {
 
       const data = await response.json();
       console.log(data)
+      alert(`Usuario registrado correctamente, bienvenid@ ${data.data.name}`);
       localStorage.setItem('authToken',data.token);
-      navigate('/home');
+      navigate('/home', {
+        state: {
+          name: data.data.name
+        }
+      })
     } catch (error){
       console.error('Error:', error);
      }
+     //resetForm
   };
 
  return (

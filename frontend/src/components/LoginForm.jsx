@@ -6,10 +6,11 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); 
 
+
   const handleSubmit = async (e) => {
-    e.preventDefault(); //lógica para enviar credenciales al back-end
+    e.preventDefault();
     try {
-      const response = await fetch('introducir la URL del BackEnd/login', {
+      const response = await fetch('http://localhost:5000/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -22,15 +23,20 @@ const LoginForm = () => {
       }
 
       const data = await response.json();
-      // Aquí manejamos la respuesta exitosa del backend, recibimos token en el almacenamiento local del navegador para que el usuario esté autenticado mientras navega
-      localStorage.setItem('authToken',data.token);
-      //Ahora redirigimos al usuario a la Home, después de un login exitoso
-      navigate('/home');
+      alert(`Bienvenid@ ${data.data.name}`)
+      localStorage.setItem('authToken', data.token);
+      navigate('/home', {
+        state: {
+          name: data.data.name
+        }
+      })
     } catch (error){
       console.error('Error:', error);
-      // Aquí podemos manejar errores, ejem. mostrar un mensaje al usuario
      }
+
+     //onResetForm();
   };
+
 
  return (
     <>
@@ -49,7 +55,7 @@ const LoginForm = () => {
           </label>
         </div>
         <div className="flex flex-col items-center">
-          <button className="w-full bg-gradient-to-r from-fuchsia-600 to-purple-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5" type="button">
+          <button className="w-full bg-gradient-to-r from-fuchsia-600 to-purple-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5" type="submit">
             Iniciar sesión
           </button>
           <p className="text-white bg-gray-900 justify-center">¿No tienes cuenta? <Link to="/register" className="text-white">Regístrate</Link></p>
