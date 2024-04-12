@@ -1,5 +1,4 @@
 import React from 'react';
-// import Delete from './Delete';
 import { useNavigate } from 'react-router-dom';
 import { deleteNews } from '../services/newsServices';
 
