@@ -18,7 +18,6 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log('Hola')
       const data = await loginUser(email, password);
       alert(`Bienvenid@ ${data.data.name}`)
       localStorage.setItem('authToken', data.token);
@@ -30,11 +29,9 @@ const LoginForm = () => {
       console.error('Error:', error);
 
       if (error.message.includes('Usuario no registrado.')) {
-        console.log('Usuario no registrado')
         setEmailError('Usuario no registrado.');
         setPasswordError('');
       } else if (error.message.includes('Contraseña incorrecta.')) {
-        console.log('Contraseña incorrecta')
         setPasswordError('Contraseña incorreta.');
         setEmailError('');
       } else {
