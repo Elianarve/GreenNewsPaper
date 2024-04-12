@@ -11,7 +11,7 @@ export const getNews = async () => {
             'Authorization': `Bearer ${token}`
         };
         
-        const response = await axios.get('http://localhost:5000/news', { headers });
+        const response = await axios.get('http://localhost:8000/news', { headers });
         const data = await response.data
         return data;
     } catch (error) {
@@ -20,6 +20,34 @@ export const getNews = async () => {
     }
 };
 
+<<<<<<< HEAD
+=======
+// DELETE
+export const deleteNews = async (id) => {
+    const confirmDelete = window.confirm("¿Estás seguro que deseas eliminar la Noticia?");
+    if (confirmDelete) {
+        try {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                throw new Error('Token no encontrado en el almacenamiento local');
+            }
+            const headers = {
+                'Authorization': `Bearer ${token}`
+            };
+            const response = await axios.delete(`http://localhost:5000/news/${id}`, { headers });
+            if (response.status === 200) {    
+                alert('Eliminada correctamente');
+            } 
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                alert('No estás autorizado para realizar esta acción. Por favor, inicia sesión nuevamente.');
+                window.location.href = '/login'; 
+            } 
+    }
+}
+};
+
+>>>>>>> feature-validations
 // GET ONE BY ID
 export const getOneNewsById = async (id) => {
     try {

@@ -1,6 +1,7 @@
 import express from 'express';
 import { getUser, deleteUser, createdUser, updateUser, getOneUser } from '../controllers/usersController';
-import usersValidator from '../validators/usersValidator';
+import { userValidator, updateUserValidator } from '../validators/usersValidator';
+import handleValidationResults from '../helpers/validationHelper';
 // import { authToken } from '../middleware/authMiddleware';
 // import { authRol } from '../middleware/rolMiddleware';
 
@@ -10,9 +11,9 @@ router.get('/', getUser);
 
 router.delete('/:id', deleteUser);
 
-router.post('/', usersValidator, createdUser);
+router.post('/', userValidator, handleValidationResults, createdUser);
 
-router.put('/:id', usersValidator, updateUser);
+router.put('/:id', updateUserValidator, handleValidationResults, updateUser);
 
 router.get('/:id', getOneUser);
 
