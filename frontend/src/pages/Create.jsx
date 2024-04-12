@@ -4,12 +4,13 @@ import { postNews } from '../services/newsServices.js'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 // import TipTap from "../components/TipTap.jsx"
-import draft from "../assets/draft-icon.svg"
+// import draft from "../assets/draft-icon.svg"
+import '../pages/css/Create.css';
 
-function Create() {
+const Create = () => {
   const [Url_Image, setUrl_Image ] = useState("");
   const navigate = useNavigate()
-  const { handleSubmit, register, formState: { errors }} = useForm()
+  const { handleSubmit, register, formState: { errors }} = useForm();
 
   const onSubmit = (data) => {
     data.image = Url_Image
@@ -21,7 +22,6 @@ function Create() {
       console.error("Error al publicar:", error);
     });
   };
-
 
   const changeUploadImage = async (e) => {
       const file = e.target.files[0];
@@ -41,12 +41,12 @@ const FunctionDeleteImage = () => {
 
   return (
     <>
-    <div>
+     <div className='container-form'>
         <form onSubmit={handleSubmit(onSubmit)} >
-          <div>
+          {/* <div>
             <img src={draft}/>
             <p>Borrador</p>
-          </div>
+          </div> */}
           <div>
               <label>Imagen de portada</label>
               <input type="file" accept="image/*" onChange={changeUploadImage}/> 
@@ -63,15 +63,15 @@ const FunctionDeleteImage = () => {
             <input type='text' {...register("title", { required: true })} />
           </div>
           <div>
-            <label htmlFor='text'>Texto</label>
-            <input type='text' {...register("text", { required: true })} />
+            <label htmlFor='description'>Texto</label>
+            <input type='text' {...register("description", { required: true })} />
           </div>
           <button type='submit'>Publicar</button>
         </form>
     </div>
     {/* <TipTap/> */}
-    </>
+    </> 
   )
 }
 
-export default Create
+export default Create;
