@@ -1,36 +1,55 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useId } from 'react';
+import { useUserContext } from '../context/UserContext';
+import { registerUser } from '../services/logReg';
+import * as Yup from 'yup';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
   const termsId = useId();
+  const { userAuth, setUserAuth } = useUserContext();
+  const { user, setUser  } = useUserContext();
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required('El nombre es requerido.').min(2, 'El nombre debe tener al menos dos caracteres.'),
+    email: Yup.string().email('El email debe ser válido.').required('El email es requerido.'),
+    password: Yup.string().required('La constraseña es requerida').min(8, 'La contraseña debe tener al menos 8 caracteres')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/,
+      'La contraseña debe contener al menos una minúscula, una mayúscula, un número y un caracter especial (!@#$%^&*(),.?":{}|<>) y debe tener al menos 8 caracteres.'
+    ),
+});
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); //lógica para enviar credenciales al back-end
+    e.preventDefault(); 
     try {
-      const response = await fetch('http://localhost:5000/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
-      console.log(response)
-
-      if(!response.ok) {
-        throw new Error('Error en el inicio de sesión');
-      }
-
-      const data = await response.json();
-      console.log(data)
+      await validationSchema.validate({name, email, password}, {abortEarly: false});
+      const data = await registerUser(name, email, password)
+      alert(`Usuario registrado correctamente, bienvenid@ ${data.data.name}`);
       localStorage.setItem('authToken',data.token);
-      navigate('/home');
+      console.log(localStorage.getItem('authToken'));
+      setUser(data.data);
+      setUserAuth(true);
+      navigate('/home')
     } catch (error){
       console.error('Error:', error);
+      
+      error.inner.forEach((err) => {
+        if (err.path === 'name') {
+          setNameError(err.message);
+        } else if (err.path === 'email') {
+          setEmailError(err.message);
+        } else if (err.path === 'password') {
+          setPasswordError(err.message)
+        }
+      });
      }
   };
 
@@ -40,20 +59,29 @@ const RegisterForm = () => {
       <div className="">
           <label className="block text-white font-poppins mb-2 text-left" htmlFor="name">
             Nombre
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} required className="font-poppins shadow appearance-none rounded-lg w-full bg-[#222222] py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="name" placeholder="Escribe tu nombre completo"/>
+            <input type="text" value={name} onChange={(e) =>{ setName(e.target.value);
+            setNameError('');}} required className="font-poppins shadow appearance-none rounded-lg w-full bg-[#222222] py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="name" placeholder="Escribe tu nombre completo"/>
+            {nameError && <p>{nameError}</p>}
           </label>
         </div>
         <div className="mb-4">
           <label className="block text-white font-poppins mb-2 text-left" htmlFor="email">
             Email
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="font-poppins shadow appearance-none rounded-lg w-full bg-[#222222] py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="email" placeholder="hola@gmail.com"/>
+            <input type="email" value={email} onChange={(e) => {
+              setEmail(e.target.value);
+              setEmailError('');}} required className="font-poppins shadow appearance-none rounded-lg w-full bg-[#222222] py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="email" placeholder="hola@gmail.com"/>
+              {emailError && <p>{emailError}</p>}
           </label>
         </div>
 
         <div className="mb-6">
           <label className="font-poppins block text-white mb-2 text-left" htmlFor="password">
             Contraseña
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="font-poppins shadow appearance-none bg-[#222222] rounded-lg text-slate-50 w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="password" placeholder="Ingresa tu contraseña"/>
+            <input type="password" value={password} onChange={(e) =>{
+               setPassword(e.target.value);
+               setPasswordError('');}} required className="font-poppins shadow appearance-none bg-[#222222] rounded-lg text-slate-50 w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="password" placeholder="Ingresa tu contraseña"/>
+               {passwordError && <p>{passwordError}</p>}
+            
           </label>
         </div>
         <div className="terms-container">

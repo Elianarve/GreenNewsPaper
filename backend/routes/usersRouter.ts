@@ -1,19 +1,20 @@
 import express from 'express';
 import { getUser, deleteUser, createdUser, updateUser, getOneUser } from '../controllers/usersController';
-import usersValidator from '../validators/usersValidator';
+import { userValidator, updateUserValidator } from '../validators/usersValidator';
+import handleValidationResults from '../helpers/validationHelper';
 // import { authToken } from '../middleware/authMiddleware';
-// import { authRol } from '../middleware/rolMiddleware';
+import { authRol } from '../middleware/rolMiddleware';
 
 const router = express.Router();
 
-router.get('/', getUser);
+router.get('/', authRol(['admin']), getUser);
 
-router.delete('/:id', deleteUser);
+router.delete('/:id', authRol(['admin']) ,deleteUser);
 
-router.post('/', usersValidator, createdUser);
+router.post('/', authRol(['admin']) ,userValidator, handleValidationResults, createdUser);
 
-router.put('/:id', usersValidator, updateUser);
+router.put('/:id', authRol(['admin']) ,updateUserValidator, handleValidationResults, updateUser);
 
-router.get('/:id', getOneUser);
+router.get('/:id', authRol(['admin']) ,getOneUser);
 
 export default router;
