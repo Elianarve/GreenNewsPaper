@@ -44,42 +44,87 @@ import LayoutPrivate from '../layout/LayoutPrivate.jsx';
 
 // export default router;
 
-const router = createBrowserRouter([
-   {
-     path: '/',
-     element: <LayoutPublic />,
-         children:[
-           {
-             index: true,
-             element:<Landing/>
-           },
-           {
-             path: "/login",
-             element: <Login/>,
-           },
-           {
-             path:"/register",
-             element: <Register/>,
-           },
-            {
-             path: "/home",
-             element: <LayoutPrivate />,
-             children: [
-               {
-                 index: true,
-                 element: <Home/>,
-               },
-               {
-                  path:"create",
-                  element: <Create/>,
-                },
-               {
-                  path: "newsdetails/:id",
-                  element: <NewsDetails/>,
-               },
-             ]
-           }
-     ]}
-]);
+// const router = createBrowserRouter([   OJOOOOOOOOOOOO
+//    {
+//      path: '/',
+//      element: <LayoutPublic />,
+//          children:[
+//            {
+//              index: true,
+//              element:<Landing/>
+//            },
+//            {
+//              path: "/login",
+//              element: <Login/>,
+//            },
+//            {
+//              path:"/register",
+//              element: <Register/>,
+//            },
+//             {
+//              path: "/home",
+//              element: <LayoutPrivate />,
+//              children: [
+//                {
+//                  index: true,
+//                  element: <Home/>,
+//                },
+//                {
+//                   path:"create",
+//                   element: <Create/>,
+//                 },
+//                {
+//                   path: "newsdetails/:id",
+//                   element: <NewsDetails/>,
+//                },
+//              ]
+//            }
+//      ]}
+// ]);
  
+// export default router;
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <LayoutPublic />,
+    children:[
+      {
+        index: true,
+        element: <Landing />
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      // {
+      //   path: "/create",
+      //   element: <Create />,
+      // },
+    ]
+  },
+  {
+    path: '/home',
+    element: <LayoutPrivate />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "create",
+        element: <Create />,
+      },
+      {
+        path: "newsdetails/:id",
+        element: <NewsDetails />,
+      },
+    ]
+  }
+]);
+
 export default router;
