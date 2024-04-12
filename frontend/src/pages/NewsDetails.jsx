@@ -1,30 +1,15 @@
 import { useEffect, useState } from 'react';
-<<<<<<< HEAD
-import { useParams, useNavigate } from 'react-router-dom';
-=======
 import { useParams } from "react-router";
->>>>>>> feature-validations
 import { getOneNewsById, deleteNews } from '../services/newsServices';
 import update from '../assets/update-icon.svg';
 import dlete from '../assets/delete-icon.svg';
 import save from '../assets/save-icon.svg';
-<<<<<<< HEAD
-import { useUserContext } from '../context/UserContext';
-
-=======
 import { useNavigate } from "react-router-dom";
->>>>>>> feature-validations
 
 const NewsDetails = () => {
   const { id } = useParams();
   const [data, setData] = useState(null);
   const navigate = useNavigate();
-<<<<<<< HEAD
-  const { user } = useUserContext();
-  
-=======
-
->>>>>>> feature-validations
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -49,17 +34,8 @@ const NewsDetails = () => {
           <div className='flex justify-between'>
           <p className='text-white '>{data.date} - Publicado por {data.author}</p>
           <div className='flex space-x-3'>
-<<<<<<< HEAD
-          { user.rol == 'admin' && (
-            <>
-            <img src={update} alt="" className='w-4' />
-            <img src={dlete} alt="" className='w-4 cursor-pointer' onClick={() => deleteNews(id).then(navigate("/home"))} />
-            </>
-          )}
-=======
           <img src={update} alt="" className='w-4'/>
           <img src={dlete} alt="" className='w-4 cursor-pointer' onClick={() => deleteNews(id).then(navigate("/home"))} />
->>>>>>> feature-validations
           <img src={save} alt="" className='w-3'/>
           </div>
           </div>

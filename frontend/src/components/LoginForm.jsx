@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-<<<<<<< HEAD
-import { useUserContext } from '../context/UserContext';
-import { loginUser } from '../services/logReg';
-
-=======
 import * as Yup from 'yup';
->>>>>>> feature-validations
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -29,17 +23,6 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-<<<<<<< HEAD
-      const data = await loginUser(email, password);
-      alert(`Bienvenid@ ${data.data.name}`)
-      localStorage.setItem('authToken', data.token);
-      console.log(data);
-      setUser(data.data);
-      setUserAuth(true);
-      navigate('/home');
-    } catch (error){
-      console.error('Error:', error);
-=======
       await validationSchema.validate({email, password}, {abortEarly: false});
       const response = await fetch('http://localhost:8000/auth/login', {
         method: 'POST',
@@ -74,7 +57,6 @@ const LoginForm = () => {
         }
       });
       // Aquí podemos manejar errores, ejem. mostrar un mensaje al usuario
->>>>>>> feature-validations
      }
 
      //onResetForm();

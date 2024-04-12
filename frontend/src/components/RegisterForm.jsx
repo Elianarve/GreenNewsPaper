@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useId } from 'react';
-<<<<<<< HEAD
-import { useUserContext } from '../context/UserContext';
-import { registerUser } from '../services/logReg';
-=======
 import * as Yup from 'yup';
->>>>>>> feature-validations
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -33,15 +28,6 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); 
     try {
-<<<<<<< HEAD
-      const data = await registerUser(name, email, password)
-      alert(`Usuario registrado correctamente, bienvenid@ ${data.data.name}`);
-      localStorage.setItem('authToken',data.token);
-      console.log(localStorage.getItem('authToken'));
-      setUser(data.data);
-      setUserAuth(true);
-      navigate('/home')
-=======
       await validationSchema.validate({name, email, password}, {abortEarly: false});
 
       const response = await fetch('http://localhost:8000/auth/register', {
@@ -66,7 +52,6 @@ const RegisterForm = () => {
           name: data.data.name
         }
       });
->>>>>>> feature-validations
     } catch (error){
       console.error('Error:', error);
       
