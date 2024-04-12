@@ -17,6 +17,8 @@ export const registerUser = async(name, email, password) => {
   throw new Error('Error en la solicitud de inicio de sesión: ' + error.message);
 }}
 
+
+
 export const loginUser = async (email, password) => {
   try {
     const response = await axios.post('http://localhost:5000/auth/login', {
