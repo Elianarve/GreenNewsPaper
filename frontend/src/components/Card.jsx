@@ -1,5 +1,4 @@
 import React from 'react';
-// import Delete from './Delete';
 import { useNavigate } from 'react-router-dom';
 import { deleteNews } from '../services/newsServices';
 
@@ -8,7 +7,7 @@ const Card = ({ news }) => {
 const navigate = useNavigate();
 
  const handleReadMore = () => {
-    navigate(`/newsdetails/${news.id}`);
+    navigate(`newsdetails/${news.id}`);
  };
 
  return (

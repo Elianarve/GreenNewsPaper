@@ -1,24 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { updateNews } from '../services/newsServices'; // Importa la función updateNews
 
 const Update = () => {
-  // Supongamos que obtienes los datos de la noticia a través de useParams
   const { newsId } = useParams();
 
-  // Supongamos que los datos de la noticia son similares a esto
-  const news = {
+  const [news, setNews] = useState({
     id: newsId,
-    title: 'Título de tu artículo',
-    description: 'Escribe tu artículo',
-    author: 'Autor del artículo',
-    date: 'Fecha de la noticia',
-    // Otros datos de la noticia
-  };
+    title: '',
+    description: '',
+    author: '',
+    date: ''
+  });
 
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    // Aquí podrías cargar los datos de la noticia usando la función getOneNewsById
+    // Por ahora, solo estamos configurando un estado inicial vacío
+    // Puedes hacer algo como esto:
+    // getOneNewsById(newsId).then((data) => setNews(data));
+  }, [newsId]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Aquí puedes agregar la lógica para enviar el formulario
-    console.log('Formulario enviado');
+    try {
+      // Aquí obtienes los datos del formulario
+      const updatedData = {
+        title: event.target.title.value,
+        description: event.target.description.value,
+        author: event.target.author.value,
+        date: event.target.date.value
+      };
+
+      // Llama a la función updateNews para enviar los datos actualizados
+      await updateNews(newsId, updatedData);
+
+      console.log('Noticia actualizada exitosamente');
+    } catch (error) {
+      console.error('Error al actualizar la noticia:', error);
+    }
   };
 
   const handleImageChange = (event) => {
@@ -41,7 +60,7 @@ const Update = () => {
     <div className='flex justify-center min-h-screen bg-gray-900'>
       <div className='text-center text-white'>
         <div className="flex justify-end">
-          <button type='submit' className='bg-gradient-to-r from-[#B800B0] via-[#DF00D6] to-[#E73172] hover:from-[#E73172] hover:to-[#FB005A] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onClick={handleSubmit}>Publicar</button>
+          <button type='submit' className='bg-gradient-to-r from-[#B800B0] via-[#DF00D6] to-[#E73172] hover:from-[#E73172] hover:to-[#FB005A] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onClick={handleSubmit}>Actualizar</button>
         </div>
         <h1 className='text-sm font-bold mb-4 text-left'>Imagen de portada</h1>
         <div className="mb-4 text-left">

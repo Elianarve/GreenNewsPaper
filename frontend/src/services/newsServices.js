@@ -11,7 +11,7 @@ export const getNews = async () => {
             'Authorization': `Bearer ${token}`
         };
         
-        const response = await axios.get('http://localhost:5000/news', { headers });
+        const response = await axios.get('http://localhost:8000/news', { headers });
         const data = await response.data
         return data;
     } catch (error) {
@@ -30,7 +30,7 @@ export const getOneNewsById = async (id) => {
         const headers = {
             'Authorization': `Bearer ${token}`
         };
-        const response = await axios.get(`http://localhost:5000/news/${id}`, { headers });
+        const response = await axios.get(`http://localhost:8000/news/${id}`, { headers });
         return response;
     } catch (error) {
         console.error("Error al obtener la noticia por ID", error);
@@ -50,7 +50,7 @@ export const deleteNews = async (id) => {
             const headers = {
                 'Authorization': `Bearer ${token}`
             };
-            const response = await axios.delete(`http://localhost:5000/news/${id}`, { headers });
+            const response = await axios.delete(`http://localhost:8000/news/${id}`, { headers });
             if (response.status === 200) {    
                 alert('Eliminada correctamente');
             } 
@@ -72,8 +72,30 @@ export const postNews = async (data) => {
     const headers = {
         'Authorization': `Bearer ${token}`
     };
-    const news = await axios.post(`http://localhost:5000/news`, data, {headers})
+    const news = await axios.post(`http://localhost:8000/news`, data, {headers})
     alert("Artículo creado exitosamente")
     console.log(news)
     return news;
   }
+
+
+  // PUT
+export const updateNews = async (id, updatedData) => {
+    try {
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+            throw new Error('Token no encontrado en el almacenamiento local');
+        }
+        const headers = {
+            'Authorization': `Bearer ${token}`
+        };
+        const response = await axios.put(`http://localhost:8000/news/${id}`, updatedData, { headers });
+        if (response.status === 200) {
+            alert('Noticia actualizada correctamente');
+            return response.data;
+        }
+    } catch (error) {
+        console.error("Error al actualizar la noticia:", error);
+        throw error;
+    }
+};
