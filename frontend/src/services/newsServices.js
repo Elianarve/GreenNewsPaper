@@ -38,18 +38,6 @@ export const getOneNewsById = async (id) => {
     }
 };
 
-// UPDATE
-export const updateNews = async (id, updatedNewsData) => {
-    try {
-        const response = await axios.put(`http://localhost:5000/news/${id}`, updatedNewsData);
-        console.log(response.data);
-        return response.data;
-    } catch (error) {
-        console.error("Error al actualizar la noticia:", error);
-        throw error;
-    }
-};
-
 // DELETE
 export const deleteNews = async (id) => {
     const confirmDelete = window.confirm("¿Estás seguro que deseas eliminar la Noticia?");
@@ -74,3 +62,18 @@ export const deleteNews = async (id) => {
     }
 }
 };
+
+// POST
+export const postNews = async (data) => {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+        throw new Error('Token no encontrado en el almacenamiento local');
+    }
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    };
+    const news = await axios.post(`http://localhost:5000/news`, data, {headers})
+    alert("Artículo creado exitosamente")
+    console.log(news)
+    return news;
+  }
