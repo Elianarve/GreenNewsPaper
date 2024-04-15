@@ -16,11 +16,6 @@ const LoginForm = () => {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('El email debe ser válido.').required('El email es requerido.'),
-    password: Yup.string().required('La constraseña es requerida').min(8, 'La contraseña debe tener al menos 8 caracteres')
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/,
-      'La contraseña debe contener al menos una minúscula, una mayúscula, un número y un caracter especial (!@#$%^&*(),.?":{}|<>) y debe tener al menos 8 caracteres.'
-    ),
 });
 
   const handleSubmit = async (e) => {
@@ -30,7 +25,6 @@ const LoginForm = () => {
       const data = await loginUser(email, password);
       alert(`Bienvenid@ ${data.data.name}`)
       localStorage.setItem('authToken', data.token);
-      console.log(data);
       setUser(data.data);
       setUserAuth(true);
       navigate('/home');
