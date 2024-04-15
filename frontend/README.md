@@ -1,5 +1,5 @@
 # React + Vite 
-div align="center">
+<div align="center">
   <h1>InnovaTechNews 🏢💚</h1>
 </div>
 
