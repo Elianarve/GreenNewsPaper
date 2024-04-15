@@ -84,6 +84,7 @@ Once the application is installed and running, you can do the following:
 
 # Project folder structure in frontend/ (the Structure of the backend/ follows ).
 
+```
 |-- src/
 |   |-- assets/
 |   |   |-- img/
@@ -101,7 +102,7 @@ Once the application is installed and running, you can do the following:
 |   |   |-- Spline.jsx
 |   |   
 |   |-- context/         
-|   |   |--UserContext.jsx
+|   |   |-- UserContext.jsx
 |   |   
 |   |-- layout/ 
 |   |   |-- LayoutPrivate.jsx
@@ -129,6 +130,7 @@ Once the application is installed and running, you can do the following:
 |   |-- main.css
 |   |-- main.jsx
 |-- index.html
+```
 
 ## Structure in the frontend/:
 
@@ -182,54 +184,58 @@ To integrate Cloudinary into our project, we have followed these steps:
     Follow the instructions provided in Cloudinary's official documentation to configure the integration into your project.
 
 # Project folder structure in backend/
+
+```
 |-- _test_/
 |   |-- news.test.ts
 |   |-- users.test.ts
-|   |   
+|   
 |-- controllers/
 |   |-- authController.ts
 |   |-- newsController.ts
 |   |-- userController.ts
-|   |
+|   
 |-- database/
 |   |-- connection_db.ts
-|   | 
+| 
 |-- helpers/
 |   |-- validateResultUsers.ts
 |   |-- validationHelper.ts
-|   | 
+| 
 |-- interfaces/
 |   |-- AuthenticatedRequestInterface.ts
 |   |-- newsInterface.ts
 |   |-- User.ts
 |   |-- userInterface.ts         
-|   |   
+|   
 |-- middleware/ 
 |   |-- authMiddleware.ts
 |   |-- rolMiddleware.ts
 |   |-- verifyToken.ts
-|   |
+|   
 |-- models/
 |   |-- newsModel.ts
 |   |-- userModel.ts
-|   |  
+|  
 |-- routes/
 |   |-- authRouter.ts
 |   |-- NewsRouter.ts
 |   |-- userRouter.ts
-|   |
+|   
 |-- utils/
 |   |-- token.ts
-|   |
+|   
 |-- validators/
 |   |-- newsServices.ts
 |   |-- userValidator.ts 
+|
 |-- .env
 |-- .env.example
 |-- app.ts
 |-- config.ts
 |-- jest.config.js
 |-- tsconfig.json
+```
 
 ## Contributions
 
