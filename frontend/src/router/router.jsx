@@ -9,7 +9,6 @@ import Register from '../pages/Register.jsx';
 import { getNews} from '../services/newsServices.js'
 
 
-
 const router = createBrowserRouter([
     {
         path: "/", 

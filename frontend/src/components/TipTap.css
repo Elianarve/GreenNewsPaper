@@ -4,13 +4,12 @@
 .ProseMirror {
   padding: 10px;
   border-top: 1px solid grey;
-  background: white;
   border-radius: 0 0 5px 5px;
   min-height: 100px;
 }
 .ProseMirror:focus {
   border: none;
-  outline: 1px solid aqua;
+  outline: 1px solid #FB005A;
 }
 
 .ProseMirror > * + * {
@@ -84,7 +83,7 @@
   outline: none;
   border: none;
   background: none;
-  color: rgb(70, 70, 70);
+  color: #FB005A;
   cursor: pointer;
 }
 .menuBar button:last-child {
@@ -96,7 +95,7 @@
 }
 
 button.is_active {
-  background: rgb(197, 197, 197);
+  background: #FB005A;
   padding: 2px 3px;
   border-radius: 2px;
 }

@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form'
 import { postNews } from '../services/newsServices.js'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios"
-// import TipTap from "../components/TipTap.jsx"
-// import draft from "../assets/draft-icon.svg"
+import TipTap from "../components/TipTap.jsx"
+import draft from "../assets/draft-icon.svg"
 import '../pages/css/Create.css';
 
 const Create = () => {
@@ -42,12 +42,17 @@ const FunctionDeleteImage = () => {
   return (
     <>
      <div className='container-form'>
-        <form onSubmit={handleSubmit(onSubmit)} >
-          {/* <div>
-            <img src={draft}/>
-            <p>Borrador</p>
-          </div> */}
-          <div>
+        <form className='form-create' onSubmit={handleSubmit(onSubmit)} >
+          <div className='title-form'>
+              <div className='draft-container'>
+                <img src={draft}/>
+                <p className='draft-text'>Borrador...</p>
+              </div>
+              <div className='button-post'>
+                  <button type='submit'>Publicar</button>
+              </div>
+          </div>
+          <div className='img-selector'>
               <label>Imagen de portada</label>
               <input type="file" accept="image/*" onChange={changeUploadImage}/> 
 
@@ -58,18 +63,16 @@ const FunctionDeleteImage = () => {
                 </div>
               )}   
           </div>
-          <div>
+          <div className='news-title'>
             <label htmlFor='title'>Título</label>
-            <input type='text' {...register("title", { required: true })} />
+            <input type='text' {...register("title", { required: true })} placeholder='Título de tu artículo' />
           </div>
-          <div>
-            <label htmlFor='description'>Texto</label>
-            <input type='text' {...register("description", { required: true })} />
-          </div>
-          <button type='submit'>Publicar</button>
         </form>
-    </div>
-    {/* <TipTap/> */}
+        <div className='text-editor-container'>
+          <p className='text-editor-title'>Texto</p>
+          <TipTap/>
+        </div>
+      </div>
     </> 
   )
 }
