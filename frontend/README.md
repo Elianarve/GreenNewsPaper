@@ -22,7 +22,7 @@ div align="center">
 </p>
 
 <div align="center">
-  <p>¡Welcome to InnovaTechNews!</p>
+  <p>Welcome to InnovaTechNews!</p>
 </div>
 
 ## Description
@@ -56,11 +56,15 @@ To explore InnovaTechNews app in your own environment, please follow this steps:
 2. **Install the dependencies:**
 
     ```bash
-    cd GreenNewsPaper
+    cd backend
+    npm install
+    
+    ```bash
+    cd frontend
     npm install
     ```
 
-3. **Launch the Application:**
+3. **Launch the Application in the Frontend and in the Backend:**
 
     ```bash
     npm run dev
@@ -240,5 +244,4 @@ Contributions are welcome! If you would like to contribute to the project, follo
 ## Contact
 
 If you have any questions or suggestions about the project, feel free to contact us via LinkedIn.
-
 Thank you for your interest! ✨
