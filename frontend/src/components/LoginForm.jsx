@@ -21,7 +21,6 @@ const LoginForm = () => {
       const data = await loginUser(email, password);
       alert(`Bienvenid@ ${data.data.name}`)
       localStorage.setItem('authToken', data.token);
-      console.log(data);
       setUser(data.data);
       setUserAuth(true);
       navigate('/home');

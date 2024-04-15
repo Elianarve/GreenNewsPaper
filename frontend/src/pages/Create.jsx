@@ -24,14 +24,13 @@ const Create = () => {
   };
 
   const changeUploadImage = async (e) => {
-      const file = e.target.files[0];
+  const file = e.target.files[0];
   const data = new FormData();
   data.append("file", file);
   data.append("upload_preset" , "Presents-react");
 
 const response = await axios.post("https://api.cloudinary.com/v1_1/deigc2ihg/image/upload", data
 );  
-console.log(response.data);
 setUrl_Image(response.data.secure_url); 
 };
 const FunctionDeleteImage = () => {
@@ -41,14 +40,14 @@ const FunctionDeleteImage = () => {
 
   return (
     <>
-     <div className='container-form'>
+     <div className='flex justify-center min-h-screen bg-gray-900'>
         <form onSubmit={handleSubmit(onSubmit)} >
           {/* <div>
             <img src={draft}/>
             <p>Borrador</p>
           </div> */}
           <div>
-              <label>Imagen de portada</label>
+              <label className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Imagen de portada</label>
               <input type="file" accept="image/*" onChange={changeUploadImage}/> 
 
               {Url_Image && (
@@ -59,14 +58,14 @@ const FunctionDeleteImage = () => {
               )}   
           </div>
           <div>
-            <label htmlFor='title'>Título</label>
+            <label htmlFor='title' className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Título</label>
             <input type='text' {...register("title", { required: true })} />
           </div>
           <div>
-            <label htmlFor='description'>Texto</label>
+            <label htmlFor='description' className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Texto</label>
             <input type='text' {...register("description", { required: true })} />
           </div>
-          <button type='submit'>Publicar</button>
+          <button type='submit' className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Publicar</button>
         </form>
     </div>
     {/* <TipTap/> */}
