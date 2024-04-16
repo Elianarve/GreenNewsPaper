@@ -25,7 +25,7 @@ export const login = async (req: Request, res: Response) => {
         const user = await UsersModel.findOne({ where: { email } });
 
         if (!user) {
-            return res.status(401).send({ error: 'Usuario no encontrado' });
+            return res.status(404).send({ error: 'Usuario no encontrado' });
         }
         const hashPassword = user?.get('password') as string;
         const checkPassword = await bcrypt.compare(password, hashPassword);

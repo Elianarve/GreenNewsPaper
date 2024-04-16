@@ -13,36 +13,29 @@ const LoginForm = () => {
   const { userAuth, setUserAuth  } = useUserContext();
   const { user, setUser  } = useUserContext();
 
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().email('El email debe ser válido.').required('El email es requerido.'),
-    password: Yup.string().required('La constraseña es requerida').min(8, 'La contraseña debe tener al menos 8 caracteres')
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/,
-      'La contraseña debe contener al menos una minúscula, una mayúscula, un número y un caracter especial (!@#$%^&*(),.?":{}|<>) y debe tener al menos 8 caracteres.'
-    ),
-});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await validationSchema.validate({email, password}, {abortEarly: false});
       const data = await loginUser(email, password);
       alert(`Bienvenid@ ${data.data.name}`)
       localStorage.setItem('authToken', data.token);
-      console.log(data);
       setUser(data.data);
       setUserAuth(true);
       navigate('/home');
     } catch (error){
       console.error('Error:', error);
 
-      error.inner.forEach((err) => {
-        if (err.path === 'email') {
-          setEmailError(err.message);
-        } else if (err.path === 'password') {
-          setPasswordError(err.message)
-        }
-      });
+      if (error.message.includes('Usuario no registrado.')) {
+        setEmailError('Usuario no registrado.');
+        setPasswordError('');
+      } else if (error.message.includes('Contraseña incorrecta.')) {
+        setPasswordError('Contraseña incorreta.');
+        setEmailError('');
+      } else {
+        setPasswordError('Error en la solicitud de inicio de sesión');
+        setEmailError('');
+      }
       // Aquí podemos manejar errores, ejem. mostrar un mensaje al usuario
      }
 
@@ -58,8 +51,8 @@ const LoginForm = () => {
             Email
             <input type="email" value={email} onChange={(e) => {
               setEmail(e.target.value);
-              setEmailError('');}} required className="font-poppins shadow appearance-none rounded-lg w-full bg-[#222222] py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="email" placeholder="hola.soy.bea@gmail.com"/>
-              {emailError && <p>{emailError}</p>}
+              setEmailError('');}} required className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" placeholder="hola.soy.bea@gmail.com"/>
+              {emailError && <p className="text-[#FB005A] text-xs">{emailError}</p>}
           </label>
         </div>
 
@@ -68,8 +61,8 @@ const LoginForm = () => {
             Contraseña
             <input type="password" value={password} onChange={(e) =>{
                setPassword(e.target.value);
-               setPasswordError('');}} required className="font-poppins shadow appearance-none bg-[#222222] rounded-lg text-slate-50 w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="password" placeholder="Ingresa tu contraseña"/>
-               {passwordError && <p>{passwordError}</p>}
+               setPasswordError('');}} required className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" placeholder="Ingresa tu contraseña"/>
+               {passwordError && <p className="text-[#FB005A] text-xs">{passwordError}</p>}
           </label>
         </div>
         <div className="flex flex-col items-center">

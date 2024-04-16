@@ -61,7 +61,7 @@ const RegisterForm = () => {
             Nombre
             <input type="text" value={name} onChange={(e) =>{ setName(e.target.value);
             setNameError('');}} required className="font-poppins shadow appearance-none rounded-lg w-full bg-[#222222] py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="name" placeholder="Escribe tu nombre completo"/>
-            {nameError && <p>{nameError}</p>}
+            {nameError && <p className='text-[#FB005A] text-xs'>{nameError}</p>}
           </label>
         </div>
         <div className="mb-4">
@@ -70,7 +70,7 @@ const RegisterForm = () => {
             <input type="email" value={email} onChange={(e) => {
               setEmail(e.target.value);
               setEmailError('');}} required className="font-poppins shadow appearance-none rounded-lg w-full bg-[#222222] py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="email" placeholder="hola@gmail.com"/>
-              {emailError && <p>{emailError}</p>}
+              {emailError && <p className='text-[#FB005A] text-xs'>{emailError}</p>}
           </label>
         </div>
 
@@ -80,7 +80,7 @@ const RegisterForm = () => {
             <input type="password" value={password} onChange={(e) =>{
                setPassword(e.target.value);
                setPasswordError('');}} required className="font-poppins shadow appearance-none bg-[#222222] rounded-lg text-slate-50 w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="password" placeholder="Ingresa tu contraseña"/>
-               {passwordError && <p>{passwordError}</p>}
+               {passwordError && <p className='text-[#FB005A] w-80 text-xs '>{passwordError}</p>}
             
           </label>
         </div>
