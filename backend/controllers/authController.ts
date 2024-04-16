@@ -32,9 +32,11 @@ export const login = async (req: Request, res: Response) => {
         const tokenSession = tokenSign(user);
         const userName = user?.get('name') as string;
         if (checkPassword) {
+            const noPassword = { ...user.toJSON(), password: undefined }; //para esconder la contraseña en el navegador
             return res.send({
                 message: `Usuario correcto, bienvenid@ ${userName}`,
-                data: user,
+                // data: user,
+                data: noPassword,
                 token: tokenSession
             });
         } else {

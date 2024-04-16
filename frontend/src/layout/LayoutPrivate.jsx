@@ -24,3 +24,4 @@ const LayoutPrivate = () => {  //HE METIDO AQUI TB LA NAV Y EL FOOTER
 };
 
 export default LayoutPrivate;
+

@@ -99,3 +99,18 @@ export const updateNews = async (id, updatedData) => {
         throw error;
     }
 };
+
+// POST
+export const postNews = async (data) => {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+        throw new Error('Token no encontrado en el almacenamiento local');
+    }
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    };
+    const news = await axios.post(`http://localhost:5000/news`, data, {headers})
+    alert("Artículo creado exitosamente")
+    console.log(news)
+    return news;
+  }
