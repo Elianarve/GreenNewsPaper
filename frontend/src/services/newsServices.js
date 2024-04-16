@@ -109,7 +109,7 @@ export const postNews = async (data) => {
     const headers = {
         'Authorization': `Bearer ${token}`
     };
-    const news = await axios.post(`http://localhost:5000/news`, data, {headers})
+    const news = await axios.post(`http://localhost:8000/news`, data, {headers})
     alert("Artículo creado exitosamente")
     console.log(news)
     return news;
