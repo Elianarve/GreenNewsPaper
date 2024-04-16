@@ -7,6 +7,7 @@ import TipTap from "../components/TipTap.jsx"
 import draft from "../assets/draft-icon.svg"
 import '../pages/css/create.css';
 
+
 const Create = () => {
   const [Url_Image, setUrl_Image ] = useState("");
   const navigate = useNavigate()
@@ -43,21 +44,21 @@ const FunctionDeleteImage = () => {
        <form className='form-create' onSubmit={handleSubmit(onSubmit)} >
          <div className='title-form'>
              <div className='draft-container'>
-               <img src={draft}/>
+               <img className='draft-icon' src={draft}/>
                <p className='draft-text'>Borrador...</p>
              </div>
              <div className='button-post'>
                  <button type='submit'>Publicar</button>
              </div>
-         </div>
+          </div>
          <div className='img-selector'>
              <label>Imagen de portada</label>
              <input type="file" accept="image/*" onChange={changeUploadImage}/> 
 
              {Url_Image && (
                <div>
-                   <img src={Url_Image} className="w-[250px]" />
-                   <button onClick={FunctionDeleteImage}>Eliminar imagen</button>
+                   <img src={Url_Image} className="w-[150px] mt-2" />
+                   <button className='delete-img-btn' onClick={FunctionDeleteImage}>Eliminar imagen</button>
                </div>
              )}   
          </div>

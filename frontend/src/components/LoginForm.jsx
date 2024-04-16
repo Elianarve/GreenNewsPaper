@@ -37,7 +37,6 @@ const LoginForm = () => {
         setPasswordError('Error en la solicitud de inicio de sesión');
         setEmailError('');
       }
-      // Aquí podemos manejar errores, ejem. mostrar un mensaje al usuario
      }
   };
 

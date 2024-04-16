@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 const API_URL_NEWS = 'http://localhost:8000/news';
 
@@ -39,27 +40,37 @@ export const getOneNewsById = async (id) => {
 
 // DELETE
 export const deleteNews = async (id) => {
-    const confirmDelete = window.confirm("¿Estás seguro que deseas eliminar la Noticia?");
-    if (confirmDelete) {
+    const confirmDelete = await Swal.fire({
+        title: '¿Estás seguro que deseas eliminar la Noticia?',
+        showCancelButton: true,
+        confirmButtonColor: '#fb005a',
+        cancelButtonColor: '#171717',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    });
+
+    if (confirmDelete.isConfirmed) {
         try {
             const headers = getHeaders();
             const response = await axios.delete(`${API_URL_NEWS}/${id}`, { headers });
-            if (response.status === 200) {    
-                alert('Eliminada correctamente'); 
-            } 
+            if (response.status === 200) {
+                Swal.fire('Eliminada correctamente');
+            }
         } catch (error) {
             if (error.response && error.response.status === 401) {
-                alert('No estás autorizado para realizar esta acción. Por favor, inicia sesión nuevamente.');
-            } 
+                Swal.fire('No estás autorizado para realizar esta acción. Por favor, inicia sesión nuevamente.');
+            }
+        }
     }
-}
 };
+
 
 // POST
 export const postNews = async (data) => {
     const headers = getHeaders();
     const news = await axios.post(API_URL_NEWS, data, {headers})
-    alert("Artículo creado exitosamente")
+    console.log(news)
+    Swal.fire("Artículo creado exitosamente")
     return news;
   }
 
@@ -70,7 +81,7 @@ export const updateNews = async (id, newData) => {
         const response = await axios.put(`${API_URL_NEWS}/${id}`, newData, { headers });
         console.log(response)
         if (response.status === 200) {
-            alert('Noticia actualizada correctamente');
+            Swal.fire('Noticia actualizada correctamente');
             return response.data;
         }
     } catch (error) {
