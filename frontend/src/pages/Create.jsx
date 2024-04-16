@@ -44,7 +44,7 @@ const FunctionDeleteImage = () => {
        <form className='form-create' onSubmit={handleSubmit(onSubmit)} >
          <div className='title-form'>
              <div className='draft-container'>
-               <img src={draft}/>
+               <img className='draft-icon' src={draft}/>
                <p className='draft-text'>Borrador...</p>
              </div>
              <div className='button-post'>
@@ -57,8 +57,8 @@ const FunctionDeleteImage = () => {
 
              {Url_Image && (
                <div>
-                   <img src={Url_Image} className="w-[250px]" />
-                   <button onClick={FunctionDeleteImage}>Eliminar imagen</button>
+                   <img src={Url_Image} className="w-[150px]" />
+                   <button className='delete-img-btn' onClick={FunctionDeleteImage}>Eliminar imagen</button>
                </div>
              )}   
          </div>
