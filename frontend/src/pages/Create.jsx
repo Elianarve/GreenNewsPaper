@@ -66,9 +66,12 @@ const FunctionDeleteImage = () => {
            <label htmlFor='title'>Título</label>
            <input type='text' {...register("title", { required: true })} placeholder='Título de tu artículo' />
          </div>
+         <div className='news-text'>
+            <label htmlFor='description'>Texto</label>
+            <input type='text' {...register("description", { required: true })} placeholder='Escribe tu artículo' />
+         </div>
        </form>
        <div className='text-editor-container'>
-         <p className='text-editor-title'>Texto</p>
          <TipTap />
        </div>
      </div>
