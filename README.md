@@ -80,6 +80,7 @@ Once the application is installed and running, you can do the following:
 
 # Project folder structure in frontend/ (the Structure of the backend/ follows ).
 
+```
 |-- src/
 |   |-- assets/
 |   |   |-- img/
@@ -125,6 +126,7 @@ Once the application is installed and running, you can do the following:
 |   |-- main.css
 |   |-- main.jsx
 |-- index.html
+´´´
 
 ## Structure in the frontend/:
 
@@ -178,6 +180,8 @@ To integrate Cloudinary into our project, we have followed these steps:
     Follow the instructions provided in Cloudinary's official documentation to configure the integration into your project.
 
 # Project folder structure in backend/
+
+```
 |-- _test_/
 |   |-- news.test.ts
 |   |-- users.test.ts
@@ -226,6 +230,23 @@ To integrate Cloudinary into our project, we have followed these steps:
 |-- config.ts
 |-- jest.config.js
 |-- tsconfig.json
+´´´
+
+## POSTMAN Documentation
+
+Before making any request in Postman, you must register (see AUTH User) or log in if you have already registered (see LOG IN User) and extract the token that provides the response. This token must be attached in the "Authorizations" section and in the drop-down select "Bearer token".
+For specific requests to:
+
+GET Users
+POST Users
+DELETE Users
+PUT Users
+PUT News
+DELETE NEWS
+Make a POST Users request and make the role 'admin', then use the token provided as explained above.
+
+[![Postman Docs](https://run.pstmn.io/button.svg)](https://lively-shadow-794211.postman.co/workspace/My-Workspace~88fb0872-a76f-4c64-8fac-896f0a7a884e/collection/32563841-71e1ba17-b405-4b19-8980-9911fba048b5?action=share&creator=32563841)
+
 
 ## Contributions
 
