@@ -60,7 +60,6 @@ export const postNews = async (data) => {
     const headers = getHeaders();
     const news = await axios.post(API_URL_NEWS, data, {headers})
     alert("Artículo creado exitosamente")
-    console.log(news)
     return news;
   }
 

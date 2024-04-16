@@ -35,7 +35,6 @@ setUrl_Image(response.data.secure_url);
 };
 const FunctionDeleteImage = () => {
   setUrl_Image("");
-  //podríamos guardar la respuesta de cloudinary en la bd MySQL para eliminar la imagen
 };
 
   return (

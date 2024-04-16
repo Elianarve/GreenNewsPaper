@@ -2,9 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { deleteNews } from '../services/newsServices';
 import { useUserContext } from '../context/UserContext';
-import { Link } from 'react-router-dom';
 
-const Card = ({ news }) => {
+
+const Card = ({ news, setReloadingData }) => {
 const navigate = useNavigate();
 const { user } = useUserContext();
 
@@ -12,10 +12,12 @@ const { user } = useUserContext();
     navigate(`newsdetails/${news.id}`);
  };
 
-//  const handleDelete = async (id) => {
-//   const deleted = await deleteNews(id);
-//   if (deleted) {
-//       navigate('/home');
+// const handleDelete = async () => {
+//   try {
+//     await deleteNews(news.id);
+//     navigate("/home");
+//   } catch (error) {
+//     console.error("Error deleting news:", error);
 //   }
 // };
 
@@ -36,9 +38,9 @@ const { user } = useUserContext();
         <div className="flex justify-end items-right mt-2 space-x-1">
         { user.rol === 'admin' && (
           <>
-          {/* <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7 text-white" onClick={() => navigate(`update/${news.id}`)}>Actualizar</button> */}
-          <Link onClick={() => {deleteNews(news.id).then(navigate("/home", {replace: true,}))}} ><button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-20 h-7 text-white" >Eliminar</button></Link>
-          {/* <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7 text-white">save</button> */}
+        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7 text-white" onClick={() => navigate(`update/${news.id}`)}>Actualizar</button>
+        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-20 h-7 text-white" onClick={() => deleteNews(news.id).then(() => setReloadingData(true))}>Eliminar</button>
+        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7 text-white">save</button>
           </>
         )}
         </div>

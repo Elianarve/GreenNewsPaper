@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useUserContext } from '../context/UserContext';
 import { loginUser } from '../services/logReg';
-
 import * as Yup from 'yup';
 
 const LoginForm = () => {
@@ -38,16 +37,12 @@ const LoginForm = () => {
           setPasswordError(err.message)
         }
       });
-      // Aquí podemos manejar errores, ejem. mostrar un mensaje al usuario
      }
-
-     //onResetForm();
   };
-
 
  return (
     <>
-      <form onSubmit={handleSubmit} className="bg-gray-900 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form onSubmit={handleSubmit} className="px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
           <label className="block text-white text-md font-bold mb-2 text-left" htmlFor="email">
             Email
