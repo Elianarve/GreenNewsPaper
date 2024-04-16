@@ -50,14 +50,14 @@ const FunctionDeleteImage = () => {
              <div className='button-post'>
                  <button type='submit'>Publicar</button>
              </div>
-         </div>
+          </div>
          <div className='img-selector'>
              <label>Imagen de portada</label>
              <input type="file" accept="image/*" onChange={changeUploadImage}/> 
 
              {Url_Image && (
                <div>
-                   <img src={Url_Image} className="w-[150px]" />
+                   <img src={Url_Image} className="w-[150px] mt-2" />
                    <button className='delete-img-btn' onClick={FunctionDeleteImage}>Eliminar imagen</button>
                </div>
              )}   
