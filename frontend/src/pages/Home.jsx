@@ -6,13 +6,16 @@ import Card from '../components/Card.jsx';
 const Home = () => {
  const [news, setNews] = useState([]);
 
+ const [reloadingData, setReloadingData] = useState(false);
+
  useEffect(() => {
     const fetchData = async () => {
       const newsData = await getNews();
       setNews(newsData);
     };
     fetchData();
- }, []);
+    setReloadingData(false)
+ }, [reloadingData]);
 
  return (
   <div className="container mx-auto px-4">
@@ -20,7 +23,7 @@ const Home = () => {
     <div className="grid grid-cols-3 gap-4 grid-rows-2">
       {news.map((newsItem, index) => (
         <div key={index}>
-          <Card news={newsItem} />
+          <Card news={newsItem} setReloadingData={setReloadingData} />
         </div>
       ))}
     </div>
