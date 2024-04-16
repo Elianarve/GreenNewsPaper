@@ -9,7 +9,7 @@ const Register = () => {
  return (
   <>
     <div className='flex items-center justify-center min-h-screen bg-neutral-900'>
-      <div className='text-center mt-20'>
+      <div className='text-center'>
         <Link to='/'>
           <img className='ml-8 mt-3 absolute' src={arrow}></img>
         </Link>

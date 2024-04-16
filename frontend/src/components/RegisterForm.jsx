@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useId } from 'react';
-import { useUserContext } from '../context/UserContext';
+import { useUserContext } from '../context/UserContext.jsx';
 import { registerUser } from '../services/logReg';
 import * as Yup from 'yup';
 

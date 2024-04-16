@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useUserContext } from '../context/UserContext';
-import { loginUser } from '../services/logReg';
-
+import { useUserContext } from '../context/UserContext.jsx';
+import { loginUser } from '../services/logReg.js';
 import * as Yup from 'yup';
 
 const LoginForm = () => {
