@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form'
 import { postNews } from '../services/newsServices.js'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios"
-// import TipTap from "../components/TipTap.jsx"
-// import draft from "../assets/draft-icon.svg"
+import TipTap from "../components/TipTap.jsx"
+import draft from "../assets/draft-icon.svg"
 import '../pages/css/create.css';
 
 const Create = () => {
@@ -39,36 +39,42 @@ const FunctionDeleteImage = () => {
 
   return (
     <>
-     <div className='flex justify-center min-h-screen bg-gray-900'>
-        <form onSubmit={handleSubmit(onSubmit)} >
-          {/* <div>
-            <img src={draft}/>
-            <p>Borrador</p>
-          </div> */}
-          <div>
-              <label className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Imagen de portada</label>
-              <input type="file" accept="image/*" onChange={changeUploadImage}/> 
+    <div className='container-form'>
+       <form className='form-create' onSubmit={handleSubmit(onSubmit)} >
+         <div className='title-form'>
+             <div className='draft-container'>
+               <img src={draft}/>
+               <p className='draft-text'>Borrador...</p>
+             </div>
+             <div className='button-post'>
+                 <button type='submit'>Publicar</button>
+             </div>
+         </div>
+         <div className='img-selector'>
+             <label>Imagen de portada</label>
+             <input type="file" accept="image/*" onChange={changeUploadImage}/> 
 
-              {Url_Image && (
-                <div>
-                    <img src={Url_Image} className="w-[250px]" />
-                    <button onClick={FunctionDeleteImage}>Eliminar imagen</button>
-                </div>
-              )}   
-          </div>
-          <div>
-            <label htmlFor='title' className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Título</label>
-            <input type='text' {...register("title", { required: true })} />
-          </div>
-          <div>
-            <label htmlFor='description' className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Texto</label>
-            <input type='text' {...register("description", { required: true })} />
-          </div>
-          <button type='submit' className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Publicar</button>
-        </form>
-    </div>
-    {/* <TipTap/> */}
-    </> 
+             {Url_Image && (
+               <div>
+                   <img src={Url_Image} className="w-[250px]" />
+                   <button onClick={FunctionDeleteImage}>Eliminar imagen</button>
+               </div>
+             )}   
+         </div>
+         <div className='news-title'>
+           <label htmlFor='title'>Título</label>
+           <input type='text' {...register("title", { required: true })} placeholder='Título de tu artículo' />
+         </div>
+         <div className='news-text'>
+            <label htmlFor='description'>Texto</label>
+            <input type='text' {...register("description", { required: true })} placeholder='Escribe tu artículo' />
+         </div>
+       </form>
+       <div className='text-editor-container'>
+         <TipTap />
+       </div>
+     </div>
+   </> 
   )
 }
 
