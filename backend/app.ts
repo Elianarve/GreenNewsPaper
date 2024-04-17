@@ -4,13 +4,14 @@ import express from 'express';
 import NewsModel from "./models/newsModel";
 import newsRouter from './routes/newsRouter';
 import usersRouter from './routes/usersRouter';
-import authRouter from './routes/authRouter';
 import UsersModel from "./models/userModel";
+import authRouter from './routes/authRouter';
 import cors from 'cors';
 
-const app = express();
 
+export const app = express();
 app.use(cors());
+
 
 app.use(express.json());
 
@@ -32,7 +33,7 @@ try {
     console.error('Unable to connect to the database:', error);
    }
 
-   app.listen(PORT, () => {
+export const server = app.listen(PORT, () => {
     console.log(`La API se esta escuchando en el puerto http://localhost:${PORT}`);
 });
 

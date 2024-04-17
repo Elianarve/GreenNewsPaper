@@ -19,7 +19,7 @@ const Nav = () => {
          <ul className="font-poppins flex space-x-4 mr-20">
            { userAuth && (
             <>
-             <li className="text-white bg-[#222222] px-4 py-2 rounded-lg hover:bg-[#FB005A] active:bg-[#B800B0] focus:outline-none focus:ring focus:ring-violet-300">Home</li>
+            <Link to="/home"><li className="text-white bg-[#222222] px-4 py-2 rounded-lg hover:bg-[#FB005A] active:bg-[#B800B0] focus:outline-none focus:ring focus:ring-violet-300">Home</li></Link> 
            <Link to="create" replace className="text-white"> 
               <img src={write} className='absolute mt-2.5 ml-4'></img>
              <li className="text-white bg-[#222222] pl-10 px-4 py-2 rounded-lg hover:bg-[#FB005A] active:bg-[#B800B0] focus:outline-none focus:ring focus:ring-violet-300">Escribe</li>

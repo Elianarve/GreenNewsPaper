@@ -1,23 +1,31 @@
 import { check } from "express-validator";
-import  validateResultNews  from '../helpers/validateResultNews';
-import { Request, Response, NextFunction } from 'express';
 
 const newsValidator =[
     check('title')
-        .exists()
-        .notEmpty(),
-    check('date')
-        .exists()
-        .notEmpty()
-        .isDate(),
+        .notEmpty().withMessage('The title field must not be empty.')
+        .isString().withMessage('The description field must be a string')
+        .isLength({min: 3, max: 25}).withMessage('The title field must be between 3 and 25 characters long.'),
+
+    // check('date')
+    //     .notEmpty().withMessage('The date field must not be empty.')
+    //     .isDate().withMessage('The date field must be a date.')
+    //     .isISO8601().withMessage('The date field must be in the format YYYY-MM-DD.')
+    //     .custom((value) => {
+    //         const newDate = new Date(value);
+    //         const currentDate = new Date();
+    //         if ( newDate > currentDate ) {
+    //             throw new Error('The date field must be equal to or earlier than the current date.')
+    //         }
+    //         return true;
+    //     }),
+
     check('description')
-        .exists()
-        .notEmpty(), 
+        .notEmpty().withMessage('The description field must not be empty.')
+        .isString().withMessage('The description field must be a string'),
+
     check('image')
-        .exists(),
-    (req: Request, res: Response, next: NextFunction) =>{
-        validateResultNews(req, res, next)
-    }
+        .notEmpty().withMessage('The image field must not be empty.')
+        .isURL().withMessage('The image field should be a valid URL.'),
 ]
 
 export default newsValidator;
