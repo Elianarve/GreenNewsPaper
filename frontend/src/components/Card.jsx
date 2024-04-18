@@ -1,60 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { deleteNews } from '../services/newsServices';
 import { useUserContext } from '../context/UserContext';
+import update from '../assets/update-icon.svg';
+import dlete from '../assets/delete-icon.svg';
+import save from '../assets/save.svg';
+import unsave from '../assets/unsave.svg';
+import Swal from 'sweetalert2';
 
 
 const Card = ({ news, setReloadingData }) => {
 const navigate = useNavigate();
 const { user } = useUserContext();
+const [favorito, setFavorito] = useState(false);
 
  const handleReadMore = () => {
     navigate(`newsdetails/${news.id}`);
  };
 
-// const handleDelete = async () => {
-//   try {
-//     await deleteNews(news.id);
-//     navigate("/home");
-//   } catch (error) {
-//     console.error("Error deleting news:", error);
-//   }
-// };
+ const toggleFavorito = () => {
+  setFavorito(!favorito);
+  if (favorito) {
+    Swal.fire('Eliminado de favoritos');
+  } else {
+    Swal.fire('♥️ Guardado en favoritos ♥️');
+  }
+};
 
  return (
-    <article className="w-full bg-neutral-900 flex flex-col items-start justify-between p-4 rounded-lg relative">
+
+    <article className="relative flex flex-col shadow-md rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 max-w-xs bg-neutral-900">
       <div className="flex items-center mb-2">
-        <div className="flex gap-2">
-        </div>
       </div>
-      <div className="relative">
+      <div className="relative ">
         <img src={news.image} alt={news.title} className="w-full h-40 object-cover rounded-lg" />
         <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center p-2">
         </div>
-        <div className="flex justify-start items-center mt-2">
-        <button className="bg-gradient-to-r from-fuchsia-600 to-purple-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline mb-1 mr-5">
-          Blockchain
-        </button>
-        <div className="flex justify-end items-right mt-2 space-x-1">
+        <div className="flex mt-3">
         { user.rol === 'admin' && (
           <>
-        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7 text-white" onClick={() => navigate(`update/${news.id}`)}>Actualizar</button>
-        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-20 h-7 text-white" onClick={() => deleteNews(news.id).then(() => setReloadingData(true))}>Eliminar</button>
-        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7 text-white">save</button>
+        <div className="flex justify-start gap-3">
+        <button className="bg-zinc-800 mb-2 w-8 h-7 rounded text-white flex items-center justify-center" onClick={() => navigate(`update/${news.id}`)}><img src={update} alt="button-update" /></button>
+        <button className="bg-zinc-800 mb-2 w-8 h-7 rounded text-white flex items-center justify-center" onClick={() => deleteNews(news.id).then(() => setReloadingData(true))}><img src={dlete} alt="button-delete" /></button>
+        <button className="bg-zinc-800 mb-2 w-8 h-7 rounded text-white flex items-center justify-center" onClick={() => toggleFavorito()}><img src={favorito ? save : unsave } alt="button-save" /></button>
+        </div>
           </>
         )}
-        </div>
       </div>
       </div>
-      <div className="mt-1 w-full">
-        <p className="line-clamp-2 text-xs leading-4 text-white">{news.title}</p>
+      <div className="mt-0 mb-0 w-full">
+        <p className="text-2xl text-white h-auto">{news.title}</p>
       </div>
       <div className="flex justify-between items-center mt-2">
         <time dateTime={news.date} className="text-white">
           {news.Date}
         </time>
       </div>
-      <div className="absolute bottom-0 right-0 mb-4 ml-4">
+      <div className="absolute bottom-0 right-0 mt-1 mb-4">
         <button onClick={handleReadMore} className="text-pink-600 hover:text-purple-600">
           Leer más
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inline-block ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -62,6 +64,10 @@ const { user } = useUserContext();
           </svg>
         </button>
       </div>
+      <div>
+      <p className='mt-1 mb-4'>{news.date}</p>
+      </div>
+      <hr className='w-12/12 bg-zinc-800'/>
     </article>
  );
 };

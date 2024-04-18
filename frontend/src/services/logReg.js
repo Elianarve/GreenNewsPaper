@@ -18,7 +18,6 @@ export const registerUser = async(name, email, password) => {
 }}
 
 
-
 export const loginUser = async (email, password) => {
   try {
     const response = await axios.post('http://localhost:8000/auth/login', {

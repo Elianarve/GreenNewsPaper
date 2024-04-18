@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import TipTap from "../components/TipTap.jsx"
 import draft from "../assets/draft-icon.svg"
-import './css/Update.css'
+import './css/Create.css';
+import Swal from 'sweetalert2';
 
 const Update = () => {
     const navigate = useNavigate();
@@ -36,10 +37,10 @@ const Update = () => {
       data.image = url_image;
     try {
       await updateNews(id, data);
-      console.log('Noticia actualizada exitosamente');
+      Swal.fire('Noticia actualizada exitosamente');
       navigate('/home');
     } catch (error) {
-      console.error('Error al actualizar la noticia:', error);
+      Swal.fire('Error al actualizar la noticia:', error);
     }
   };
 
@@ -108,5 +109,3 @@ const Update = () => {
 
   
   export default Update;
-
-

@@ -2,7 +2,6 @@ import React from 'react';
 import { Link} from 'react-router-dom'
 import write from '../assets/write-icon.svg'
 import profile from '../assets/profile-icon.svg'
-import save from '../assets/save-icon.svg'
 import { useUserContext } from '../context/UserContext';
 import LogOut from '../components/LogOut';
 
@@ -24,7 +23,6 @@ const Nav = () => {
               <img src={write} className='absolute mt-2.5 ml-4'></img>
              <li className="text-white bg-[#222222] pl-10 px-4 py-2 rounded-lg hover:bg-[#FB005A] active:bg-[#B800B0] focus:outline-none focus:ring focus:ring-violet-300">Escribe</li>
            </Link>
-           <li className="text-white bg-[#222222] px-4 py-2 rounded-lg hover:bg-[#FB005A] active:bg-[#B800B0] focus:outline-none focus:ring focus:ring-violet-300"><img className='mt-1' src={save}></img></li>
             <li className="text-white size-9"><img src={profile}></img></li>
             <li className="text-white bg-[#222222] px-4 py-2 rounded-lg">{user && user.name}</li>
             <LogOut />

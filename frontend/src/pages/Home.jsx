@@ -18,8 +18,9 @@ const Home = () => {
  }, [reloadingData]);
 
  return (
-  <div className="w-full bg-neutral-900 flex justify-center min-h-screen">
-    <h1 className="text-2xl font-bold mb-4 text-white text-4xl" >¡Bienvenid@ {user && user.name} 👋!</h1>
+  <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-neutral-900 py-6 sm:py-12">
+    <div className="mx-auto max-w-screen-xl px-4 w-full">
+    <h1 className="text-3xl font-bold mb-8 text-white">¡ Bienvenid@ {user && user.name} 👋 !</h1>
     <div className="grid grid-cols-3 gap-4 grid-rows-2">
       {news.map((newsItem, index) => (
         <div key={index}>
@@ -27,7 +28,8 @@ const Home = () => {
         </div>
       ))}
     </div>
-  </div>
+    </div>
+    </div>
 );
 };
 

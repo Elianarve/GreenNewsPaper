@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useUserContext } from '../context/UserContext';
 import { loginUser } from '../services/logReg';
-
+import Swal from 'sweetalert2';
 import * as Yup from 'yup';
 
 const LoginForm = () => {
@@ -19,7 +19,7 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const data = await loginUser(email, password);
-      alert(`Bienvenid@ ${data.data.name}`)
+      Swal.fire(`Bienvenid@ ${data.data.name} 👋`)
       localStorage.setItem('authToken', data.token);
       setUser(data.data);
       setUserAuth(true);
@@ -37,7 +37,6 @@ const LoginForm = () => {
         setPasswordError('Error en la solicitud de inicio de sesión');
         setEmailError('');
       }
-      // Aquí podemos manejar errores, ejem. mostrar un mensaje al usuario
      }
   };
 

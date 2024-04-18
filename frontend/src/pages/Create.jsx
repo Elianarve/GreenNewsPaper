@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 import TipTap from "../components/TipTap.jsx"
 import draft from "../assets/draft-icon.svg"
-import '../pages/css/create.css';
+import './css/Create.css';
 
 const Create = () => {
   const [Url_Image, setUrl_Image ] = useState("");
