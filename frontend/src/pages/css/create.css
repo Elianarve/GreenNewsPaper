@@ -44,7 +44,7 @@
 
 .draft-text{
     color: #9E9E9E;
-    margin-left: 26%;
+    margin-left: 1.5%;
 }
 
 input{
@@ -87,28 +87,3 @@ input{
     transform: translateY(-20px);
     font-size: 0.5em;
 }
-
-.img-selector .custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-    z-index: 2;
-   }
-
-.img-selector input[type="file"]::file-selector-button {
-    margin-left: 2%;
-    padding: 0.3em 1em; 
-    background-color: #363636; 
-    border-radius: 0.5em;
-    border: none;
-    color: white;
-    cursor: pointer;
-   }
-
-   .delete-img-btn{
-    margin-top: 2%;
-    padding: 0.3em 1em; 
-    background-color: #363636;
-    border-radius: 0.5em;
-   }
