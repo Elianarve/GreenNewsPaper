@@ -1,14 +1,23 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { deleteNews } from '../services/newsServices';
+import { useUserContext } from '../context/UserContext';
+import { Link } from 'react-router-dom';
 
-
-const Card =({ news, onDelete }) => {
+const Card = ({ news, setReloadingData }) => {
 const navigate = useNavigate();
+const { user } = useUserContext();
 
  const handleReadMore = () => {
     navigate(`newsdetails/${news.id}`);
  };
+
+//  const handleDelete = async (id) => {
+//   const deleted = await deleteNews(id);
+//   if (deleted) {
+//       navigate('/home');
+//   }
+// };
 
  return (
     <article className="w-full bg-neutral-900 flex flex-col items-start justify-between p-4 rounded-lg relative">
@@ -25,10 +34,13 @@ const navigate = useNavigate();
           Blockchain
         </button>
         <div className="flex justify-end items-right mt-2 space-x-1">
-        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">post</button>
-        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7" onClick={() => {deleteNews(`${news.id}`); navigate(0)}}>Delete</button>
-        {/* <Delete id={news.id}/><button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">Delete</button> */}
-        <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7">save</button>
+        { user.rol === 'admin' && (
+          <>
+          <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7 text-white" onClick={() => navigate(`update/${news.id}`)}>Actualizar</button>
+          <button onClick={() => deleteNews(news.id).then(() => setReloadingData(true))} className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-20 h-7 text-white" >Eliminar</button>
+          <button className="bg-gradiente-to-r from bg-purple-600 to-fuchsia-600 mb-2 w-7 h-7 text-white">save</button>
+          </>
+        )}
         </div>
       </div>
       </div>

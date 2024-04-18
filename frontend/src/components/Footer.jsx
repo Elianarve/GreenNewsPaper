@@ -41,8 +41,7 @@ export function Footer() {
           <Typography
             as="a"
             href="#"
-            color="blue-gray"
-            className="font-normal transition-colors hover:text[#FB005A] focus:text-[#FB005A]"
+            className="font-normal transition-colors hover:text-[#FB005A] focus:text-[#FB005A]"
           >
             Contact Us
           </Typography>

@@ -37,6 +37,8 @@ export const createdUser = async (req: Request, res: Response) => {
 export const updateUser = async (req: Request, res: Response) => {   
     const userId = req.params.id;
     try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        req.body.password = hashedPassword;
         await UsersModel.update(req.body,{  where: {id: userId}});
         res.status(200).json({message: ` Users: ${userId}, Successfully updated`});
     } catch(error) {
