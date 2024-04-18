@@ -1,10 +1,8 @@
-import React from 'react';
 import RegisterForm from '../components/RegisterForm.jsx';
 import arrow from '../assets/arrow.svg'; 
 import { Link } from 'react-router-dom';
 
-const Register = () => {
-
+const Register = () => { 
 
  return (
   <>

@@ -117,4 +117,4 @@ export const Tiptap = ({ setDescription }) => {
   );
 };
 
-export default Tiptap
+export default Tiptap;

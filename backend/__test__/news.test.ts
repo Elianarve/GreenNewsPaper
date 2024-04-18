@@ -3,7 +3,6 @@ import { app, server } from '../app';
 import connection_db from '../database/connection_db';
 import UsersModel from '../models/userModel';
 import NewsModel from '../models/newsModel';
-import moment from 'moment';
 import { testUserAdmin, testNew, updatedTestNew } from './helpers/testHelpers';
 import { tokenSign } from '../utils/token';
 

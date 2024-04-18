@@ -1,37 +1,26 @@
-// import request from 'supertest';
-// import { app } from '../app';
-// import {userModel} from '../models/userModel.ts';
-// import {bcrypt} from bcrypt;
+import request from 'supertest';
+import { app, server } from '../app';
+import connection_db from '../database/connection_db';
+import UsersModel from '../models/userModel';
+import { tokenSign } from '../utils/token';
+import { testUser, loginUser } from './helpers/testHelpers';
+import bcrypt from 'bcryptjs';
 
-// const api = request(app);
+const api = request(app);
 
-// describe('LoginForm', () => {
-//     let newUser:any;
-//     let hashedPassword;
+describe('REGISTER', () => {
+    
+    test('Register response body should return a token and status 201', async() => {
+        const response = await api.post('/auth/register').send(
+            testUser
+        )
+        expect(response.status).toBe(201)
+    })
+});
 
-//     beforeEach(async() => {
-//         newUser = usersModel.create(testUser)
-//         hashedPassword = await bcrypt.hash(newUser.password,10)
-//         newsUser = UserModel.create({...testUser, password:hashedPassword})
-//     })
-//     test('LoginForm') async( => {
-        
-//     }
-// });
 
-//     it ('should return sucess on valid credentials', async () => {
-//     const res = await api
-//     .post('http://localhost:8000/auth/login')
-//     .send({ email: 'test@example.com', password: 'Unacontraseña!1'});
-// expect(res.status).toBe(200);
-// expect(res.body.message).toBe('Login successful');
-//  });
-
-// it('should return error on invalid credentials',async () => {
-//     const res = await api
-//         .post('http://localhost:8000/auth/login')
-//         .send({ email: 'wrong@example.com', password: 'wrongpassword' });
-//     expect(res.status).toBe(401);
-//     expect(res.body.message).toBe('Invalid credentials');
-//  });
-
+afterAll( async () => {
+    server.close();
+    await connection_db.sync({force: true });
+    console.log('All databases are clean')
+ });
