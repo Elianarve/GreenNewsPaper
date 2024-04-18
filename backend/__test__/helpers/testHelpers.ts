@@ -39,3 +39,8 @@ export const updatedTestNew = {
         "description": "updated descripcionTest",
         "image": "http://www.imagen.com"
 }
+
+export const loginUser = {
+    "email": "test@gmail.com",
+    "password": "Unacontraseña!1"
+}
