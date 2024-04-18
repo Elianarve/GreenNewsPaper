@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import TipTap from "../components/TipTap.jsx"
 import draft from "../assets/draft-icon.svg"
-import './css/Update.css'
+import './css/Create.css';
+import Swal from 'sweetalert2';
 
 const Update = () => {
     const navigate = useNavigate();
@@ -36,10 +37,10 @@ const Update = () => {
       data.image = url_image;
     try {
       await updateNews(id, data);
-      console.log('Noticia actualizada exitosamente');
+      Swal.fire('Noticia actualizada exitosamente');
       navigate('/home');
     } catch (error) {
-      console.error('Error al actualizar la noticia:', error);
+      Swal.fire('Error al actualizar la noticia:', error);
     }
   };
 
@@ -84,11 +85,17 @@ const Update = () => {
       </div>          
       <div className='news-title'>
            <label htmlFor='title'>Título</label>
-           <input type='text' {...register("title")} placeholder='Título de tu artículo' />
+           <input type='text' {...register("title", { required: true, minLength: 3, maxLength:60 })} placeholder='Título de tu artículo' />
+           {errors.title && errors.title.type === "required" && <p className='text-[#FB005A] text-xs'>El título es requerido</p>}
+           {errors.title && errors.title.type === "minLength" && <p className='text-[#FB005A] text-xs'>El título debe tener al menos 3 caracteres</p>}
+           {errors.title && errors.title.type === "maxLength" && <p className='text-[#FB005A] text-xs'>El título debe tener como máximo 60 caracteres</p>}
          </div>
          <div className='news-text'>
             <label htmlFor='description'>Texto</label>
-            <input type='text' {...register("description")} placeholder='Modifica tu artículo' />
+            <input type='text' {...register("description", { required: true, minLength: 3, maxLength: 60000 })} placeholder='Escribe tu artículo' />
+            {errors.description && errors.description.type === "required" && <p className='text-[#FB005A] text-xs'>La descripción es requerida</p>}
+            {errors.description && errors.description.type === "minLength" && <p className='text-[#FB005A] text-xs'>La descripción debe tener al menos 3 caracteres</p>}
+            {errors.description && errors.description.type === "maxLength" && <p className='text-[#FB005A] text-xs'>La descripción debe como máximo 60000 caracteres</p>}
          </div>
        </form>
        <div className='text-editor-container'>
@@ -101,5 +108,3 @@ const Update = () => {
 
   
   export default Update;
-
-

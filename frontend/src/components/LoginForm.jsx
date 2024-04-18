@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useUserContext } from '../context/UserContext.jsx';
-import { loginUser } from '../services/logReg.js';
-// import * as Yup from 'yup';
+import { useUserContext } from '../context/UserContext';
+import { loginUser } from '../services/logReg';
+import Swal from 'sweetalert2';
+import * as Yup from 'yup';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -18,7 +19,7 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const data = await loginUser(email, password);
-      alert(`Bienvenid@ ${data.data.name}`)
+      Swal.fire(`Bienvenid@ ${data.data.name} 👋`)
       localStorage.setItem('authToken', data.token);
       setUser(data.data);
       setUserAuth(true);
@@ -36,14 +37,12 @@ const LoginForm = () => {
         setPasswordError('Error en la solicitud de inicio de sesión');
         setEmailError('');
       }
-    }
-
+     }
   };
-
 
  return (
     <>
-      <form onSubmit={handleSubmit} className="px-8 pb-8 mb-4">
+     <form onSubmit={handleSubmit} className="px-8 pb-8 mb-4">
         <div className="mb-4">
           <label className="block text-white font-poppins mb-2 text-left" htmlFor="email">
             Email

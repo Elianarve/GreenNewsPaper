@@ -49,6 +49,13 @@ input{
     margin-bottom: 0.5% ;
 }
 
+input{
+    background-color: #171717;
+}
+.text-editor-title{
+    margin-bottom: 0.5% ;
+}
+
 .text-editor-container{
     width: 100vh;
     margin-top: 2%;
