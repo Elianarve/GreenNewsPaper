@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import TipTap from "../components/TipTap.jsx"
 import draft from "../assets/draft-icon.svg"
-import './css/create.css';
+import './css/Create.css';
 import Swal from 'sweetalert2';
 
 const Update = () => {
