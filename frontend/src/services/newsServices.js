@@ -13,7 +13,7 @@ const getHeaders = () => {
     };
 };
 
-// GET
+
 export const getNews = async () => {
     try {
         const headers = getHeaders();
@@ -26,7 +26,7 @@ export const getNews = async () => {
     }
 };
 
-// GET ONE BY ID
+
 export const getOneNewsById = async (id) => {
     try {
         const headers = getHeaders();
@@ -38,7 +38,7 @@ export const getOneNewsById = async (id) => {
     }
 };
 
-// DELETE
+
 export const deleteNews = async (id) => {
     const confirmDelete = await Swal.fire({
         title: '¿Estás seguro que deseas eliminar la Noticia?',
@@ -65,7 +65,6 @@ export const deleteNews = async (id) => {
 };
 
 
-// POST
 export const postNews = async (data) => {
     const headers = getHeaders();
     const news = await axios.post(API_URL_NEWS, data, {headers})
@@ -74,7 +73,7 @@ export const postNews = async (data) => {
     return news;
   }
 
-// PUT
+
 export const updateNews = async (id, newData) => {
     try {
         const headers = getHeaders();
