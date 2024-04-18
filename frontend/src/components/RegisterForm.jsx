@@ -4,6 +4,7 @@ import { useId } from 'react';
 import { useUserContext } from '../context/UserContext.jsx';
 import { registerUser } from '../services/logReg';
 import * as Yup from 'yup';
+import Swal from 'sweetalert2';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -32,7 +33,7 @@ const RegisterForm = () => {
     try {
       await validationSchema.validate({name, email, password}, {abortEarly: false});
       const data = await registerUser(name, email, password)
-      alert(`Usuario registrado correctamente, bienvenid@ ${data.data.name}`);
+      Swal.fire(`Usuario registrado correctamente, bienvenid@ ${data.data.name} 👋`);
       localStorage.setItem('authToken',data.token);
       console.log(localStorage.getItem('authToken'));
       setUser(data.data);

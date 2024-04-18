@@ -79,7 +79,6 @@ export const updateNews = async (id, newData) => {
     try {
         const headers = getHeaders();
         const response = await axios.put(`${API_URL_NEWS}/${id}`, newData, { headers });
-        console.log(response)
         if (response.status === 200) {
             Swal.fire('Noticia actualizada correctamente');
             return response.data;

@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { deleteNews } from '../services/newsServices';
 import { useUserContext } from '../context/UserContext';
 import update from '../assets/update-icon.svg';
 import dlete from '../assets/delete-icon.svg';
-import save from '../assets/save-icon.svg';
+import save from '../assets/save.svg';
+import unsave from '../assets/unsave.svg';
+import Swal from 'sweetalert2';
 
 
 const Card = ({ news, setReloadingData }) => {
 const navigate = useNavigate();
 const { user } = useUserContext();
+const [favorito, setFavorito] = useState(false);
 
  const handleReadMore = () => {
     navigate(`newsdetails/${news.id}`);
  };
+
+ const toggleFavorito = () => {
+  setFavorito(!favorito);
+  if (favorito) {
+    Swal.fire('Eliminado de favoritos');
+  } else {
+    Swal.fire('♥️ Guardado en favoritos ♥️');
+  }
+};
 
  return (
 
@@ -30,7 +42,7 @@ const { user } = useUserContext();
         <div className="flex justify-start gap-3">
         <button className="bg-zinc-800 mb-2 w-8 h-7 rounded text-white flex items-center justify-center" onClick={() => navigate(`update/${news.id}`)}><img src={update} alt="button-update" /></button>
         <button className="bg-zinc-800 mb-2 w-8 h-7 rounded text-white flex items-center justify-center" onClick={() => deleteNews(news.id).then(() => setReloadingData(true))}><img src={dlete} alt="button-delete" /></button>
-        <button className="bg-zinc-800 mb-2 w-8 h-7 rounded text-white flex items-center justify-center"><img src={save} alt="button-save" /></button>
+        <button className="bg-zinc-800 mb-2 w-8 h-7 rounded text-white flex items-center justify-center" onClick={() => toggleFavorito()}><img src={favorito ? save : unsave } alt="button-save" /></button>
         </div>
           </>
         )}
