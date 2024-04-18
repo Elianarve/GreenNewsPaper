@@ -5,6 +5,7 @@ import profile from '../assets/profile-icon.svg'
 import save from '../assets/save-icon.svg'
 import { useUserContext } from '../context/UserContext';
 import LogOut from '../components/LogOut';
+import logo from '../assets/innovatech-logo.svg'
 
 
 const Nav = () => {
@@ -14,6 +15,7 @@ const Nav = () => {
     <>
        <nav className="flex justify-between items-center bg-neutral-900 p-3"> 
          <Link to="/" replace className="text-white">
+          <img src={logo}/>
          <div className="w-10 h-10 ml-20 bg-gradient-to-r from-[#FB005A] to-purple-500 hover:from-[#B800B0] hover:to-pink-600 py-2 px-4 focus:outline-none focus:shadow-outline mb-5 rounded"></div>
          </Link>
          <ul className="font-poppins flex space-x-4 mr-20">
