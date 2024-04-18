@@ -3,7 +3,7 @@ import { useUserContext } from "../context/UserContext";
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.jsx';
 
-const LayoutPrivate = () => {  //HE METIDO AQUI TB LA NAV Y EL FOOTER
+const LayoutPrivate = () => {  
   const { userAuth } = useUserContext();
 
   return (

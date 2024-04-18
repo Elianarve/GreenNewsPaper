@@ -42,7 +42,7 @@ const LoginForm = () => {
 
  return (
     <>
-      <form onSubmit={handleSubmit} className="px-8 pb-8 mb-4">
+     <form onSubmit={handleSubmit} className="px-8 pb-8 mb-4">
         <div className="mb-4">
           <label className="block text-white font-poppins mb-2 text-left" htmlFor="email">
             Email
