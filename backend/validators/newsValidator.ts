@@ -4,7 +4,7 @@ const newsValidator =[
     check('title')
         .notEmpty().withMessage('The title field must not be empty.')
         .isString().withMessage('The description field must be a string')
-        .isLength({min: 3, max: 60}).withMessage('The title field must be between 3 and 40 characters long.'),
+        .isLength({min: 3, max: 60}).withMessage('The title field must be between 3 and 60 characters long.'),
 
     check('description')
         .notEmpty().withMessage('The description field must not be empty.')
