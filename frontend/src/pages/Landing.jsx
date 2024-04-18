@@ -24,7 +24,7 @@ const Landing = () => {
       <section className='section-right'>
           <Spline/>
       </section>
-  </main>  */}
+  </main>  
 
   <main className="landing">
       <section className="section-left size-fit">
