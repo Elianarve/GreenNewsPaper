@@ -186,9 +186,7 @@ To integrate Cloudinary into our project, we have followed these steps:
 
     Follow the instructions provided in Cloudinary's official documentation to configure the integration into your project.
 
-# Project folder structure in backend.
-
-```
+# Project folder structure in backend.```
 |-- _ test _
 |   |-- helpers/
 |   |-- testHelpers.ts
