@@ -21,9 +21,9 @@ const [favorito, setFavorito] = useState(false);
  const toggleFavorito = () => {
   setFavorito(!favorito);
   if (favorito) {
-    Swal.fire('Eliminado de favoritos');
+    Swal.fire('💔 Eliminado de favoritos 💔');
   } else {
-    Swal.fire('♥️ Guardado en favoritos ♥️');
+    Swal.fire('🩷  Guardado en favoritos 🩷');
   }
 };
 
