@@ -38,9 +38,6 @@
     border-radius: 0.5em;
     background: linear-gradient(91deg, #B800B0 0.41%, #DF00D6 22.24%, #E73172 50.06%, #FB005A 98.15%);
 }
-.draft-icon{
-    position: absolute;
-}
 
 .draft-text{
     color: #9E9E9E;
