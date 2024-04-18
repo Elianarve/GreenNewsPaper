@@ -52,7 +52,8 @@ const FunctionDeleteImage = () => {
           </div>
          <div className='img-selector'>
              <label>Imagen de portada</label>
-             <input type="file" accept="image/*" onChange={changeUploadImage}/> 
+             <input type="file" accept="image/*" onChange={changeUploadImage} {...register("image", {required: true})}/> 
+             {errors.image && <p className='text-[#FB005A] text-xs'>La imagen es requerida</p>}
 
              {Url_Image && (
                <div>
@@ -63,11 +64,17 @@ const FunctionDeleteImage = () => {
          </div>
          <div className='news-title'>
            <label htmlFor='title'>Título</label>
-           <input type='text' {...register("title", { required: true })} placeholder='Título de tu artículo' />
+           <input type='text' {...register("title", { required: true, minLength: 3, maxLength:40 })} placeholder='Título de tu artículo' />
+           {errors.title && errors.title.type === "required" && <p className='text-[#FB005A] text-xs'>El título es requerido</p>}
+           {errors.title && errors.title.type === "minLength" && <p className='text-[#FB005A] text-xs'>El título debe tener al menos 3 caracteres</p>}
+           {errors.title && errors.title.type === "maxLength" && <p className='text-[#FB005A] text-xs'>El título debe tener como máximo 40 caracteres</p>}
          </div>
          <div className='news-text'>
             <label htmlFor='description'>Texto</label>
-            <input type='text' {...register("description", { required: true })} placeholder='Escribe tu artículo' />
+            <input type='text' {...register("description", { required: true, minLength: 3, maxLength: 60000 })} placeholder='Escribe tu artículo' />
+            {errors.description && errors.description.type === "required" && <p className='text-[#FB005A] text-xs'>La descripción es requerida</p>}
+            {errors.description && errors.description.type === "minLength" && <p className='text-[#FB005A] text-xs'>La descripción debe tener al menos 3 caracteres</p>}
+            {errors.description && errors.description.type === "maxLength" && <p className='text-[#FB005A] text-xs'>La descripción debe como máximo 60000 caracteres</p>}
          </div>
        </form>
        <div className='text-editor-container'>
