@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useId } from 'react';
+import { useUserContext } from '../context/UserContext.jsx';
+import { registerUser } from '../services/logReg';
 import * as Yup from 'yup';
+import Swal from 'sweetalert2';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -12,6 +15,8 @@ const RegisterForm = () => {
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
   const termsId = useId();
+  const { userAuth, setUserAuth } = useUserContext();
+  const { user, setUser  } = useUserContext();
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required('El nombre es requerido.').min(2, 'El nombre debe tener al menos dos caracteres.'),
@@ -24,29 +29,19 @@ const RegisterForm = () => {
 });
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); //lógica para enviar credenciales al back-end
+    e.preventDefault(); 
     try {
       await validationSchema.validate({name, email, password}, {abortEarly: false});
-
-      const response = await fetch('http://localhost:8000/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
-      console.log(response)
-
-      if(!response.ok) {
-        throw new Error('Error en el inicio de sesión');
-      }
-
-      const data = await response.json();
-      console.log(data)
+      const data = await registerUser(name, email, password)
+      Swal.fire(`Usuario registrado correctamente, bienvenid@ ${data.data.name} 👋`);
       localStorage.setItem('authToken',data.token);
-      navigate('/home');
+      console.log(localStorage.getItem('authToken'));
+      setUser(data.data);
+      setUserAuth(true);
+      navigate('/home')
     } catch (error){
       console.error('Error:', error);
+      
       error.inner.forEach((err) => {
         if (err.path === 'name') {
           setNameError(err.message);
@@ -67,7 +62,7 @@ const RegisterForm = () => {
             Nombre
             <input type="text" value={name} onChange={(e) =>{ setName(e.target.value);
             setNameError('');}} required className="font-poppins shadow appearance-none rounded-lg w-full bg-[#222222] py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="name" placeholder="Escribe tu nombre completo"/>
-            {nameError && <p>{nameError}</p>}
+            {nameError && <p className='text-[#FB005A] text-xs'>{nameError}</p>}
           </label>
         </div>
         <div className="mb-4">
@@ -76,7 +71,7 @@ const RegisterForm = () => {
             <input type="email" value={email} onChange={(e) => {
               setEmail(e.target.value);
               setEmailError('');}} required className="font-poppins shadow appearance-none rounded-lg w-full bg-[#222222] py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="email" placeholder="hola@gmail.com"/>
-              {emailError && <p>{emailError}</p>}
+              {emailError && <p className='text-[#FB005A] text-xs'>{emailError}</p>}
           </label>
         </div>
 
@@ -86,7 +81,7 @@ const RegisterForm = () => {
             <input type="password" value={password} onChange={(e) =>{
                setPassword(e.target.value);
                setPasswordError('');}} required className="font-poppins shadow appearance-none bg-[#222222] rounded-lg text-slate-50 w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-12" id="password" placeholder="Ingresa tu contraseña"/>
-               {passwordError && <p>{passwordError}</p>}
+               {passwordError && <p className='text-[#FB005A] w-80 text-xs '>{passwordError}</p>}
             
           </label>
         </div>

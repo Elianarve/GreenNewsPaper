@@ -6,40 +6,50 @@ import Home from '../pages/Home.jsx';
 import Create from '../pages/Create.jsx';
 import NewsDetails from '../pages/NewsDetails.jsx';
 import Register from '../pages/Register.jsx';
-import {getNews} from '../services/newsServices.js';
-
+import LayoutPrivate from '../layout/LayoutPrivate.jsx';
+import Update from '../pages/Update.jsx';
 
 const router = createBrowserRouter([
-   {
-      path: "/", 
-      element: <Landing/>,
-   },
-   {
-      path: "/login",
-      element: <Login/>,
-   },
-   {
-      path:"/register",
-      element: <Register/>,
-   },
-   {
-    element: <LayoutPublic/>,
+  {
+    path: '/',
+    element: <LayoutPublic />,
+    children:[
+      {
+        index: true,
+        element: <Landing />
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+    ]
+  },
+  {
+    path: '/home',
+    element: <LayoutPrivate />,
     children: [
       {
-        path: "/home",
-        element: <Home/>,
-        loader: getNews
-     },
-     {
-        path:"/create",
-        element: <Create/>,
+        index: true,
+        element: <Home />,
       },
-     {
-        path: "/newsdetails/:id",
-        element: <NewsDetails/>,
-     },
-   ],
- },
+      {
+        path: "create",
+        element: <Create />,
+      },
+      {
+        path: "newsdetails/:id",
+        element: <NewsDetails />,
+      },
+      { 
+        path: "update/:id", 
+        element: <Update />,
+      },
+    ]
+  }
 ]);
 
 export default router;

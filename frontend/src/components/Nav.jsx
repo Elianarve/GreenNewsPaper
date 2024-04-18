@@ -1,26 +1,41 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Add from './Add'; 
+import { Link} from 'react-router-dom'
+import profile from '../assets/profile-icon.svg'
+import { useUserContext } from '../context/UserContext';
+import LogOut from '../components/LogOut';
+import write from '../assets/write-icon.svg';
+import logoNews from '../assets/innovatech-logo.svg';
+import { useState } from 'react';
+import lgHamb from '../assets/hamburger-menu-icon.svg';
+
 
 const Nav = () => {
+   const { user, userAuth  } = useUserContext();
+
     return (
     <>
-       <nav className="flex justify-between items-center bg-gray-900 p-4">
-        
+       <nav className="flex justify-between items-center bg-neutral-900 p-3"> 
          <Link to="/" replace className="text-white">
-         <div className="w-10 h-10 bg-gradient-to-r from-fuchsia-600 to-purple-500 hover:from-purple-600 hover:to-pink-600 py-2 px-4 focus:outline-none focus:shadow-outline mb-5 rounded"></div>
+         <img className="w-30 h-28 ml-28" src={logoNews} alt="icon-page" />
          </Link>
-         <ul className="flex space-x-4">
-           <li className="text-white">Lista de Noticias</li>
-           <Link to="/create" replace className="text-white">
-             <li>+</li>
+         <ul className="font-poppins flex space-x-4 mr-20">
+           { userAuth && (
+            <>
+            <Link to="/home"><li className="text-white bg-[#222222] px-4 py-2 rounded-lg hover:bg-[#FB005A] active:bg-[#B800B0] focus:outline-none focus:ring focus:ring-violet-300">Home</li></Link> 
+           <Link to="create" replace className="text-white"> 
+              <img src={write} className='absolute mt-2.5 ml-4'></img>
+             <li className="text-white bg-[#222222] pl-10 px-4 py-2 rounded-lg hover:bg-[#FB005A] active:bg-[#B800B0] focus:outline-none focus:ring focus:ring-violet-300">Escribe</li>
            </Link>
-           <li className="text-white">Añadir</li>
+            <li className="text-white size-9"><img src={profile}></img></li>
+            <li className="text-white bg-[#222222] px-4 py-2 rounded-lg">{user && user.name}</li>
+            <LogOut />
+            </>
+           )}
+     
          </ul>
-         <Add />
         </nav>
     </>
     );
-   }
-   
-   export default Nav;
+  }
+  
+  export default Nav;

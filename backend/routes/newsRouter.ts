@@ -4,7 +4,6 @@ import newsValidator from '../validators/newsValidator';
 import { authToken } from '../middleware/authMiddleware';
 import { authRol } from '../middleware/rolMiddleware';
 import handleValidationResults from '../helpers/validationHelper';
-import { authenticateToken } from '../middleware/verifyToken';
 
 
 const router = express.Router();
