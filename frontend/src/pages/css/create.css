@@ -15,7 +15,6 @@
 }
 
 .form-create {
-    width: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around ;
@@ -45,7 +44,14 @@
 
 .draft-text{
     color: #9E9E9E;
-    margin-left: 26%;
+    margin-left: 1.5%;
+}
+
+input{
+    background-color: #171717;
+}
+.text-editor-title{
+    margin-bottom: 0.5% ;
 }
 
 .text-editor-container{
@@ -70,7 +76,7 @@
 
 .news-title input, .news-text input[type="text"] {
     width: 100vh;
-    margin-top: 1.5rem;
+    margin-top: 4.5%;
     padding: 0.75rem 1rem;
     border: 1px solid  #616161;
     border-radius: 0.5rem;
