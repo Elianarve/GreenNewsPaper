@@ -18,14 +18,4 @@ router.put('/:id', authToken, authRol(['admin']), newsValidator, handleValidatio
 
 router.get('/:id',authToken, authRol(['user','admin']), getOneNews);
 
-// router.get('/', getNews); 
-
-// router.delete('/:id', authToken, deleteNews);  
-
-// router.post('/',authToken, newsValidator, handleValidationResults, createdNews);
-
-// router.put('/:id', authToken, newsValidator, handleValidationResults, updateNews);
-
-// router.get('/:id',authToken, getOneNews);
-
 export default router;
