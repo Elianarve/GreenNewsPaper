@@ -77,7 +77,7 @@ Once the application is installed and running, you can do the following:
 - Explore your own news list with pictures on your homepage. If you have the Administrator role, you can also delete them.
 
 
-# Project folder structure in frontend/ (the Structure of the backend/ follows ).
+# Project folder structure in frontend/ (the Structure of the backend/ follows).
 
 ```
 |-- src/
@@ -95,6 +95,8 @@ Once the application is installed and running, you can do the following:
 |   |   |-- Nav.jsx
 |   |   |-- RegisterForm.jsx
 |   |   |-- Spline.jsx
+|   |   |-- TipTap.css
+|   |   |-- TipTap.jsx
 |   |   
 |   |-- context/         
 |   |   |--UserContext.jsx
@@ -106,12 +108,14 @@ Once the application is installed and running, you can do the following:
 |   |-- pages/
 |   |   |-- css/
 |   |   |   |-- create.css
+|   |   |   |-- Landing.css
 |   |   |-- Create.jsx
 |   |   |-- Home.jsx
 |   |   |-- Landing.jsx
 |   |   |-- Login.jsx
 |   |   |-- NewsDetails.jsx
 |   |   |-- Register.jsx
+|   |   |-- Update.jsx
 |   |
 |   |-- router/
 |   |   |-- router.jsx
@@ -120,11 +124,15 @@ Once the application is installed and running, you can do the following:
 |   |   |-- newsServices.js
 |   |
 |   |-- test/
-|   |   |-- testing.test.jsx 
+|   |   |-- Footer.test.jsx 
 |   |
+|   |-- index.css
 |   |-- main.css
 |   |-- main.jsx
-|-- index.html
+|   |-- .gitignore
+|   |-- index.html
+|   |-- package-lock.json
+
 ´´´
 
 ## Structure in the frontend/:
@@ -178,13 +186,15 @@ To integrate Cloudinary into our project, we have followed these steps:
 
     Follow the instructions provided in Cloudinary's official documentation to configure the integration into your project.
 
-# Project folder structure in backend/
+# Project folder structure in backend.
 
 ```
-|-- _test_/
+|-- _ test _
+|   |-- helpers/
+|   |-- testHelpers.ts
 |   |-- news.test.ts
 |   |-- users.test.ts
-|   |   
+|   |  
 |-- controllers/
 |   |-- authController.ts
 |   |-- newsController.ts
