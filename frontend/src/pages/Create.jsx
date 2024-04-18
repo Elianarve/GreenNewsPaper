@@ -52,7 +52,7 @@ const FunctionDeleteImage = () => {
           </div>
          <div className='img-selector'>
              <label>Imagen de portada</label>
-             <input type="file" accept="image/*" onChange={changeUploadImage} {...register("image", {required: true})}/> 
+             <input type="file" accept="image/*" {...register("image", {required: true})} onChange={changeUploadImage}/> 
              {errors.image && <p className='text-[#FB005A] text-xs'>La imagen es requerida</p>}
 
              {Url_Image && (
